@@ -1,0 +1,15 @@
+{
+  "status": "alive",
+  "processed_rows": {
+    "1S": 615,
+    "3S": 612,
+    "5S": 610,
+    "15S": 600,
+    "1M": 10
+  },
+  "measurements_written": 2447,
+  "detector_events_written": 11962,
+  "evidence_events_written": 11962,
+  "last_event_ts": 1781379660000,
+  "missing_inputs": []
+}

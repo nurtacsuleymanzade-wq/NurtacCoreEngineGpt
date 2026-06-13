@@ -1,0 +1,113 @@
+{
+  "input_files": {
+    "layer0": "data/one_second_combined_dna.jsonl",
+    "layer2": "data/aligned_1m_candle_dna.jsonl"
+  },
+  "checked_1m_candles": 10,
+  "passed": 10,
+  "failed": 0,
+  "warnings": 10,
+  "results": [
+    {
+      "window_start_ts": 1781379120000,
+      "window_end_ts": 1781379179999,
+      "source_1s_count": 60,
+      "status": "passed",
+      "errors": [],
+      "warnings": [
+        "missing_data_quality_field"
+      ]
+    },
+    {
+      "window_start_ts": 1781379180000,
+      "window_end_ts": 1781379239999,
+      "source_1s_count": 60,
+      "status": "passed",
+      "errors": [],
+      "warnings": [
+        "missing_data_quality_field"
+      ]
+    },
+    {
+      "window_start_ts": 1781379240000,
+      "window_end_ts": 1781379299999,
+      "source_1s_count": 60,
+      "status": "passed",
+      "errors": [],
+      "warnings": [
+        "missing_data_quality_field"
+      ]
+    },
+    {
+      "window_start_ts": 1781379300000,
+      "window_end_ts": 1781379359999,
+      "source_1s_count": 60,
+      "status": "passed",
+      "errors": [],
+      "warnings": [
+        "missing_data_quality_field"
+      ]
+    },
+    {
+      "window_start_ts": 1781379360000,
+      "window_end_ts": 1781379419999,
+      "source_1s_count": 60,
+      "status": "passed",
+      "errors": [],
+      "warnings": [
+        "missing_data_quality_field"
+      ]
+    },
+    {
+      "window_start_ts": 1781379420000,
+      "window_end_ts": 1781379479999,
+      "source_1s_count": 60,
+      "status": "passed",
+      "errors": [],
+      "warnings": [
+        "missing_data_quality_field"
+      ]
+    },
+    {
+      "window_start_ts": 1781379480000,
+      "window_end_ts": 1781379539999,
+      "source_1s_count": 60,
+      "status": "passed",
+      "errors": [],
+      "warnings": [
+        "missing_data_quality_field"
+      ]
+    },
+    {
+      "window_start_ts": 1781379540000,
+      "window_end_ts": 1781379599999,
+      "source_1s_count": 60,
+      "status": "passed",
+      "errors": [],
+      "warnings": [
+        "missing_data_quality_field"
+      ]
+    },
+    {
+      "window_start_ts": 1781379600000,
+      "window_end_ts": 1781379659999,
+      "source_1s_count": 60,
+      "status": "passed",
+      "errors": [],
+      "warnings": [
+        "missing_data_quality_field"
+      ]
+    },
+    {
+      "window_start_ts": 1781379660000,
+      "window_end_ts": 1781379719999,
+      "source_1s_count": 60,
+      "status": "passed",
+      "errors": [],
+      "warnings": [
+        "missing_data_quality_field"
+      ]
+    }
+  ],
+  "test_passed": true
+}

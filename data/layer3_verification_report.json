@@ -1,0 +1,18 @@
+{
+  "checked_rows": 0,
+  "atr_passed": 0,
+  "atr_failed": 0,
+  "vwap_passed": 0,
+  "vwap_failed": 0,
+  "cvd_passed": 0,
+  "cvd_failed": 0,
+  "percentile_passed": 0,
+  "percentile_failed": 0,
+  "zscore_passed": 0,
+  "zscore_failed": 0,
+  "errors": [
+    "Layer-3 baseline input file not found"
+  ],
+  "warnings": [],
+  "test_passed": false
+}

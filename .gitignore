@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 .venv/
 **pycache**/
 *.pyc
 data/*.jsonl
+=======
+.env
+__pycache__/
+*.pyc
+logs/*.log
+runtime/tmp/
+>>>>>>> addc4480080cc420d00ebd8a7111b3dbff5528f7

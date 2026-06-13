@@ -1,0 +1,42 @@
+{
+  "duration_seconds": 600,
+  "processes": {
+    "main.py": {
+      "started": true,
+      "exit_code": 1,
+      "log_file": "logs/main.log"
+    },
+    "rolling_window_engine.py": {
+      "started": true,
+      "exit_code": 1,
+      "log_file": "logs/rolling_window_engine.log"
+    },
+    "aligned_candle_engine.py": {
+      "started": true,
+      "exit_code": 1,
+      "log_file": "logs/aligned_candle_engine.log"
+    },
+    "sync_integrity_engine.py": {
+      "started": true,
+      "exit_code": 1,
+      "log_file": "logs/sync_integrity_engine.log"
+    }
+  },
+  "output_files": {
+    "one_second_combined_dna_rows": 615,
+    "rolling_3s_rows": 612,
+    "rolling_5s_rows": 610,
+    "rolling_15s_rows": 600,
+    "aligned_1m_rows": 10,
+    "system_health_exists": true,
+    "gap_events_rows": 0,
+    "data_quality_rows": 10
+  },
+  "validation": {
+    "layer0_rows_gt_0": true,
+    "rolling_rows_gt_0": true,
+    "aligned_1m_rows_gt_0": true,
+    "sync_health_exists": true,
+    "test_passed": true
+  }
+}

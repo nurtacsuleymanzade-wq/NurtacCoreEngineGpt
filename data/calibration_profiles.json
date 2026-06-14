@@ -1,0 +1,6125 @@
+{
+  "layer": "Layer-6",
+  "engine": "CalibrationObservationEngine",
+  "record_type": "calibration_profile_summary",
+  "calibration_status": "observed_not_scored",
+  "generated_at": 1781465667.6223533,
+  "groups": [
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "15S",
+      "event_type": "absorption_candidate",
+      "side": "buy",
+      "sample_count": 127,
+      "horizons": {
+        "30s": {
+          "favorable_count": 68,
+          "unfavorable_count": 34,
+          "flat_count": 25,
+          "unknown_count": 0,
+          "avg_raw_return": -1.7164909415000527e-05,
+          "avg_side_adjusted_return": -1.7164909415000527e-05
+        },
+        "60s": {
+          "favorable_count": 71,
+          "unfavorable_count": 48,
+          "flat_count": 8,
+          "unknown_count": 0,
+          "avg_raw_return": -3.694335636927767e-05,
+          "avg_side_adjusted_return": -3.694335636927767e-05
+        },
+        "180s": {
+          "favorable_count": 91,
+          "unfavorable_count": 36,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00035293960386031665,
+          "avg_side_adjusted_return": -0.00035293960386031665
+        },
+        "300s": {
+          "favorable_count": 64,
+          "unfavorable_count": 63,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.001286506248904003,
+          "avg_side_adjusted_return": -0.001286506248904003
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "15S",
+      "event_type": "absorption_candidate",
+      "side": "sell",
+      "sample_count": 111,
+      "horizons": {
+        "30s": {
+          "favorable_count": 45,
+          "unfavorable_count": 34,
+          "flat_count": 32,
+          "unknown_count": 0,
+          "avg_raw_return": 4.808623170114946e-05,
+          "avg_side_adjusted_return": -4.808623170114946e-05
+        },
+        "60s": {
+          "favorable_count": 49,
+          "unfavorable_count": 50,
+          "flat_count": 12,
+          "unknown_count": 0,
+          "avg_raw_return": 2.6366124538910253e-05,
+          "avg_side_adjusted_return": -2.6366124538910253e-05
+        },
+        "180s": {
+          "favorable_count": 30,
+          "unfavorable_count": 81,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 0.00017420503388798598,
+          "avg_side_adjusted_return": -0.00017420503388798598
+        },
+        "300s": {
+          "favorable_count": 47,
+          "unfavorable_count": 64,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0009369286610880046,
+          "avg_side_adjusted_return": 0.0009369286610880046
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "15S",
+      "event_type": "aggression_burst_candidate",
+      "side": "buy",
+      "sample_count": 292,
+      "horizons": {
+        "30s": {
+          "favorable_count": 185,
+          "unfavorable_count": 66,
+          "flat_count": 41,
+          "unknown_count": 0,
+          "avg_raw_return": 0.00023181490739145906,
+          "avg_side_adjusted_return": 0.00023181490739145906
+        },
+        "60s": {
+          "favorable_count": 184,
+          "unfavorable_count": 96,
+          "flat_count": 12,
+          "unknown_count": 0,
+          "avg_raw_return": 0.00016640334845527643,
+          "avg_side_adjusted_return": 0.00016640334845527643
+        },
+        "180s": {
+          "favorable_count": 195,
+          "unfavorable_count": 97,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00028927927546590793,
+          "avg_side_adjusted_return": -0.00028927927546590793
+        },
+        "300s": {
+          "favorable_count": 176,
+          "unfavorable_count": 116,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0007597514237731865,
+          "avg_side_adjusted_return": -0.0007597514237731865
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "15S",
+      "event_type": "aggression_burst_candidate",
+      "side": "sell",
+      "sample_count": 308,
+      "horizons": {
+        "30s": {
+          "favorable_count": 193,
+          "unfavorable_count": 77,
+          "flat_count": 38,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00026655315659660655,
+          "avg_side_adjusted_return": 0.00026655315659660655
+        },
+        "60s": {
+          "favorable_count": 171,
+          "unfavorable_count": 125,
+          "flat_count": 12,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0004429256297359881,
+          "avg_side_adjusted_return": 0.0004429256297359881
+        },
+        "180s": {
+          "favorable_count": 150,
+          "unfavorable_count": 158,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0010067883367985671,
+          "avg_side_adjusted_return": 0.0010067883367985671
+        },
+        "300s": {
+          "favorable_count": 170,
+          "unfavorable_count": 138,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.001737765941479912,
+          "avg_side_adjusted_return": 0.001737765941479912
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "15S",
+      "event_type": "delta_imbalance_candidate",
+      "side": "buy",
+      "sample_count": 292,
+      "horizons": {
+        "30s": {
+          "favorable_count": 185,
+          "unfavorable_count": 66,
+          "flat_count": 41,
+          "unknown_count": 0,
+          "avg_raw_return": 0.00023181490739145906,
+          "avg_side_adjusted_return": 0.00023181490739145906
+        },
+        "60s": {
+          "favorable_count": 184,
+          "unfavorable_count": 96,
+          "flat_count": 12,
+          "unknown_count": 0,
+          "avg_raw_return": 0.00016640334845527643,
+          "avg_side_adjusted_return": 0.00016640334845527643
+        },
+        "180s": {
+          "favorable_count": 195,
+          "unfavorable_count": 97,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00028927927546590793,
+          "avg_side_adjusted_return": -0.00028927927546590793
+        },
+        "300s": {
+          "favorable_count": 176,
+          "unfavorable_count": 116,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0007597514237731865,
+          "avg_side_adjusted_return": -0.0007597514237731865
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "15S",
+      "event_type": "delta_imbalance_candidate",
+      "side": "sell",
+      "sample_count": 308,
+      "horizons": {
+        "30s": {
+          "favorable_count": 193,
+          "unfavorable_count": 77,
+          "flat_count": 38,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00026655315659660655,
+          "avg_side_adjusted_return": 0.00026655315659660655
+        },
+        "60s": {
+          "favorable_count": 171,
+          "unfavorable_count": 125,
+          "flat_count": 12,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0004429256297359881,
+          "avg_side_adjusted_return": 0.0004429256297359881
+        },
+        "180s": {
+          "favorable_count": 150,
+          "unfavorable_count": 158,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0010067883367985671,
+          "avg_side_adjusted_return": 0.0010067883367985671
+        },
+        "300s": {
+          "favorable_count": 170,
+          "unfavorable_count": 138,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.001737765941479912,
+          "avg_side_adjusted_return": 0.001737765941479912
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "15S",
+      "event_type": "delta_negative_observation",
+      "side": "sell",
+      "sample_count": 307,
+      "horizons": {
+        "30s": {
+          "favorable_count": 192,
+          "unfavorable_count": 77,
+          "flat_count": 38,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00025455109959909763,
+          "avg_side_adjusted_return": 0.00025455109959909763
+        },
+        "60s": {
+          "favorable_count": 170,
+          "unfavorable_count": 125,
+          "flat_count": 12,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0004314980759083143,
+          "avg_side_adjusted_return": 0.0004314980759083143
+        },
+        "180s": {
+          "favorable_count": 149,
+          "unfavorable_count": 158,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0009971974693131168,
+          "avg_side_adjusted_return": 0.0009971974693131168
+        },
+        "300s": {
+          "favorable_count": 169,
+          "unfavorable_count": 138,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0017305561085373975,
+          "avg_side_adjusted_return": 0.0017305561085373975
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "15S",
+      "event_type": "delta_positive_observation",
+      "side": "buy",
+      "sample_count": 292,
+      "horizons": {
+        "30s": {
+          "favorable_count": 185,
+          "unfavorable_count": 66,
+          "flat_count": 41,
+          "unknown_count": 0,
+          "avg_raw_return": 0.00023181490739145906,
+          "avg_side_adjusted_return": 0.00023181490739145906
+        },
+        "60s": {
+          "favorable_count": 184,
+          "unfavorable_count": 96,
+          "flat_count": 12,
+          "unknown_count": 0,
+          "avg_raw_return": 0.00016640334845527643,
+          "avg_side_adjusted_return": 0.00016640334845527643
+        },
+        "180s": {
+          "favorable_count": 195,
+          "unfavorable_count": 97,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00028927927546590793,
+          "avg_side_adjusted_return": -0.00028927927546590793
+        },
+        "300s": {
+          "favorable_count": 176,
+          "unfavorable_count": 116,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0007597514237731865,
+          "avg_side_adjusted_return": -0.0007597514237731865
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "15S",
+      "event_type": "exhaustion_candidate",
+      "side": "buy",
+      "sample_count": 126,
+      "horizons": {
+        "30s": {
+          "favorable_count": 54,
+          "unfavorable_count": 46,
+          "flat_count": 26,
+          "unknown_count": 0,
+          "avg_raw_return": -4.5000069699704554e-05,
+          "avg_side_adjusted_return": -4.5000069699704554e-05
+        },
+        "60s": {
+          "favorable_count": 59,
+          "unfavorable_count": 55,
+          "flat_count": 12,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00013343489764024914,
+          "avg_side_adjusted_return": -0.00013343489764024914
+        },
+        "180s": {
+          "favorable_count": 75,
+          "unfavorable_count": 51,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00036223647420348295,
+          "avg_side_adjusted_return": -0.00036223647420348295
+        },
+        "300s": {
+          "favorable_count": 68,
+          "unfavorable_count": 58,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0011314449856676008,
+          "avg_side_adjusted_return": -0.0011314449856676008
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "15S",
+      "event_type": "exhaustion_candidate",
+      "side": "sell",
+      "sample_count": 112,
+      "horizons": {
+        "30s": {
+          "favorable_count": 33,
+          "unfavorable_count": 48,
+          "flat_count": 31,
+          "unknown_count": 0,
+          "avg_raw_return": 7.881818754719014e-05,
+          "avg_side_adjusted_return": -7.881818754719014e-05
+        },
+        "60s": {
+          "favorable_count": 42,
+          "unfavorable_count": 62,
+          "flat_count": 8,
+          "unknown_count": 0,
+          "avg_raw_return": 0.00013435384524635864,
+          "avg_side_adjusted_return": -0.00013435384524635864
+        },
+        "180s": {
+          "favorable_count": 15,
+          "unfavorable_count": 97,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 0.00017995736447272396,
+          "avg_side_adjusted_return": -0.00017995736447272396
+        },
+        "300s": {
+          "favorable_count": 52,
+          "unfavorable_count": 60,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0011144938106915998,
+          "avg_side_adjusted_return": 0.0011144938106915998
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "15S",
+      "event_type": "iceberg_candidate",
+      "side": "buy",
+      "sample_count": 1,
+      "horizons": {
+        "30s": {
+          "favorable_count": 0,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00395118465483184,
+          "avg_side_adjusted_return": -0.00395118465483184
+        },
+        "60s": {
+          "favorable_count": 0,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00395118465483184,
+          "avg_side_adjusted_return": -0.00395118465483184
+        },
+        "180s": {
+          "favorable_count": 0,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00395118465483184,
+          "avg_side_adjusted_return": -0.00395118465483184
+        },
+        "300s": {
+          "favorable_count": 0,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00395118465483184,
+          "avg_side_adjusted_return": -0.00395118465483184
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "15S",
+      "event_type": "iceberg_candidate",
+      "side": "unknown",
+      "sample_count": 599,
+      "horizons": {
+        "30s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 599,
+          "avg_raw_return": -1.7457820732248628e-05,
+          "avg_side_adjusted_return": null
+        },
+        "60s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 599,
+          "avg_raw_return": -0.00014003360860586275,
+          "avg_side_adjusted_return": null
+        },
+        "180s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 599,
+          "avg_raw_return": -0.0006521021227298363,
+          "avg_side_adjusted_return": null
+        },
+        "300s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 599,
+          "avg_raw_return": -0.0012573090835772145,
+          "avg_side_adjusted_return": null
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "15S",
+      "event_type": "initiative_buyer_candidate",
+      "side": "buy",
+      "sample_count": 180,
+      "horizons": {
+        "30s": {
+          "favorable_count": 137,
+          "unfavorable_count": 33,
+          "flat_count": 10,
+          "unknown_count": 0,
+          "avg_raw_return": 0.00032701286640567085,
+          "avg_side_adjusted_return": 0.00032701286640567085
+        },
+        "60s": {
+          "favorable_count": 122,
+          "unfavorable_count": 54,
+          "flat_count": 4,
+          "unknown_count": 0,
+          "avg_raw_return": 0.00018634526156304749,
+          "avg_side_adjusted_return": 0.00018634526156304749
+        },
+        "180s": {
+          "favorable_count": 98,
+          "unfavorable_count": 82,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0005812487403166121,
+          "avg_side_adjusted_return": -0.0005812487403166121
+        },
+        "300s": {
+          "favorable_count": 116,
+          "unfavorable_count": 64,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0005390228274683959,
+          "avg_side_adjusted_return": -0.0005390228274683959
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "15S",
+      "event_type": "initiative_seller_candidate",
+      "side": "sell",
+      "sample_count": 182,
+      "horizons": {
+        "30s": {
+          "favorable_count": 147,
+          "unfavorable_count": 23,
+          "flat_count": 12,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00041993606290984637,
+          "avg_side_adjusted_return": 0.00041993606290984637
+        },
+        "60s": {
+          "favorable_count": 116,
+          "unfavorable_count": 66,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0006571884442638074,
+          "avg_side_adjusted_return": 0.0006571884442638074
+        },
+        "180s": {
+          "favorable_count": 99,
+          "unfavorable_count": 83,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0014530165493643946,
+          "avg_side_adjusted_return": 0.0014530165493643946
+        },
+        "300s": {
+          "favorable_count": 112,
+          "unfavorable_count": 70,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0021575266031961275,
+          "avg_side_adjusted_return": 0.0021575266031961275
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "15S",
+      "event_type": "momentum_candidate",
+      "side": "buy",
+      "sample_count": 236,
+      "horizons": {
+        "30s": {
+          "favorable_count": 168,
+          "unfavorable_count": 51,
+          "flat_count": 17,
+          "unknown_count": 0,
+          "avg_raw_return": 0.0001961538691963064,
+          "avg_side_adjusted_return": 0.0001961538691963064
+        },
+        "60s": {
+          "favorable_count": 150,
+          "unfavorable_count": 80,
+          "flat_count": 6,
+          "unknown_count": 0,
+          "avg_raw_return": 5.9590397870519595e-05,
+          "avg_side_adjusted_return": 5.9590397870519595e-05
+        },
+        "180s": {
+          "favorable_count": 125,
+          "unfavorable_count": 111,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0007326934584323071,
+          "avg_side_adjusted_return": -0.0007326934584323071
+        },
+        "300s": {
+          "favorable_count": 143,
+          "unfavorable_count": 93,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0007609547704730355,
+          "avg_side_adjusted_return": -0.0007609547704730355
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "15S",
+      "event_type": "momentum_candidate",
+      "side": "neutral",
+      "sample_count": 141,
+      "horizons": {
+        "30s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 141,
+          "avg_raw_return": 0.00012262449196820602,
+          "avg_side_adjusted_return": null
+        },
+        "60s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 141,
+          "avg_raw_return": 0.00012378030500880989,
+          "avg_side_adjusted_return": null
+        },
+        "180s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 141,
+          "avg_raw_return": 0.0003270683718168051,
+          "avg_side_adjusted_return": null
+        },
+        "300s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 141,
+          "avg_raw_return": -0.0009987654470232329,
+          "avg_side_adjusted_return": null
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "15S",
+      "event_type": "momentum_candidate",
+      "side": "sell",
+      "sample_count": 223,
+      "horizons": {
+        "30s": {
+          "favorable_count": 164,
+          "unfavorable_count": 34,
+          "flat_count": 25,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0003497344653421261,
+          "avg_side_adjusted_return": 0.0003497344653421261
+        },
+        "60s": {
+          "favorable_count": 136,
+          "unfavorable_count": 85,
+          "flat_count": 2,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0005351913592530423,
+          "avg_side_adjusted_return": 0.0005351913592530423
+        },
+        "180s": {
+          "favorable_count": 107,
+          "unfavorable_count": 116,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0012007234995791425,
+          "avg_side_adjusted_return": 0.0012007234995791425
+        },
+        "300s": {
+          "favorable_count": 130,
+          "unfavorable_count": 93,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0019581527885904537,
+          "avg_side_adjusted_return": 0.0019581527885904537
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "15S",
+      "event_type": "price_down_observation",
+      "side": "neutral",
+      "sample_count": 223,
+      "horizons": {
+        "30s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 223,
+          "avg_raw_return": -0.0003497344653421261,
+          "avg_side_adjusted_return": null
+        },
+        "60s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 223,
+          "avg_raw_return": -0.0005351913592530423,
+          "avg_side_adjusted_return": null
+        },
+        "180s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 223,
+          "avg_raw_return": -0.0012007234995791425,
+          "avg_side_adjusted_return": null
+        },
+        "300s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 223,
+          "avg_raw_return": -0.0019581527885904537,
+          "avg_side_adjusted_return": null
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "15S",
+      "event_type": "price_up_observation",
+      "side": "neutral",
+      "sample_count": 235,
+      "horizons": {
+        "30s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 235,
+          "avg_raw_return": 0.000213802118234724,
+          "avg_side_adjusted_return": null
+        },
+        "60s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 235,
+          "avg_raw_return": 7.665752575435941e-05,
+          "avg_side_adjusted_return": null
+        },
+        "180s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 235,
+          "avg_raw_return": -0.0007189977512135858,
+          "avg_side_adjusted_return": null
+        },
+        "300s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 235,
+          "avg_raw_return": -0.0007473793241566151,
+          "avg_side_adjusted_return": null
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "15S",
+      "event_type": "responsive_buyer_candidate",
+      "side": "buy",
+      "sample_count": 126,
+      "horizons": {
+        "30s": {
+          "favorable_count": 54,
+          "unfavorable_count": 46,
+          "flat_count": 26,
+          "unknown_count": 0,
+          "avg_raw_return": -4.5000069699704554e-05,
+          "avg_side_adjusted_return": -4.5000069699704554e-05
+        },
+        "60s": {
+          "favorable_count": 59,
+          "unfavorable_count": 55,
+          "flat_count": 12,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00013343489764024914,
+          "avg_side_adjusted_return": -0.00013343489764024914
+        },
+        "180s": {
+          "favorable_count": 75,
+          "unfavorable_count": 51,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00036223647420348295,
+          "avg_side_adjusted_return": -0.00036223647420348295
+        },
+        "300s": {
+          "favorable_count": 68,
+          "unfavorable_count": 58,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0011314449856676008,
+          "avg_side_adjusted_return": -0.0011314449856676008
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "15S",
+      "event_type": "responsive_seller_candidate",
+      "side": "sell",
+      "sample_count": 112,
+      "horizons": {
+        "30s": {
+          "favorable_count": 33,
+          "unfavorable_count": 48,
+          "flat_count": 31,
+          "unknown_count": 0,
+          "avg_raw_return": 7.881818754719014e-05,
+          "avg_side_adjusted_return": -7.881818754719014e-05
+        },
+        "60s": {
+          "favorable_count": 42,
+          "unfavorable_count": 62,
+          "flat_count": 8,
+          "unknown_count": 0,
+          "avg_raw_return": 0.00013435384524635864,
+          "avg_side_adjusted_return": -0.00013435384524635864
+        },
+        "180s": {
+          "favorable_count": 15,
+          "unfavorable_count": 97,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 0.00017995736447272396,
+          "avg_side_adjusted_return": -0.00017995736447272396
+        },
+        "300s": {
+          "favorable_count": 52,
+          "unfavorable_count": 60,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0011144938106915998,
+          "avg_side_adjusted_return": 0.0011144938106915998
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "15S",
+      "event_type": "sweep_candidate",
+      "side": "buy",
+      "sample_count": 1,
+      "horizons": {
+        "30s": {
+          "favorable_count": 0,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00395118465483184,
+          "avg_side_adjusted_return": -0.00395118465483184
+        },
+        "60s": {
+          "favorable_count": 0,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00395118465483184,
+          "avg_side_adjusted_return": -0.00395118465483184
+        },
+        "180s": {
+          "favorable_count": 0,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00395118465483184,
+          "avg_side_adjusted_return": -0.00395118465483184
+        },
+        "300s": {
+          "favorable_count": 0,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00395118465483184,
+          "avg_side_adjusted_return": -0.00395118465483184
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "15S",
+      "event_type": "sweep_candidate",
+      "side": "unknown",
+      "sample_count": 599,
+      "horizons": {
+        "30s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 599,
+          "avg_raw_return": -1.7457820732248628e-05,
+          "avg_side_adjusted_return": null
+        },
+        "60s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 599,
+          "avg_raw_return": -0.00014003360860586275,
+          "avg_side_adjusted_return": null
+        },
+        "180s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 599,
+          "avg_raw_return": -0.0006521021227298363,
+          "avg_side_adjusted_return": null
+        },
+        "300s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 599,
+          "avg_raw_return": -0.0012573090835772145,
+          "avg_side_adjusted_return": null
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "15S",
+      "event_type": "trapped_buyer_candidate",
+      "side": "buy",
+      "sample_count": 41,
+      "horizons": {
+        "30s": {
+          "favorable_count": 11,
+          "unfavorable_count": 17,
+          "flat_count": 13,
+          "unknown_count": 0,
+          "avg_raw_return": -3.810786150492884e-05,
+          "avg_side_adjusted_return": -3.810786150492884e-05
+        },
+        "60s": {
+          "favorable_count": 19,
+          "unfavorable_count": 20,
+          "flat_count": 2,
+          "unknown_count": 0,
+          "avg_raw_return": 6.356676648402601e-06,
+          "avg_side_adjusted_return": 6.356676648402601e-06
+        },
+        "180s": {
+          "favorable_count": 33,
+          "unfavorable_count": 8,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -8.078849809339022e-05,
+          "avg_side_adjusted_return": -8.078849809339022e-05
+        },
+        "300s": {
+          "favorable_count": 23,
+          "unfavorable_count": 18,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.001073127562779901,
+          "avg_side_adjusted_return": -0.001073127562779901
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "15S",
+      "event_type": "trapped_seller_candidate",
+      "side": "buy",
+      "sample_count": 1,
+      "horizons": {
+        "30s": {
+          "favorable_count": 0,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00395118465483184,
+          "avg_side_adjusted_return": -0.00395118465483184
+        },
+        "60s": {
+          "favorable_count": 0,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00395118465483184,
+          "avg_side_adjusted_return": -0.00395118465483184
+        },
+        "180s": {
+          "favorable_count": 0,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00395118465483184,
+          "avg_side_adjusted_return": -0.00395118465483184
+        },
+        "300s": {
+          "favorable_count": 0,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00395118465483184,
+          "avg_side_adjusted_return": -0.00395118465483184
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "15S",
+      "event_type": "trapped_seller_candidate",
+      "side": "sell",
+      "sample_count": 55,
+      "horizons": {
+        "30s": {
+          "favorable_count": 17,
+          "unfavorable_count": 31,
+          "flat_count": 7,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00015670578487019283,
+          "avg_side_adjusted_return": 0.00015670578487019283
+        },
+        "60s": {
+          "favorable_count": 25,
+          "unfavorable_count": 28,
+          "flat_count": 2,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0002823205187104379,
+          "avg_side_adjusted_return": 0.0002823205187104379
+        },
+        "180s": {
+          "favorable_count": 28,
+          "unfavorable_count": 27,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0011698126959673175,
+          "avg_side_adjusted_return": 0.0011698126959673175
+        },
+        "300s": {
+          "favorable_count": 28,
+          "unfavorable_count": 27,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00142927331331806,
+          "avg_side_adjusted_return": 0.00142927331331806
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1M",
+      "event_type": "absorption_candidate",
+      "side": "buy",
+      "sample_count": 1,
+      "horizons": {
+        "30s": {
+          "favorable_count": 1,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 0.00017445455692443416,
+          "avg_side_adjusted_return": 0.00017445455692443416
+        },
+        "60s": {
+          "favorable_count": 1,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 0.00017445455692443416,
+          "avg_side_adjusted_return": 0.00017445455692443416
+        },
+        "180s": {
+          "favorable_count": 1,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 0.0002180681961554577,
+          "avg_side_adjusted_return": 0.0002180681961554577
+        },
+        "300s": {
+          "favorable_count": 1,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 0.0010934562407224344,
+          "avg_side_adjusted_return": 0.0010934562407224344
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1M",
+      "event_type": "absorption_candidate",
+      "side": "sell",
+      "sample_count": 1,
+      "horizons": {
+        "30s": {
+          "favorable_count": 0,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 0.00013405160051373788,
+          "avg_side_adjusted_return": -0.00013405160051373788
+        },
+        "60s": {
+          "favorable_count": 1,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0003787737084284618,
+          "avg_side_adjusted_return": 0.0003787737084284618
+        },
+        "180s": {
+          "favorable_count": 0,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 0.000886922798748043,
+          "avg_side_adjusted_return": -0.000886922798748043
+        },
+        "300s": {
+          "favorable_count": 0,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 0.0009305675058919901,
+          "avg_side_adjusted_return": -0.0009305675058919901
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1M",
+      "event_type": "aggression_burst_candidate",
+      "side": "buy",
+      "sample_count": 5,
+      "horizons": {
+        "30s": {
+          "favorable_count": 4,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 0.0002929724913879721,
+          "avg_side_adjusted_return": 0.0002929724913879721
+        },
+        "60s": {
+          "favorable_count": 4,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 0.0005521411821937264,
+          "avg_side_adjusted_return": 0.0005521411821937264
+        },
+        "180s": {
+          "favorable_count": 3,
+          "unfavorable_count": 2,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -7.383415101020957e-05,
+          "avg_side_adjusted_return": -7.383415101020957e-05
+        },
+        "300s": {
+          "favorable_count": 4,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 4.001748350587512e-05,
+          "avg_side_adjusted_return": 4.001748350587512e-05
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1M",
+      "event_type": "aggression_burst_candidate",
+      "side": "sell",
+      "sample_count": 4,
+      "horizons": {
+        "30s": {
+          "favorable_count": 3,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -4.1963092187655104e-05,
+          "avg_side_adjusted_return": 4.1963092187655104e-05
+        },
+        "60s": {
+          "favorable_count": 3,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0003144382587484901,
+          "avg_side_adjusted_return": 0.0003144382587484901
+        },
+        "180s": {
+          "favorable_count": 1,
+          "unfavorable_count": 3,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0007940095646053275,
+          "avg_side_adjusted_return": 0.0007940095646053275
+        },
+        "300s": {
+          "favorable_count": 3,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.002693007092666374,
+          "avg_side_adjusted_return": 0.002693007092666374
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1M",
+      "event_type": "delta_imbalance_candidate",
+      "side": "buy",
+      "sample_count": 5,
+      "horizons": {
+        "30s": {
+          "favorable_count": 4,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 0.0002929724913879721,
+          "avg_side_adjusted_return": 0.0002929724913879721
+        },
+        "60s": {
+          "favorable_count": 4,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 0.0005521411821937264,
+          "avg_side_adjusted_return": 0.0005521411821937264
+        },
+        "180s": {
+          "favorable_count": 3,
+          "unfavorable_count": 2,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -7.383415101020957e-05,
+          "avg_side_adjusted_return": -7.383415101020957e-05
+        },
+        "300s": {
+          "favorable_count": 4,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 4.001748350587512e-05,
+          "avg_side_adjusted_return": 4.001748350587512e-05
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1M",
+      "event_type": "delta_imbalance_candidate",
+      "side": "sell",
+      "sample_count": 4,
+      "horizons": {
+        "30s": {
+          "favorable_count": 3,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -4.1963092187655104e-05,
+          "avg_side_adjusted_return": 4.1963092187655104e-05
+        },
+        "60s": {
+          "favorable_count": 3,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0003144382587484901,
+          "avg_side_adjusted_return": 0.0003144382587484901
+        },
+        "180s": {
+          "favorable_count": 1,
+          "unfavorable_count": 3,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0007940095646053275,
+          "avg_side_adjusted_return": 0.0007940095646053275
+        },
+        "300s": {
+          "favorable_count": 3,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.002693007092666374,
+          "avg_side_adjusted_return": 0.002693007092666374
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1M",
+      "event_type": "delta_negative_observation",
+      "side": "sell",
+      "sample_count": 4,
+      "horizons": {
+        "30s": {
+          "favorable_count": 3,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -4.1963092187655104e-05,
+          "avg_side_adjusted_return": 4.1963092187655104e-05
+        },
+        "60s": {
+          "favorable_count": 3,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0003144382587484901,
+          "avg_side_adjusted_return": 0.0003144382587484901
+        },
+        "180s": {
+          "favorable_count": 1,
+          "unfavorable_count": 3,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0007940095646053275,
+          "avg_side_adjusted_return": 0.0007940095646053275
+        },
+        "300s": {
+          "favorable_count": 3,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.002693007092666374,
+          "avg_side_adjusted_return": 0.002693007092666374
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1M",
+      "event_type": "delta_positive_observation",
+      "side": "buy",
+      "sample_count": 5,
+      "horizons": {
+        "30s": {
+          "favorable_count": 4,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 0.0002929724913879721,
+          "avg_side_adjusted_return": 0.0002929724913879721
+        },
+        "60s": {
+          "favorable_count": 4,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 0.0005521411821937264,
+          "avg_side_adjusted_return": 0.0005521411821937264
+        },
+        "180s": {
+          "favorable_count": 3,
+          "unfavorable_count": 2,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -7.383415101020957e-05,
+          "avg_side_adjusted_return": -7.383415101020957e-05
+        },
+        "300s": {
+          "favorable_count": 4,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 4.001748350587512e-05,
+          "avg_side_adjusted_return": 4.001748350587512e-05
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1M",
+      "event_type": "exhaustion_candidate",
+      "side": "buy",
+      "sample_count": 1,
+      "horizons": {
+        "30s": {
+          "favorable_count": 1,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 0.00017445455692443416,
+          "avg_side_adjusted_return": 0.00017445455692443416
+        },
+        "60s": {
+          "favorable_count": 1,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 0.00017445455692443416,
+          "avg_side_adjusted_return": 0.00017445455692443416
+        },
+        "180s": {
+          "favorable_count": 1,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 0.0002180681961554577,
+          "avg_side_adjusted_return": 0.0002180681961554577
+        },
+        "300s": {
+          "favorable_count": 1,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 0.0010934562407224344,
+          "avg_side_adjusted_return": 0.0010934562407224344
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1M",
+      "event_type": "exhaustion_candidate",
+      "side": "sell",
+      "sample_count": 1,
+      "horizons": {
+        "30s": {
+          "favorable_count": 0,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 0.00013405160051373788,
+          "avg_side_adjusted_return": -0.00013405160051373788
+        },
+        "60s": {
+          "favorable_count": 1,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0003787737084284618,
+          "avg_side_adjusted_return": 0.0003787737084284618
+        },
+        "180s": {
+          "favorable_count": 0,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 0.000886922798748043,
+          "avg_side_adjusted_return": -0.000886922798748043
+        },
+        "300s": {
+          "favorable_count": 0,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 0.0009305675058919901,
+          "avg_side_adjusted_return": -0.0009305675058919901
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1M",
+      "event_type": "iceberg_candidate",
+      "side": "unknown",
+      "sample_count": 9,
+      "horizons": {
+        "30s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 9,
+          "avg_raw_return": 0.0001441122320210267,
+          "avg_side_adjusted_return": null
+        },
+        "60s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 9,
+          "avg_raw_return": 0.00016699476399718578,
+          "avg_side_adjusted_return": null
+        },
+        "180s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 9,
+          "avg_raw_return": -0.00039391211260803976,
+          "avg_side_adjusted_return": null
+        },
+        "300s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 9,
+          "avg_raw_return": -0.0011746601059040133,
+          "avg_side_adjusted_return": null
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1M",
+      "event_type": "initiative_buyer_candidate",
+      "side": "buy",
+      "sample_count": 4,
+      "horizons": {
+        "30s": {
+          "favorable_count": 3,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 0.0003327027141065307,
+          "avg_side_adjusted_return": 0.0003327027141065307
+        },
+        "60s": {
+          "favorable_count": 4,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 0.0007848699048492735,
+          "avg_side_adjusted_return": 0.0007848699048492735
+        },
+        "180s": {
+          "favorable_count": 2,
+          "unfavorable_count": 2,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00031402338844977275,
+          "avg_side_adjusted_return": -0.00031402338844977275
+        },
+        "300s": {
+          "favorable_count": 3,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00018262002209065362,
+          "avg_side_adjusted_return": -0.00018262002209065362
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1M",
+      "event_type": "initiative_seller_candidate",
+      "side": "sell",
+      "sample_count": 3,
+      "horizons": {
+        "30s": {
+          "favorable_count": 3,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00011410230855835153,
+          "avg_side_adjusted_return": 0.00011410230855835153
+        },
+        "60s": {
+          "favorable_count": 3,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00047740253063946486,
+          "avg_side_adjusted_return": 0.00047740253063946486
+        },
+        "180s": {
+          "favorable_count": 1,
+          "unfavorable_count": 2,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.001131368818192256,
+          "avg_side_adjusted_return": 0.001131368818192256
+        },
+        "300s": {
+          "favorable_count": 3,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00395516153712931,
+          "avg_side_adjusted_return": 0.00395516153712931
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1M",
+      "event_type": "momentum_candidate",
+      "side": "buy",
+      "sample_count": 5,
+      "horizons": {
+        "30s": {
+          "favorable_count": 4,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 0.00030105308267011134,
+          "avg_side_adjusted_return": 0.00030105308267011134
+        },
+        "60s": {
+          "favorable_count": 5,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 0.0006627868352643057,
+          "avg_side_adjusted_return": 0.0006627868352643057
+        },
+        "180s": {
+          "favorable_count": 3,
+          "unfavorable_count": 2,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00020760507152872663,
+          "avg_side_adjusted_return": -0.00020760507152872663
+        },
+        "300s": {
+          "favorable_count": 4,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 7.259523047196399e-05,
+          "avg_side_adjusted_return": 7.259523047196399e-05
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1M",
+      "event_type": "momentum_candidate",
+      "side": "sell",
+      "sample_count": 4,
+      "horizons": {
+        "30s": {
+          "favorable_count": 3,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -5.2063831290329175e-05,
+          "avg_side_adjusted_return": 5.2063831290329175e-05
+        },
+        "60s": {
+          "favorable_count": 4,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00045274532508671406,
+          "avg_side_adjusted_return": 0.00045274532508671406
+        },
+        "180s": {
+          "favorable_count": 1,
+          "unfavorable_count": 3,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0006267959139571812,
+          "avg_side_adjusted_return": 0.0006267959139571812
+        },
+        "300s": {
+          "favorable_count": 3,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.002733729276373985,
+          "avg_side_adjusted_return": 0.002733729276373985
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1M",
+      "event_type": "price_down_observation",
+      "side": "neutral",
+      "sample_count": 4,
+      "horizons": {
+        "30s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 4,
+          "avg_raw_return": -5.2063831290329175e-05,
+          "avg_side_adjusted_return": null
+        },
+        "60s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 4,
+          "avg_raw_return": -0.00045274532508671406,
+          "avg_side_adjusted_return": null
+        },
+        "180s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 4,
+          "avg_raw_return": -0.0006267959139571812,
+          "avg_side_adjusted_return": null
+        },
+        "300s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 4,
+          "avg_raw_return": -0.002733729276373985,
+          "avg_side_adjusted_return": null
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1M",
+      "event_type": "price_up_observation",
+      "side": "neutral",
+      "sample_count": 5,
+      "horizons": {
+        "30s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 5,
+          "avg_raw_return": 0.00030105308267011134,
+          "avg_side_adjusted_return": null
+        },
+        "60s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 5,
+          "avg_raw_return": 0.0006627868352643057,
+          "avg_side_adjusted_return": null
+        },
+        "180s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 5,
+          "avg_raw_return": -0.00020760507152872663,
+          "avg_side_adjusted_return": null
+        },
+        "300s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 5,
+          "avg_raw_return": 7.259523047196399e-05,
+          "avg_side_adjusted_return": null
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1M",
+      "event_type": "responsive_buyer_candidate",
+      "side": "buy",
+      "sample_count": 1,
+      "horizons": {
+        "30s": {
+          "favorable_count": 1,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 0.00017445455692443416,
+          "avg_side_adjusted_return": 0.00017445455692443416
+        },
+        "60s": {
+          "favorable_count": 1,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 0.00017445455692443416,
+          "avg_side_adjusted_return": 0.00017445455692443416
+        },
+        "180s": {
+          "favorable_count": 1,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 0.0002180681961554577,
+          "avg_side_adjusted_return": 0.0002180681961554577
+        },
+        "300s": {
+          "favorable_count": 1,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 0.0010934562407224344,
+          "avg_side_adjusted_return": 0.0010934562407224344
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1M",
+      "event_type": "responsive_seller_candidate",
+      "side": "sell",
+      "sample_count": 1,
+      "horizons": {
+        "30s": {
+          "favorable_count": 0,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 0.00013405160051373788,
+          "avg_side_adjusted_return": -0.00013405160051373788
+        },
+        "60s": {
+          "favorable_count": 1,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0003787737084284618,
+          "avg_side_adjusted_return": 0.0003787737084284618
+        },
+        "180s": {
+          "favorable_count": 0,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 0.000886922798748043,
+          "avg_side_adjusted_return": -0.000886922798748043
+        },
+        "300s": {
+          "favorable_count": 0,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 0.0009305675058919901,
+          "avg_side_adjusted_return": -0.0009305675058919901
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1M",
+      "event_type": "sweep_candidate",
+      "side": "unknown",
+      "sample_count": 9,
+      "horizons": {
+        "30s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 9,
+          "avg_raw_return": 0.0001441122320210267,
+          "avg_side_adjusted_return": null
+        },
+        "60s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 9,
+          "avg_raw_return": 0.00016699476399718578,
+          "avg_side_adjusted_return": null
+        },
+        "180s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 9,
+          "avg_raw_return": -0.00039391211260803976,
+          "avg_side_adjusted_return": null
+        },
+        "300s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 9,
+          "avg_raw_return": -0.0011746601059040133,
+          "avg_side_adjusted_return": null
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1M",
+      "event_type": "trapped_buyer_candidate",
+      "side": "buy",
+      "sample_count": 1,
+      "horizons": {
+        "30s": {
+          "favorable_count": 1,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 0.00013405160051373788,
+          "avg_side_adjusted_return": 0.00013405160051373788
+        },
+        "60s": {
+          "favorable_count": 0,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0003787737084284618,
+          "avg_side_adjusted_return": -0.0003787737084284618
+        },
+        "180s": {
+          "favorable_count": 1,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 0.000886922798748043,
+          "avg_side_adjusted_return": 0.000886922798748043
+        },
+        "300s": {
+          "favorable_count": 1,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 0.0009305675058919901,
+          "avg_side_adjusted_return": 0.0009305675058919901
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1M",
+      "event_type": "trapped_seller_candidate",
+      "side": "sell",
+      "sample_count": 1,
+      "horizons": {
+        "30s": {
+          "favorable_count": 0,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 0.00017445455692443416,
+          "avg_side_adjusted_return": -0.00017445455692443416
+        },
+        "60s": {
+          "favorable_count": 0,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 0.00017445455692443416,
+          "avg_side_adjusted_return": -0.00017445455692443416
+        },
+        "180s": {
+          "favorable_count": 0,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 0.0002180681961554577,
+          "avg_side_adjusted_return": -0.0002180681961554577
+        },
+        "300s": {
+          "favorable_count": 0,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 0.0010934562407224344,
+          "avg_side_adjusted_return": -0.0010934562407224344
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1S",
+      "event_type": "absorption_candidate",
+      "side": "buy",
+      "sample_count": 190,
+      "horizons": {
+        "30s": {
+          "favorable_count": 71,
+          "unfavorable_count": 91,
+          "flat_count": 28,
+          "unknown_count": 0,
+          "avg_raw_return": 2.1753549011245017e-06,
+          "avg_side_adjusted_return": 2.1753549011245017e-06
+        },
+        "60s": {
+          "favorable_count": 102,
+          "unfavorable_count": 83,
+          "flat_count": 5,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00013360042136724773,
+          "avg_side_adjusted_return": -0.00013360042136724773
+        },
+        "180s": {
+          "favorable_count": 116,
+          "unfavorable_count": 74,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0004425577669622081,
+          "avg_side_adjusted_return": -0.0004425577669622081
+        },
+        "300s": {
+          "favorable_count": 114,
+          "unfavorable_count": 76,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.000899931373539191,
+          "avg_side_adjusted_return": -0.000899931373539191
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1S",
+      "event_type": "absorption_candidate",
+      "side": "sell",
+      "sample_count": 202,
+      "horizons": {
+        "30s": {
+          "favorable_count": 83,
+          "unfavorable_count": 92,
+          "flat_count": 27,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00025890396326069457,
+          "avg_side_adjusted_return": 0.00025890396326069457
+        },
+        "60s": {
+          "favorable_count": 97,
+          "unfavorable_count": 96,
+          "flat_count": 9,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00044018584503025736,
+          "avg_side_adjusted_return": 0.00044018584503025736
+        },
+        "180s": {
+          "favorable_count": 91,
+          "unfavorable_count": 111,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0009005483342735928,
+          "avg_side_adjusted_return": 0.0009005483342735928
+        },
+        "300s": {
+          "favorable_count": 119,
+          "unfavorable_count": 83,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0017972186184909518,
+          "avg_side_adjusted_return": 0.0017972186184909518
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1S",
+      "event_type": "aggression_burst_candidate",
+      "side": "buy",
+      "sample_count": 242,
+      "horizons": {
+        "30s": {
+          "favorable_count": 105,
+          "unfavorable_count": 101,
+          "flat_count": 36,
+          "unknown_count": 0,
+          "avg_raw_return": 1.2222107232628079e-05,
+          "avg_side_adjusted_return": 1.2222107232628079e-05
+        },
+        "60s": {
+          "favorable_count": 122,
+          "unfavorable_count": 114,
+          "flat_count": 6,
+          "unknown_count": 0,
+          "avg_raw_return": -7.020198238711515e-05,
+          "avg_side_adjusted_return": -7.020198238711515e-05
+        },
+        "180s": {
+          "favorable_count": 146,
+          "unfavorable_count": 96,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0005251168004521989,
+          "avg_side_adjusted_return": -0.0005251168004521989
+        },
+        "300s": {
+          "favorable_count": 149,
+          "unfavorable_count": 93,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.000870351242942161,
+          "avg_side_adjusted_return": -0.000870351242942161
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1S",
+      "event_type": "aggression_burst_candidate",
+      "side": "neutral",
+      "sample_count": 5,
+      "horizons": {
+        "30s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 5,
+          "avg_raw_return": 0.0005026220019038341,
+          "avg_side_adjusted_return": null
+        },
+        "60s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 5,
+          "avg_raw_return": 0.0005020860763656701,
+          "avg_side_adjusted_return": null
+        },
+        "180s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 5,
+          "avg_raw_return": -0.00020152796894212912,
+          "avg_side_adjusted_return": null
+        },
+        "300s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 5,
+          "avg_raw_return": -0.0007948319317507228,
+          "avg_side_adjusted_return": null
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1S",
+      "event_type": "aggression_burst_candidate",
+      "side": "sell",
+      "sample_count": 292,
+      "horizons": {
+        "30s": {
+          "favorable_count": 140,
+          "unfavorable_count": 122,
+          "flat_count": 30,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0002925978311780093,
+          "avg_side_adjusted_return": 0.0002925978311780093
+        },
+        "60s": {
+          "favorable_count": 142,
+          "unfavorable_count": 138,
+          "flat_count": 12,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0005086541510551867,
+          "avg_side_adjusted_return": 0.0005086541510551867
+        },
+        "180s": {
+          "favorable_count": 144,
+          "unfavorable_count": 148,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0011694158290062673,
+          "avg_side_adjusted_return": 0.0011694158290062673
+        },
+        "300s": {
+          "favorable_count": 183,
+          "unfavorable_count": 109,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0019941268002541014,
+          "avg_side_adjusted_return": 0.0019941268002541014
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1S",
+      "event_type": "delta_imbalance_candidate",
+      "side": "buy",
+      "sample_count": 242,
+      "horizons": {
+        "30s": {
+          "favorable_count": 105,
+          "unfavorable_count": 101,
+          "flat_count": 36,
+          "unknown_count": 0,
+          "avg_raw_return": 1.2222107232628079e-05,
+          "avg_side_adjusted_return": 1.2222107232628079e-05
+        },
+        "60s": {
+          "favorable_count": 122,
+          "unfavorable_count": 114,
+          "flat_count": 6,
+          "unknown_count": 0,
+          "avg_raw_return": -7.020198238711515e-05,
+          "avg_side_adjusted_return": -7.020198238711515e-05
+        },
+        "180s": {
+          "favorable_count": 146,
+          "unfavorable_count": 96,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0005251168004521989,
+          "avg_side_adjusted_return": -0.0005251168004521989
+        },
+        "300s": {
+          "favorable_count": 149,
+          "unfavorable_count": 93,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.000870351242942161,
+          "avg_side_adjusted_return": -0.000870351242942161
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1S",
+      "event_type": "delta_imbalance_candidate",
+      "side": "neutral",
+      "sample_count": 80,
+      "horizons": {
+        "30s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 80,
+          "avg_raw_return": 0.0001515979966457236,
+          "avg_side_adjusted_return": null
+        },
+        "60s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 80,
+          "avg_raw_return": 0.0002717502235934584,
+          "avg_side_adjusted_return": null
+        },
+        "180s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 80,
+          "avg_raw_return": 0.0002255346732585294,
+          "avg_side_adjusted_return": null
+        },
+        "300s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 80,
+          "avg_raw_return": -0.00025142321249948656,
+          "avg_side_adjusted_return": null
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1S",
+      "event_type": "delta_imbalance_candidate",
+      "side": "sell",
+      "sample_count": 292,
+      "horizons": {
+        "30s": {
+          "favorable_count": 140,
+          "unfavorable_count": 122,
+          "flat_count": 30,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0002925978311780093,
+          "avg_side_adjusted_return": 0.0002925978311780093
+        },
+        "60s": {
+          "favorable_count": 142,
+          "unfavorable_count": 138,
+          "flat_count": 12,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0005086541510551867,
+          "avg_side_adjusted_return": 0.0005086541510551867
+        },
+        "180s": {
+          "favorable_count": 144,
+          "unfavorable_count": 148,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0011694158290062673,
+          "avg_side_adjusted_return": 0.0011694158290062673
+        },
+        "300s": {
+          "favorable_count": 183,
+          "unfavorable_count": 109,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0019941268002541014,
+          "avg_side_adjusted_return": 0.0019941268002541014
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1S",
+      "event_type": "delta_negative_observation",
+      "side": "sell",
+      "sample_count": 292,
+      "horizons": {
+        "30s": {
+          "favorable_count": 140,
+          "unfavorable_count": 122,
+          "flat_count": 30,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0002925978311780093,
+          "avg_side_adjusted_return": 0.0002925978311780093
+        },
+        "60s": {
+          "favorable_count": 142,
+          "unfavorable_count": 138,
+          "flat_count": 12,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0005086541510551867,
+          "avg_side_adjusted_return": 0.0005086541510551867
+        },
+        "180s": {
+          "favorable_count": 144,
+          "unfavorable_count": 148,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0011694158290062673,
+          "avg_side_adjusted_return": 0.0011694158290062673
+        },
+        "300s": {
+          "favorable_count": 183,
+          "unfavorable_count": 109,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0019941268002541014,
+          "avg_side_adjusted_return": 0.0019941268002541014
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1S",
+      "event_type": "delta_positive_observation",
+      "side": "buy",
+      "sample_count": 242,
+      "horizons": {
+        "30s": {
+          "favorable_count": 105,
+          "unfavorable_count": 101,
+          "flat_count": 36,
+          "unknown_count": 0,
+          "avg_raw_return": 1.2222107232628079e-05,
+          "avg_side_adjusted_return": 1.2222107232628079e-05
+        },
+        "60s": {
+          "favorable_count": 122,
+          "unfavorable_count": 114,
+          "flat_count": 6,
+          "unknown_count": 0,
+          "avg_raw_return": -7.020198238711515e-05,
+          "avg_side_adjusted_return": -7.020198238711515e-05
+        },
+        "180s": {
+          "favorable_count": 146,
+          "unfavorable_count": 96,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0005251168004521989,
+          "avg_side_adjusted_return": -0.0005251168004521989
+        },
+        "300s": {
+          "favorable_count": 149,
+          "unfavorable_count": 93,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.000870351242942161,
+          "avg_side_adjusted_return": -0.000870351242942161
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1S",
+      "event_type": "exhaustion_candidate",
+      "side": "buy",
+      "sample_count": 222,
+      "horizons": {
+        "30s": {
+          "favorable_count": 91,
+          "unfavorable_count": 108,
+          "flat_count": 23,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0002670533252924243,
+          "avg_side_adjusted_return": -0.0002670533252924243
+        },
+        "60s": {
+          "favorable_count": 103,
+          "unfavorable_count": 109,
+          "flat_count": 10,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0005447075655197681,
+          "avg_side_adjusted_return": -0.0005447075655197681
+        },
+        "180s": {
+          "favorable_count": 115,
+          "unfavorable_count": 107,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.001055178974730889,
+          "avg_side_adjusted_return": -0.001055178974730889
+        },
+        "300s": {
+          "favorable_count": 84,
+          "unfavorable_count": 138,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0019516277318899471,
+          "avg_side_adjusted_return": -0.0019516277318899471
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1S",
+      "event_type": "exhaustion_candidate",
+      "side": "neutral",
+      "sample_count": 5,
+      "horizons": {
+        "30s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 5,
+          "avg_raw_return": 0.0005026220019038341,
+          "avg_side_adjusted_return": null
+        },
+        "60s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 5,
+          "avg_raw_return": 0.0005020860763656701,
+          "avg_side_adjusted_return": null
+        },
+        "180s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 5,
+          "avg_raw_return": -0.00020152796894212912,
+          "avg_side_adjusted_return": null
+        },
+        "300s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 5,
+          "avg_raw_return": -0.0007948319317507228,
+          "avg_side_adjusted_return": null
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1S",
+      "event_type": "exhaustion_candidate",
+      "side": "sell",
+      "sample_count": 170,
+      "horizons": {
+        "30s": {
+          "favorable_count": 66,
+          "unfavorable_count": 72,
+          "flat_count": 32,
+          "unknown_count": 0,
+          "avg_raw_return": 4.353267686747968e-05,
+          "avg_side_adjusted_return": -4.353267686747968e-05
+        },
+        "60s": {
+          "favorable_count": 71,
+          "unfavorable_count": 95,
+          "flat_count": 4,
+          "unknown_count": 0,
+          "avg_raw_return": 3.896152229117335e-05,
+          "avg_side_adjusted_return": -3.896152229117335e-05
+        },
+        "180s": {
+          "favorable_count": 58,
+          "unfavorable_count": 112,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00018674709915192887,
+          "avg_side_adjusted_return": 0.00018674709915192887
+        },
+        "300s": {
+          "favorable_count": 57,
+          "unfavorable_count": 113,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0005927280319297077,
+          "avg_side_adjusted_return": 0.0005927280319297077
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1S",
+      "event_type": "iceberg_candidate",
+      "side": "unknown",
+      "sample_count": 539,
+      "horizons": {
+        "30s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 539,
+          "avg_raw_return": -0.00014836309228972828,
+          "avg_side_adjusted_return": null
+        },
+        "60s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 539,
+          "avg_raw_return": -0.0003024220064266568,
+          "avg_side_adjusted_return": null
+        },
+        "180s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 539,
+          "avg_raw_return": -0.0008711601625676676,
+          "avg_side_adjusted_return": null
+        },
+        "300s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 539,
+          "avg_raw_return": -0.0014784493249071506,
+          "avg_side_adjusted_return": null
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1S",
+      "event_type": "initiative_buyer_candidate",
+      "side": "buy",
+      "sample_count": 72,
+      "horizons": {
+        "30s": {
+          "favorable_count": 33,
+          "unfavorable_count": 35,
+          "flat_count": 4,
+          "unknown_count": 0,
+          "avg_raw_return": -6.17056266274382e-05,
+          "avg_side_adjusted_return": -6.17056266274382e-05
+        },
+        "60s": {
+          "favorable_count": 27,
+          "unfavorable_count": 43,
+          "flat_count": 2,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00032794914621085187,
+          "avg_side_adjusted_return": -0.00032794914621085187
+        },
+        "180s": {
+          "favorable_count": 34,
+          "unfavorable_count": 38,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0013240452618556145,
+          "avg_side_adjusted_return": -0.0013240452618556145
+        },
+        "300s": {
+          "favorable_count": 36,
+          "unfavorable_count": 36,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0015258504911660085,
+          "avg_side_adjusted_return": -0.0015258504911660085
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1S",
+      "event_type": "initiative_seller_candidate",
+      "side": "sell",
+      "sample_count": 70,
+      "horizons": {
+        "30s": {
+          "favorable_count": 32,
+          "unfavorable_count": 31,
+          "flat_count": 7,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0003736104069865789,
+          "avg_side_adjusted_return": 0.0003736104069865789
+        },
+        "60s": {
+          "favorable_count": 33,
+          "unfavorable_count": 35,
+          "flat_count": 2,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0003943133223246568,
+          "avg_side_adjusted_return": 0.0003943133223246568
+        },
+        "180s": {
+          "favorable_count": 37,
+          "unfavorable_count": 33,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.001531709852565324,
+          "avg_side_adjusted_return": 0.001531709852565324
+        },
+        "300s": {
+          "favorable_count": 45,
+          "unfavorable_count": 25,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0021289095599232757,
+          "avg_side_adjusted_return": 0.0021289095599232757
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1S",
+      "event_type": "momentum_candidate",
+      "side": "buy",
+      "sample_count": 124,
+      "horizons": {
+        "30s": {
+          "favorable_count": 49,
+          "unfavorable_count": 70,
+          "flat_count": 5,
+          "unknown_count": 0,
+          "avg_raw_return": -9.350760872490509e-05,
+          "avg_side_adjusted_return": -9.350760872490509e-05
+        },
+        "60s": {
+          "favorable_count": 49,
+          "unfavorable_count": 72,
+          "flat_count": 3,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0004698031201996974,
+          "avg_side_adjusted_return": -0.0004698031201996974
+        },
+        "180s": {
+          "favorable_count": 59,
+          "unfavorable_count": 65,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0013156238705014172,
+          "avg_side_adjusted_return": -0.0013156238705014172
+        },
+        "300s": {
+          "favorable_count": 53,
+          "unfavorable_count": 71,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0018147121203446353,
+          "avg_side_adjusted_return": -0.0018147121203446353
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1S",
+      "event_type": "momentum_candidate",
+      "side": "neutral",
+      "sample_count": 308,
+      "horizons": {
+        "30s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 308,
+          "avg_raw_return": -0.000144702091085322,
+          "avg_side_adjusted_return": null
+        },
+        "60s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 308,
+          "avg_raw_return": -0.0002500735806818289,
+          "avg_side_adjusted_return": null
+        },
+        "180s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 308,
+          "avg_raw_return": -0.0005932581361556297,
+          "avg_side_adjusted_return": null
+        },
+        "300s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 308,
+          "avg_raw_return": -0.0012140330595274357,
+          "avg_side_adjusted_return": null
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1S",
+      "event_type": "momentum_candidate",
+      "side": "sell",
+      "sample_count": 107,
+      "horizons": {
+        "30s": {
+          "favorable_count": 43,
+          "unfavorable_count": 52,
+          "flat_count": 12,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00022247214213080504,
+          "avg_side_adjusted_return": 0.00022247214213080504
+        },
+        "60s": {
+          "favorable_count": 51,
+          "unfavorable_count": 54,
+          "flat_count": 2,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0002591328197121704,
+          "avg_side_adjusted_return": 0.0002591328197121704
+        },
+        "180s": {
+          "favorable_count": 50,
+          "unfavorable_count": 57,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0011560230069706837,
+          "avg_side_adjusted_return": 0.0011560230069706837
+        },
+        "300s": {
+          "favorable_count": 63,
+          "unfavorable_count": 44,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.001849885054838964,
+          "avg_side_adjusted_return": 0.001849885054838964
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1S",
+      "event_type": "price_down_observation",
+      "side": "neutral",
+      "sample_count": 107,
+      "horizons": {
+        "30s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 107,
+          "avg_raw_return": -0.00022247214213080504,
+          "avg_side_adjusted_return": null
+        },
+        "60s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 107,
+          "avg_raw_return": -0.0002591328197121704,
+          "avg_side_adjusted_return": null
+        },
+        "180s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 107,
+          "avg_raw_return": -0.0011560230069706837,
+          "avg_side_adjusted_return": null
+        },
+        "300s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 107,
+          "avg_raw_return": -0.001849885054838964,
+          "avg_side_adjusted_return": null
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1S",
+      "event_type": "price_up_observation",
+      "side": "neutral",
+      "sample_count": 124,
+      "horizons": {
+        "30s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 124,
+          "avg_raw_return": -9.350760872490509e-05,
+          "avg_side_adjusted_return": null
+        },
+        "60s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 124,
+          "avg_raw_return": -0.0004698031201996974,
+          "avg_side_adjusted_return": null
+        },
+        "180s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 124,
+          "avg_raw_return": -0.0013156238705014172,
+          "avg_side_adjusted_return": null
+        },
+        "300s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 124,
+          "avg_raw_return": -0.0018147121203446353,
+          "avg_side_adjusted_return": null
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1S",
+      "event_type": "responsive_buyer_candidate",
+      "side": "buy",
+      "sample_count": 222,
+      "horizons": {
+        "30s": {
+          "favorable_count": 91,
+          "unfavorable_count": 108,
+          "flat_count": 23,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0002670533252924243,
+          "avg_side_adjusted_return": -0.0002670533252924243
+        },
+        "60s": {
+          "favorable_count": 103,
+          "unfavorable_count": 109,
+          "flat_count": 10,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0005447075655197681,
+          "avg_side_adjusted_return": -0.0005447075655197681
+        },
+        "180s": {
+          "favorable_count": 115,
+          "unfavorable_count": 107,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.001055178974730889,
+          "avg_side_adjusted_return": -0.001055178974730889
+        },
+        "300s": {
+          "favorable_count": 84,
+          "unfavorable_count": 138,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0019516277318899471,
+          "avg_side_adjusted_return": -0.0019516277318899471
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1S",
+      "event_type": "responsive_seller_candidate",
+      "side": "sell",
+      "sample_count": 170,
+      "horizons": {
+        "30s": {
+          "favorable_count": 66,
+          "unfavorable_count": 72,
+          "flat_count": 32,
+          "unknown_count": 0,
+          "avg_raw_return": 4.353267686747968e-05,
+          "avg_side_adjusted_return": -4.353267686747968e-05
+        },
+        "60s": {
+          "favorable_count": 71,
+          "unfavorable_count": 95,
+          "flat_count": 4,
+          "unknown_count": 0,
+          "avg_raw_return": 3.896152229117335e-05,
+          "avg_side_adjusted_return": -3.896152229117335e-05
+        },
+        "180s": {
+          "favorable_count": 58,
+          "unfavorable_count": 112,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00018674709915192887,
+          "avg_side_adjusted_return": 0.00018674709915192887
+        },
+        "300s": {
+          "favorable_count": 57,
+          "unfavorable_count": 113,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0005927280319297077,
+          "avg_side_adjusted_return": 0.0005927280319297077
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1S",
+      "event_type": "sweep_candidate",
+      "side": "unknown",
+      "sample_count": 305,
+      "horizons": {
+        "30s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 305,
+          "avg_raw_return": -0.00013883109779812066,
+          "avg_side_adjusted_return": null
+        },
+        "60s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 305,
+          "avg_raw_return": -0.0003558720523703978,
+          "avg_side_adjusted_return": null
+        },
+        "180s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 305,
+          "avg_raw_return": -0.0012492416924043503,
+          "avg_side_adjusted_return": null
+        },
+        "300s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 305,
+          "avg_raw_return": -0.0018127780595098538,
+          "avg_side_adjusted_return": null
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1S",
+      "event_type": "trapped_buyer_candidate",
+      "side": "buy",
+      "sample_count": 32,
+      "horizons": {
+        "30s": {
+          "favorable_count": 17,
+          "unfavorable_count": 10,
+          "flat_count": 5,
+          "unknown_count": 0,
+          "avg_raw_return": -5.153147764212189e-06,
+          "avg_side_adjusted_return": -5.153147764212189e-06
+        },
+        "60s": {
+          "favorable_count": 15,
+          "unfavorable_count": 17,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -8.236592275951889e-05,
+          "avg_side_adjusted_return": -8.236592275951889e-05
+        },
+        "180s": {
+          "favorable_count": 21,
+          "unfavorable_count": 11,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0004833478819243705,
+          "avg_side_adjusted_return": -0.0004833478819243705
+        },
+        "300s": {
+          "favorable_count": 16,
+          "unfavorable_count": 16,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0014043710004495696,
+          "avg_side_adjusted_return": -0.0014043710004495696
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "1S",
+      "event_type": "trapped_seller_candidate",
+      "side": "sell",
+      "sample_count": 52,
+      "horizons": {
+        "30s": {
+          "favorable_count": 35,
+          "unfavorable_count": 16,
+          "flat_count": 1,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00013754112239832076,
+          "avg_side_adjusted_return": 0.00013754112239832076
+        },
+        "60s": {
+          "favorable_count": 29,
+          "unfavorable_count": 22,
+          "flat_count": 1,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0006662163149534835,
+          "avg_side_adjusted_return": 0.0006662163149534835
+        },
+        "180s": {
+          "favorable_count": 27,
+          "unfavorable_count": 25,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0013039634824725285,
+          "avg_side_adjusted_return": 0.0013039634824725285
+        },
+        "300s": {
+          "favorable_count": 35,
+          "unfavorable_count": 17,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0022146743761304265,
+          "avg_side_adjusted_return": 0.0022146743761304265
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "3S",
+      "event_type": "absorption_candidate",
+      "side": "buy",
+      "sample_count": 180,
+      "horizons": {
+        "30s": {
+          "favorable_count": 76,
+          "unfavorable_count": 83,
+          "flat_count": 21,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0001128694430214775,
+          "avg_side_adjusted_return": -0.0001128694430214775
+        },
+        "60s": {
+          "favorable_count": 95,
+          "unfavorable_count": 77,
+          "flat_count": 8,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00029827663567230645,
+          "avg_side_adjusted_return": -0.00029827663567230645
+        },
+        "180s": {
+          "favorable_count": 117,
+          "unfavorable_count": 63,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0004261884815423408,
+          "avg_side_adjusted_return": -0.0004261884815423408
+        },
+        "300s": {
+          "favorable_count": 102,
+          "unfavorable_count": 78,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0010543233708548,
+          "avg_side_adjusted_return": -0.0010543233708548
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "3S",
+      "event_type": "absorption_candidate",
+      "side": "sell",
+      "sample_count": 166,
+      "horizons": {
+        "30s": {
+          "favorable_count": 72,
+          "unfavorable_count": 59,
+          "flat_count": 35,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00013163183316558348,
+          "avg_side_adjusted_return": 0.00013163183316558348
+        },
+        "60s": {
+          "favorable_count": 81,
+          "unfavorable_count": 77,
+          "flat_count": 8,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0002696371794521564,
+          "avg_side_adjusted_return": 0.0002696371794521564
+        },
+        "180s": {
+          "favorable_count": 70,
+          "unfavorable_count": 96,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0005626677306192655,
+          "avg_side_adjusted_return": 0.0005626677306192655
+        },
+        "300s": {
+          "favorable_count": 91,
+          "unfavorable_count": 75,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0015848584753967092,
+          "avg_side_adjusted_return": 0.0015848584753967092
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "3S",
+      "event_type": "aggression_burst_candidate",
+      "side": "buy",
+      "sample_count": 299,
+      "horizons": {
+        "30s": {
+          "favorable_count": 150,
+          "unfavorable_count": 112,
+          "flat_count": 37,
+          "unknown_count": 0,
+          "avg_raw_return": 5.950664234743343e-05,
+          "avg_side_adjusted_return": 5.950664234743343e-05
+        },
+        "60s": {
+          "favorable_count": 161,
+          "unfavorable_count": 128,
+          "flat_count": 10,
+          "unknown_count": 0,
+          "avg_raw_return": -6.551585756610077e-06,
+          "avg_side_adjusted_return": -6.551585756610077e-06
+        },
+        "180s": {
+          "favorable_count": 183,
+          "unfavorable_count": 116,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0005034888512075507,
+          "avg_side_adjusted_return": -0.0005034888512075507
+        },
+        "300s": {
+          "favorable_count": 186,
+          "unfavorable_count": 113,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0007997121225497153,
+          "avg_side_adjusted_return": -0.0007997121225497153
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "3S",
+      "event_type": "aggression_burst_candidate",
+      "side": "neutral",
+      "sample_count": 3,
+      "horizons": {
+        "30s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 3,
+          "avg_raw_return": 0.0008671689413532543,
+          "avg_side_adjusted_return": null
+        },
+        "60s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 3,
+          "avg_raw_return": 0.0009883020596298407,
+          "avg_side_adjusted_return": null
+        },
+        "180s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 3,
+          "avg_raw_return": 0.0009457066979817776,
+          "avg_side_adjusted_return": null
+        },
+        "300s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 3,
+          "avg_raw_return": 0.0016291843264822803,
+          "avg_side_adjusted_return": null
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "3S",
+      "event_type": "aggression_burst_candidate",
+      "side": "sell",
+      "sample_count": 308,
+      "horizons": {
+        "30s": {
+          "favorable_count": 158,
+          "unfavorable_count": 109,
+          "flat_count": 41,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00027296758071350787,
+          "avg_side_adjusted_return": 0.00027296758071350787
+        },
+        "60s": {
+          "favorable_count": 151,
+          "unfavorable_count": 144,
+          "flat_count": 13,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0004489777315092103,
+          "avg_side_adjusted_return": 0.0004489777315092103
+        },
+        "180s": {
+          "favorable_count": 142,
+          "unfavorable_count": 166,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0009659483348708318,
+          "avg_side_adjusted_return": 0.0009659483348708318
+        },
+        "300s": {
+          "favorable_count": 185,
+          "unfavorable_count": 123,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0018643668993033938,
+          "avg_side_adjusted_return": 0.0018643668993033938
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "3S",
+      "event_type": "delta_imbalance_candidate",
+      "side": "buy",
+      "sample_count": 299,
+      "horizons": {
+        "30s": {
+          "favorable_count": 150,
+          "unfavorable_count": 112,
+          "flat_count": 37,
+          "unknown_count": 0,
+          "avg_raw_return": 5.950664234743343e-05,
+          "avg_side_adjusted_return": 5.950664234743343e-05
+        },
+        "60s": {
+          "favorable_count": 161,
+          "unfavorable_count": 128,
+          "flat_count": 10,
+          "unknown_count": 0,
+          "avg_raw_return": -6.551585756610077e-06,
+          "avg_side_adjusted_return": -6.551585756610077e-06
+        },
+        "180s": {
+          "favorable_count": 183,
+          "unfavorable_count": 116,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0005034888512075507,
+          "avg_side_adjusted_return": -0.0005034888512075507
+        },
+        "300s": {
+          "favorable_count": 186,
+          "unfavorable_count": 113,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0007997121225497153,
+          "avg_side_adjusted_return": -0.0007997121225497153
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "3S",
+      "event_type": "delta_imbalance_candidate",
+      "side": "neutral",
+      "sample_count": 5,
+      "horizons": {
+        "30s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 5,
+          "avg_raw_return": 0.0007801396599233606,
+          "avg_side_adjusted_return": null
+        },
+        "60s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 5,
+          "avg_raw_return": 0.0008880676023014618,
+          "avg_side_adjusted_return": null
+        },
+        "180s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 5,
+          "avg_raw_return": 0.0011044972512915627,
+          "avg_side_adjusted_return": null
+        },
+        "300s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 5,
+          "avg_raw_return": 0.0016574385370829111,
+          "avg_side_adjusted_return": null
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "3S",
+      "event_type": "delta_imbalance_candidate",
+      "side": "sell",
+      "sample_count": 308,
+      "horizons": {
+        "30s": {
+          "favorable_count": 158,
+          "unfavorable_count": 109,
+          "flat_count": 41,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00027296758071350787,
+          "avg_side_adjusted_return": 0.00027296758071350787
+        },
+        "60s": {
+          "favorable_count": 151,
+          "unfavorable_count": 144,
+          "flat_count": 13,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0004489777315092103,
+          "avg_side_adjusted_return": 0.0004489777315092103
+        },
+        "180s": {
+          "favorable_count": 142,
+          "unfavorable_count": 166,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0009659483348708318,
+          "avg_side_adjusted_return": 0.0009659483348708318
+        },
+        "300s": {
+          "favorable_count": 185,
+          "unfavorable_count": 123,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0018643668993033938,
+          "avg_side_adjusted_return": 0.0018643668993033938
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "3S",
+      "event_type": "delta_negative_observation",
+      "side": "sell",
+      "sample_count": 307,
+      "horizons": {
+        "30s": {
+          "favorable_count": 157,
+          "unfavorable_count": 109,
+          "flat_count": 41,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00026087529926095856,
+          "avg_side_adjusted_return": 0.00026087529926095856
+        },
+        "60s": {
+          "favorable_count": 150,
+          "unfavorable_count": 144,
+          "flat_count": 13,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0004374587730234223,
+          "avg_side_adjusted_return": 0.0004374587730234223
+        },
+        "180s": {
+          "favorable_count": 141,
+          "unfavorable_count": 166,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0009561133197184692,
+          "avg_side_adjusted_return": 0.0009561133197184692
+        },
+        "300s": {
+          "favorable_count": 184,
+          "unfavorable_count": 123,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0018574583289863163,
+          "avg_side_adjusted_return": 0.0018574583289863163
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "3S",
+      "event_type": "delta_positive_observation",
+      "side": "buy",
+      "sample_count": 299,
+      "horizons": {
+        "30s": {
+          "favorable_count": 150,
+          "unfavorable_count": 112,
+          "flat_count": 37,
+          "unknown_count": 0,
+          "avg_raw_return": 5.950664234743343e-05,
+          "avg_side_adjusted_return": 5.950664234743343e-05
+        },
+        "60s": {
+          "favorable_count": 161,
+          "unfavorable_count": 128,
+          "flat_count": 10,
+          "unknown_count": 0,
+          "avg_raw_return": -6.551585756610077e-06,
+          "avg_side_adjusted_return": -6.551585756610077e-06
+        },
+        "180s": {
+          "favorable_count": 183,
+          "unfavorable_count": 116,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0005034888512075507,
+          "avg_side_adjusted_return": -0.0005034888512075507
+        },
+        "300s": {
+          "favorable_count": 186,
+          "unfavorable_count": 113,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0007997121225497153,
+          "avg_side_adjusted_return": -0.0007997121225497153
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "3S",
+      "event_type": "exhaustion_candidate",
+      "side": "buy",
+      "sample_count": 185,
+      "horizons": {
+        "30s": {
+          "favorable_count": 70,
+          "unfavorable_count": 87,
+          "flat_count": 28,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00024174311452891166,
+          "avg_side_adjusted_return": -0.00024174311452891166
+        },
+        "60s": {
+          "favorable_count": 85,
+          "unfavorable_count": 90,
+          "flat_count": 10,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0005429702611783488,
+          "avg_side_adjusted_return": -0.0005429702611783488
+        },
+        "180s": {
+          "favorable_count": 100,
+          "unfavorable_count": 85,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0008519528228642427,
+          "avg_side_adjusted_return": -0.0008519528228642427
+        },
+        "300s": {
+          "favorable_count": 71,
+          "unfavorable_count": 114,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.001906948822542374,
+          "avg_side_adjusted_return": -0.001906948822542374
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "3S",
+      "event_type": "exhaustion_candidate",
+      "side": "neutral",
+      "sample_count": 3,
+      "horizons": {
+        "30s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 3,
+          "avg_raw_return": 0.0008671689413532543,
+          "avg_side_adjusted_return": null
+        },
+        "60s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 3,
+          "avg_raw_return": 0.0009883020596298407,
+          "avg_side_adjusted_return": null
+        },
+        "180s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 3,
+          "avg_raw_return": 0.0009457066979817776,
+          "avg_side_adjusted_return": null
+        },
+        "300s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 3,
+          "avg_raw_return": 0.0016291843264822803,
+          "avg_side_adjusted_return": null
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "3S",
+      "event_type": "exhaustion_candidate",
+      "side": "sell",
+      "sample_count": 161,
+      "horizons": {
+        "30s": {
+          "favorable_count": 68,
+          "unfavorable_count": 65,
+          "flat_count": 28,
+          "unknown_count": 0,
+          "avg_raw_return": 1.587013750618541e-05,
+          "avg_side_adjusted_return": -1.587013750618541e-05
+        },
+        "60s": {
+          "favorable_count": 68,
+          "unfavorable_count": 87,
+          "flat_count": 6,
+          "unknown_count": 0,
+          "avg_raw_return": 1.2421938558518222e-05,
+          "avg_side_adjusted_return": -1.2421938558518222e-05
+        },
+        "180s": {
+          "favorable_count": 48,
+          "unfavorable_count": 113,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -7.767389894741935e-05,
+          "avg_side_adjusted_return": 7.767389894741935e-05
+        },
+        "300s": {
+          "favorable_count": 55,
+          "unfavorable_count": 106,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0006216098229775064,
+          "avg_side_adjusted_return": 0.0006216098229775064
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "3S",
+      "event_type": "iceberg_candidate",
+      "side": "buy",
+      "sample_count": 1,
+      "horizons": {
+        "30s": {
+          "favorable_count": 0,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0039852979866461385,
+          "avg_side_adjusted_return": -0.0039852979866461385
+        },
+        "60s": {
+          "favorable_count": 0,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0039852979866461385,
+          "avg_side_adjusted_return": -0.0039852979866461385
+        },
+        "180s": {
+          "favorable_count": 0,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0039852979866461385,
+          "avg_side_adjusted_return": -0.0039852979866461385
+        },
+        "300s": {
+          "favorable_count": 0,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0039852979866461385,
+          "avg_side_adjusted_return": -0.0039852979866461385
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "3S",
+      "event_type": "iceberg_candidate",
+      "side": "unknown",
+      "sample_count": 609,
+      "horizons": {
+        "30s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 609,
+          "avg_raw_return": -9.802089324658771e-05,
+          "avg_side_adjusted_return": null
+        },
+        "60s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 609,
+          "avg_raw_return": -0.0002188733354360058,
+          "avg_side_adjusted_return": null
+        },
+        "180s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 609,
+          "avg_raw_return": -0.0007245202554526805,
+          "avg_side_adjusted_return": null
+        },
+        "300s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 609,
+          "avg_raw_return": -0.0013209623623345109,
+          "avg_side_adjusted_return": null
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "3S",
+      "event_type": "initiative_buyer_candidate",
+      "side": "buy",
+      "sample_count": 138,
+      "horizons": {
+        "30s": {
+          "favorable_count": 85,
+          "unfavorable_count": 44,
+          "flat_count": 9,
+          "unknown_count": 0,
+          "avg_raw_return": 0.00011041589799555612,
+          "avg_side_adjusted_return": 0.00011041589799555612
+        },
+        "60s": {
+          "favorable_count": 74,
+          "unfavorable_count": 60,
+          "flat_count": 4,
+          "unknown_count": 0,
+          "avg_raw_return": -2.8687364124259758e-05,
+          "avg_side_adjusted_return": -2.8687364124259758e-05
+        },
+        "180s": {
+          "favorable_count": 70,
+          "unfavorable_count": 68,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.001000272962177704,
+          "avg_side_adjusted_return": -0.001000272962177704
+        },
+        "300s": {
+          "favorable_count": 80,
+          "unfavorable_count": 58,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0010074981387172925,
+          "avg_side_adjusted_return": -0.0010074981387172925
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "3S",
+      "event_type": "initiative_seller_candidate",
+      "side": "sell",
+      "sample_count": 123,
+      "horizons": {
+        "30s": {
+          "favorable_count": 71,
+          "unfavorable_count": 39,
+          "flat_count": 13,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0003199312087147297,
+          "avg_side_adjusted_return": 0.0003199312087147297
+        },
+        "60s": {
+          "favorable_count": 61,
+          "unfavorable_count": 59,
+          "flat_count": 3,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00030760685355156285,
+          "avg_side_adjusted_return": 0.00030760685355156285
+        },
+        "180s": {
+          "favorable_count": 57,
+          "unfavorable_count": 66,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0011374049992709861,
+          "avg_side_adjusted_return": 0.0011374049992709861
+        },
+        "300s": {
+          "favorable_count": 71,
+          "unfavorable_count": 52,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0018003209171959845,
+          "avg_side_adjusted_return": 0.0018003209171959845
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "3S",
+      "event_type": "momentum_candidate",
+      "side": "buy",
+      "sample_count": 207,
+      "horizons": {
+        "30s": {
+          "favorable_count": 114,
+          "unfavorable_count": 80,
+          "flat_count": 13,
+          "unknown_count": 0,
+          "avg_raw_return": -2.312676277618557e-05,
+          "avg_side_adjusted_return": -2.312676277618557e-05
+        },
+        "60s": {
+          "favorable_count": 108,
+          "unfavorable_count": 92,
+          "flat_count": 7,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00023790087735496644,
+          "avg_side_adjusted_return": -0.00023790087735496644
+        },
+        "180s": {
+          "favorable_count": 107,
+          "unfavorable_count": 100,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.000987307123815398,
+          "avg_side_adjusted_return": -0.000987307123815398
+        },
+        "300s": {
+          "favorable_count": 107,
+          "unfavorable_count": 100,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0012954755838886147,
+          "avg_side_adjusted_return": -0.0012954755838886147
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "3S",
+      "event_type": "momentum_candidate",
+      "side": "neutral",
+      "sample_count": 227,
+      "horizons": {
+        "30s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 227,
+          "avg_raw_return": -9.253731038231848e-05,
+          "avg_side_adjusted_return": null
+        },
+        "60s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 227,
+          "avg_raw_return": -0.0002624702379986923,
+          "avg_side_adjusted_return": null
+        },
+        "180s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 227,
+          "avg_raw_return": -0.00043169335670229533,
+          "avg_side_adjusted_return": null
+        },
+        "300s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 227,
+          "avg_raw_return": -0.0012293652929019992,
+          "avg_side_adjusted_return": null
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "3S",
+      "event_type": "momentum_candidate",
+      "side": "sell",
+      "sample_count": 176,
+      "horizons": {
+        "30s": {
+          "favorable_count": 93,
+          "unfavorable_count": 59,
+          "flat_count": 24,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0002152659808088713,
+          "avg_side_adjusted_return": 0.0002152659808088713
+        },
+        "60s": {
+          "favorable_count": 85,
+          "unfavorable_count": 87,
+          "flat_count": 4,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00016166439561927533,
+          "avg_side_adjusted_return": 0.00016166439561927533
+        },
+        "180s": {
+          "favorable_count": 75,
+          "unfavorable_count": 101,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0008116543577052278,
+          "avg_side_adjusted_return": 0.0008116543577052278
+        },
+        "300s": {
+          "favorable_count": 91,
+          "unfavorable_count": 85,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.001484215961901513,
+          "avg_side_adjusted_return": 0.001484215961901513
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "3S",
+      "event_type": "price_down_observation",
+      "side": "neutral",
+      "sample_count": 176,
+      "horizons": {
+        "30s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 176,
+          "avg_raw_return": -0.0002152659808088713,
+          "avg_side_adjusted_return": null
+        },
+        "60s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 176,
+          "avg_raw_return": -0.00016166439561927533,
+          "avg_side_adjusted_return": null
+        },
+        "180s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 176,
+          "avg_raw_return": -0.0008116543577052278,
+          "avg_side_adjusted_return": null
+        },
+        "300s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 176,
+          "avg_raw_return": -0.001484215961901513,
+          "avg_side_adjusted_return": null
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "3S",
+      "event_type": "price_up_observation",
+      "side": "neutral",
+      "sample_count": 207,
+      "horizons": {
+        "30s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 207,
+          "avg_raw_return": -2.312676277618557e-05,
+          "avg_side_adjusted_return": null
+        },
+        "60s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 207,
+          "avg_raw_return": -0.00023790087735496644,
+          "avg_side_adjusted_return": null
+        },
+        "180s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 207,
+          "avg_raw_return": -0.000987307123815398,
+          "avg_side_adjusted_return": null
+        },
+        "300s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 207,
+          "avg_raw_return": -0.0012954755838886147,
+          "avg_side_adjusted_return": null
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "3S",
+      "event_type": "responsive_buyer_candidate",
+      "side": "buy",
+      "sample_count": 185,
+      "horizons": {
+        "30s": {
+          "favorable_count": 70,
+          "unfavorable_count": 87,
+          "flat_count": 28,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00024174311452891166,
+          "avg_side_adjusted_return": -0.00024174311452891166
+        },
+        "60s": {
+          "favorable_count": 85,
+          "unfavorable_count": 90,
+          "flat_count": 10,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0005429702611783488,
+          "avg_side_adjusted_return": -0.0005429702611783488
+        },
+        "180s": {
+          "favorable_count": 100,
+          "unfavorable_count": 85,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0008519528228642427,
+          "avg_side_adjusted_return": -0.0008519528228642427
+        },
+        "300s": {
+          "favorable_count": 71,
+          "unfavorable_count": 114,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.001906948822542374,
+          "avg_side_adjusted_return": -0.001906948822542374
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "3S",
+      "event_type": "responsive_seller_candidate",
+      "side": "sell",
+      "sample_count": 161,
+      "horizons": {
+        "30s": {
+          "favorable_count": 68,
+          "unfavorable_count": 65,
+          "flat_count": 28,
+          "unknown_count": 0,
+          "avg_raw_return": 1.587013750618541e-05,
+          "avg_side_adjusted_return": -1.587013750618541e-05
+        },
+        "60s": {
+          "favorable_count": 68,
+          "unfavorable_count": 87,
+          "flat_count": 6,
+          "unknown_count": 0,
+          "avg_raw_return": 1.2421938558518222e-05,
+          "avg_side_adjusted_return": -1.2421938558518222e-05
+        },
+        "180s": {
+          "favorable_count": 48,
+          "unfavorable_count": 113,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -7.767389894741935e-05,
+          "avg_side_adjusted_return": 7.767389894741935e-05
+        },
+        "300s": {
+          "favorable_count": 55,
+          "unfavorable_count": 106,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0006216098229775064,
+          "avg_side_adjusted_return": 0.0006216098229775064
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "3S",
+      "event_type": "sweep_candidate",
+      "side": "neutral",
+      "sample_count": 1,
+      "horizons": {
+        "30s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 1,
+          "avg_raw_return": -0.0039852979866461385,
+          "avg_side_adjusted_return": null
+        },
+        "60s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 1,
+          "avg_raw_return": -0.0039852979866461385,
+          "avg_side_adjusted_return": null
+        },
+        "180s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 1,
+          "avg_raw_return": -0.0039852979866461385,
+          "avg_side_adjusted_return": null
+        },
+        "300s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 1,
+          "avg_raw_return": -0.0039852979866461385,
+          "avg_side_adjusted_return": null
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "3S",
+      "event_type": "sweep_candidate",
+      "side": "unknown",
+      "sample_count": 562,
+      "horizons": {
+        "30s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 562,
+          "avg_raw_return": -0.00010550130176427038,
+          "avg_side_adjusted_return": null
+        },
+        "60s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 562,
+          "avg_raw_return": -0.0002467933008014502,
+          "avg_side_adjusted_return": null
+        },
+        "180s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 562,
+          "avg_raw_return": -0.0007833587527075742,
+          "avg_side_adjusted_return": null
+        },
+        "300s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 562,
+          "avg_raw_return": -0.0014207913407727117,
+          "avg_side_adjusted_return": null
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "3S",
+      "event_type": "trapped_buyer_candidate",
+      "side": "buy",
+      "sample_count": 51,
+      "horizons": {
+        "30s": {
+          "favorable_count": 18,
+          "unfavorable_count": 22,
+          "flat_count": 11,
+          "unknown_count": 0,
+          "avg_raw_return": -2.2320390634146944e-05,
+          "avg_side_adjusted_return": -2.2320390634146944e-05
+        },
+        "60s": {
+          "favorable_count": 26,
+          "unfavorable_count": 24,
+          "flat_count": 1,
+          "unknown_count": 0,
+          "avg_raw_return": 0.0001258392780188284,
+          "avg_side_adjusted_return": 0.0001258392780188284
+        },
+        "180s": {
+          "favorable_count": 33,
+          "unfavorable_count": 18,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00011983872331026535,
+          "avg_side_adjusted_return": -0.00011983872331026535
+        },
+        "300s": {
+          "favorable_count": 31,
+          "unfavorable_count": 20,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0008512740285121084,
+          "avg_side_adjusted_return": -0.0008512740285121084
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "3S",
+      "event_type": "trapped_seller_candidate",
+      "side": "sell",
+      "sample_count": 69,
+      "horizons": {
+        "30s": {
+          "favorable_count": 36,
+          "unfavorable_count": 29,
+          "flat_count": 4,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00029021208431966896,
+          "avg_side_adjusted_return": 0.00029021208431966896
+        },
+        "60s": {
+          "favorable_count": 32,
+          "unfavorable_count": 34,
+          "flat_count": 3,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0006563279038163798,
+          "avg_side_adjusted_return": 0.0006563279038163798
+        },
+        "180s": {
+          "favorable_count": 32,
+          "unfavorable_count": 37,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0009613754470907859,
+          "avg_side_adjusted_return": 0.0009613754470907859
+        },
+        "300s": {
+          "favorable_count": 42,
+          "unfavorable_count": 27,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.001871430474231259,
+          "avg_side_adjusted_return": 0.001871430474231259
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "5S",
+      "event_type": "absorption_candidate",
+      "side": "buy",
+      "sample_count": 176,
+      "horizons": {
+        "30s": {
+          "favorable_count": 69,
+          "unfavorable_count": 74,
+          "flat_count": 33,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00010405988003336217,
+          "avg_side_adjusted_return": -0.00010405988003336217
+        },
+        "60s": {
+          "favorable_count": 82,
+          "unfavorable_count": 80,
+          "flat_count": 14,
+          "unknown_count": 0,
+          "avg_raw_return": -0.000327825133626886,
+          "avg_side_adjusted_return": -0.000327825133626886
+        },
+        "180s": {
+          "favorable_count": 117,
+          "unfavorable_count": 59,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0003356422827738375,
+          "avg_side_adjusted_return": -0.0003356422827738375
+        },
+        "300s": {
+          "favorable_count": 93,
+          "unfavorable_count": 83,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0012135403358653706,
+          "avg_side_adjusted_return": -0.0012135403358653706
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "5S",
+      "event_type": "absorption_candidate",
+      "side": "sell",
+      "sample_count": 141,
+      "horizons": {
+        "30s": {
+          "favorable_count": 60,
+          "unfavorable_count": 52,
+          "flat_count": 29,
+          "unknown_count": 0,
+          "avg_raw_return": -7.485397073177347e-05,
+          "avg_side_adjusted_return": 7.485397073177347e-05
+        },
+        "60s": {
+          "favorable_count": 62,
+          "unfavorable_count": 73,
+          "flat_count": 6,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00017204835312986693,
+          "avg_side_adjusted_return": 0.00017204835312986693
+        },
+        "180s": {
+          "favorable_count": 45,
+          "unfavorable_count": 96,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0001440161029593388,
+          "avg_side_adjusted_return": 0.0001440161029593388
+        },
+        "300s": {
+          "favorable_count": 63,
+          "unfavorable_count": 78,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.001069674846727388,
+          "avg_side_adjusted_return": 0.001069674846727388
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "5S",
+      "event_type": "aggression_burst_candidate",
+      "side": "buy",
+      "sample_count": 313,
+      "horizons": {
+        "30s": {
+          "favorable_count": 169,
+          "unfavorable_count": 110,
+          "flat_count": 34,
+          "unknown_count": 0,
+          "avg_raw_return": 0.00010618859543839231,
+          "avg_side_adjusted_return": 0.00010618859543839231
+        },
+        "60s": {
+          "favorable_count": 174,
+          "unfavorable_count": 130,
+          "flat_count": 9,
+          "unknown_count": 0,
+          "avg_raw_return": 5.705555202542872e-06,
+          "avg_side_adjusted_return": 5.705555202542872e-06
+        },
+        "180s": {
+          "favorable_count": 194,
+          "unfavorable_count": 119,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0004848458077459965,
+          "avg_side_adjusted_return": -0.0004848458077459965
+        },
+        "300s": {
+          "favorable_count": 194,
+          "unfavorable_count": 119,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0007763729510845288,
+          "avg_side_adjusted_return": -0.0007763729510845288
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "5S",
+      "event_type": "aggression_burst_candidate",
+      "side": "neutral",
+      "sample_count": 1,
+      "horizons": {
+        "30s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 1,
+          "avg_raw_return": 1.5596560647354086e-06,
+          "avg_side_adjusted_return": null
+        },
+        "60s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 1,
+          "avg_raw_return": 0.0013007531579136396,
+          "avg_side_adjusted_return": null
+        },
+        "180s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 1,
+          "avg_raw_return": 0.0015814912495496721,
+          "avg_side_adjusted_return": null
+        },
+        "300s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 1,
+          "avg_raw_return": 0.0009077198296232397,
+          "avg_side_adjusted_return": null
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "5S",
+      "event_type": "aggression_burst_candidate",
+      "side": "sell",
+      "sample_count": 296,
+      "horizons": {
+        "30s": {
+          "favorable_count": 159,
+          "unfavorable_count": 92,
+          "flat_count": 45,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0002961108937609806,
+          "avg_side_adjusted_return": 0.0002961108937609806
+        },
+        "60s": {
+          "favorable_count": 147,
+          "unfavorable_count": 134,
+          "flat_count": 15,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00044229636282963906,
+          "avg_side_adjusted_return": 0.00044229636282963906
+        },
+        "180s": {
+          "favorable_count": 138,
+          "unfavorable_count": 158,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0009607666379951909,
+          "avg_side_adjusted_return": 0.0009607666379951909
+        },
+        "300s": {
+          "favorable_count": 177,
+          "unfavorable_count": 119,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0018749463753691522,
+          "avg_side_adjusted_return": 0.0018749463753691522
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "5S",
+      "event_type": "delta_imbalance_candidate",
+      "side": "buy",
+      "sample_count": 313,
+      "horizons": {
+        "30s": {
+          "favorable_count": 169,
+          "unfavorable_count": 110,
+          "flat_count": 34,
+          "unknown_count": 0,
+          "avg_raw_return": 0.00010618859543839231,
+          "avg_side_adjusted_return": 0.00010618859543839231
+        },
+        "60s": {
+          "favorable_count": 174,
+          "unfavorable_count": 130,
+          "flat_count": 9,
+          "unknown_count": 0,
+          "avg_raw_return": 5.705555202542872e-06,
+          "avg_side_adjusted_return": 5.705555202542872e-06
+        },
+        "180s": {
+          "favorable_count": 194,
+          "unfavorable_count": 119,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0004848458077459965,
+          "avg_side_adjusted_return": -0.0004848458077459965
+        },
+        "300s": {
+          "favorable_count": 194,
+          "unfavorable_count": 119,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0007763729510845288,
+          "avg_side_adjusted_return": -0.0007763729510845288
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "5S",
+      "event_type": "delta_imbalance_candidate",
+      "side": "neutral",
+      "sample_count": 1,
+      "horizons": {
+        "30s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 1,
+          "avg_raw_return": 1.5596560647354086e-06,
+          "avg_side_adjusted_return": null
+        },
+        "60s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 1,
+          "avg_raw_return": 0.0013007531579136396,
+          "avg_side_adjusted_return": null
+        },
+        "180s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 1,
+          "avg_raw_return": 0.0015814912495496721,
+          "avg_side_adjusted_return": null
+        },
+        "300s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 1,
+          "avg_raw_return": 0.0009077198296232397,
+          "avg_side_adjusted_return": null
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "5S",
+      "event_type": "delta_imbalance_candidate",
+      "side": "sell",
+      "sample_count": 296,
+      "horizons": {
+        "30s": {
+          "favorable_count": 159,
+          "unfavorable_count": 92,
+          "flat_count": 45,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0002961108937609806,
+          "avg_side_adjusted_return": 0.0002961108937609806
+        },
+        "60s": {
+          "favorable_count": 147,
+          "unfavorable_count": 134,
+          "flat_count": 15,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00044229636282963906,
+          "avg_side_adjusted_return": 0.00044229636282963906
+        },
+        "180s": {
+          "favorable_count": 138,
+          "unfavorable_count": 158,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0009607666379951909,
+          "avg_side_adjusted_return": 0.0009607666379951909
+        },
+        "300s": {
+          "favorable_count": 177,
+          "unfavorable_count": 119,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0018749463753691522,
+          "avg_side_adjusted_return": 0.0018749463753691522
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "5S",
+      "event_type": "delta_negative_observation",
+      "side": "sell",
+      "sample_count": 295,
+      "horizons": {
+        "30s": {
+          "favorable_count": 158,
+          "unfavorable_count": 92,
+          "flat_count": 45,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00028360517480204787,
+          "avg_side_adjusted_return": 0.00028360517480204787
+        },
+        "60s": {
+          "favorable_count": 146,
+          "unfavorable_count": 134,
+          "flat_count": 15,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00043028618783365097,
+          "avg_side_adjusted_return": 0.00043028618783365097
+        },
+        "180s": {
+          "favorable_count": 137,
+          "unfavorable_count": 158,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0009505139893556962,
+          "avg_side_adjusted_return": 0.0009505139893556962
+        },
+        "300s": {
+          "favorable_count": 176,
+          "unfavorable_count": 119,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0018677926410936368,
+          "avg_side_adjusted_return": 0.0018677926410936368
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "5S",
+      "event_type": "delta_positive_observation",
+      "side": "buy",
+      "sample_count": 313,
+      "horizons": {
+        "30s": {
+          "favorable_count": 169,
+          "unfavorable_count": 110,
+          "flat_count": 34,
+          "unknown_count": 0,
+          "avg_raw_return": 0.00010618859543839231,
+          "avg_side_adjusted_return": 0.00010618859543839231
+        },
+        "60s": {
+          "favorable_count": 174,
+          "unfavorable_count": 130,
+          "flat_count": 9,
+          "unknown_count": 0,
+          "avg_raw_return": 5.705555202542872e-06,
+          "avg_side_adjusted_return": 5.705555202542872e-06
+        },
+        "180s": {
+          "favorable_count": 194,
+          "unfavorable_count": 119,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0004848458077459965,
+          "avg_side_adjusted_return": -0.0004848458077459965
+        },
+        "300s": {
+          "favorable_count": 194,
+          "unfavorable_count": 119,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0007763729510845288,
+          "avg_side_adjusted_return": -0.0007763729510845288
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "5S",
+      "event_type": "exhaustion_candidate",
+      "side": "buy",
+      "sample_count": 156,
+      "horizons": {
+        "30s": {
+          "favorable_count": 56,
+          "unfavorable_count": 68,
+          "flat_count": 32,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00022608852874207662,
+          "avg_side_adjusted_return": -0.00022608852874207662
+        },
+        "60s": {
+          "favorable_count": 72,
+          "unfavorable_count": 72,
+          "flat_count": 12,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0005166959706158102,
+          "avg_side_adjusted_return": -0.0005166959706158102
+        },
+        "180s": {
+          "favorable_count": 94,
+          "unfavorable_count": 62,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0005160221065612156,
+          "avg_side_adjusted_return": -0.0005160221065612156
+        },
+        "300s": {
+          "favorable_count": 70,
+          "unfavorable_count": 86,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0015685335244568501,
+          "avg_side_adjusted_return": -0.0015685335244568501
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "5S",
+      "event_type": "exhaustion_candidate",
+      "side": "neutral",
+      "sample_count": 1,
+      "horizons": {
+        "30s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 1,
+          "avg_raw_return": 1.5596560647354086e-06,
+          "avg_side_adjusted_return": null
+        },
+        "60s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 1,
+          "avg_raw_return": 0.0013007531579136396,
+          "avg_side_adjusted_return": null
+        },
+        "180s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 1,
+          "avg_raw_return": 0.0015814912495496721,
+          "avg_side_adjusted_return": null
+        },
+        "300s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 1,
+          "avg_raw_return": 0.0009077198296232397,
+          "avg_side_adjusted_return": null
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "5S",
+      "event_type": "exhaustion_candidate",
+      "side": "sell",
+      "sample_count": 161,
+      "horizons": {
+        "30s": {
+          "favorable_count": 66,
+          "unfavorable_count": 65,
+          "flat_count": 30,
+          "unknown_count": 0,
+          "avg_raw_return": 3.975690512243571e-05,
+          "avg_side_adjusted_return": -3.975690512243571e-05
+        },
+        "60s": {
+          "favorable_count": 70,
+          "unfavorable_count": 83,
+          "flat_count": 8,
+          "unknown_count": 0,
+          "avg_raw_return": -8.394222941470616e-06,
+          "avg_side_adjusted_return": 8.394222941470616e-06
+        },
+        "180s": {
+          "favorable_count": 42,
+          "unfavorable_count": 119,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 6.957368559549503e-06,
+          "avg_side_adjusted_return": -6.957368559549503e-06
+        },
+        "300s": {
+          "favorable_count": 60,
+          "unfavorable_count": 101,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0007435777806558901,
+          "avg_side_adjusted_return": 0.0007435777806558901
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "5S",
+      "event_type": "iceberg_candidate",
+      "side": "buy",
+      "sample_count": 1,
+      "horizons": {
+        "30s": {
+          "favorable_count": 0,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0039852979866461385,
+          "avg_side_adjusted_return": -0.0039852979866461385
+        },
+        "60s": {
+          "favorable_count": 0,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0039852979866461385,
+          "avg_side_adjusted_return": -0.0039852979866461385
+        },
+        "180s": {
+          "favorable_count": 0,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0039852979866461385,
+          "avg_side_adjusted_return": -0.0039852979866461385
+        },
+        "300s": {
+          "favorable_count": 0,
+          "unfavorable_count": 1,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0039852979866461385,
+          "avg_side_adjusted_return": -0.0039852979866461385
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "5S",
+      "event_type": "iceberg_candidate",
+      "side": "unknown",
+      "sample_count": 609,
+      "horizons": {
+        "30s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 609,
+          "avg_raw_return": -8.279956738640822e-05,
+          "avg_side_adjusted_return": null
+        },
+        "60s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 609,
+          "avg_raw_return": -0.00020336261654288585,
+          "avg_side_adjusted_return": null
+        },
+        "180s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 609,
+          "avg_raw_return": -0.000707022780681244,
+          "avg_side_adjusted_return": null
+        },
+        "300s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 609,
+          "avg_raw_return": -0.0013022920246017358,
+          "avg_side_adjusted_return": null
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "5S",
+      "event_type": "initiative_buyer_candidate",
+      "side": "buy",
+      "sample_count": 152,
+      "horizons": {
+        "30s": {
+          "favorable_count": 104,
+          "unfavorable_count": 44,
+          "flat_count": 4,
+          "unknown_count": 0,
+          "avg_raw_return": 0.00017655374110200423,
+          "avg_side_adjusted_return": 0.00017655374110200423
+        },
+        "60s": {
+          "favorable_count": 91,
+          "unfavorable_count": 60,
+          "flat_count": 1,
+          "unknown_count": 0,
+          "avg_raw_return": 2.0640188631399264e-05,
+          "avg_side_adjusted_return": 2.0640188631399264e-05
+        },
+        "180s": {
+          "favorable_count": 75,
+          "unfavorable_count": 77,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0010057689089643712,
+          "avg_side_adjusted_return": -0.0010057689089643712
+        },
+        "300s": {
+          "favorable_count": 93,
+          "unfavorable_count": 59,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0008111099408148633,
+          "avg_side_adjusted_return": -0.0008111099408148633
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "5S",
+      "event_type": "initiative_seller_candidate",
+      "side": "sell",
+      "sample_count": 140,
+      "horizons": {
+        "30s": {
+          "favorable_count": 91,
+          "unfavorable_count": 36,
+          "flat_count": 13,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00037413581478204516,
+          "avg_side_adjusted_return": 0.00037413581478204516
+        },
+        "60s": {
+          "favorable_count": 75,
+          "unfavorable_count": 62,
+          "flat_count": 3,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0003593939427250483,
+          "avg_side_adjusted_return": 0.0003593939427250483
+        },
+        "180s": {
+          "favorable_count": 76,
+          "unfavorable_count": 64,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0014563391158787633,
+          "avg_side_adjusted_return": 0.0014563391158787633
+        },
+        "300s": {
+          "favorable_count": 91,
+          "unfavorable_count": 49,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0022163778378142887,
+          "avg_side_adjusted_return": 0.0022163778378142887
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "5S",
+      "event_type": "momentum_candidate",
+      "side": "buy",
+      "sample_count": 216,
+      "horizons": {
+        "30s": {
+          "favorable_count": 128,
+          "unfavorable_count": 74,
+          "flat_count": 14,
+          "unknown_count": 0,
+          "avg_raw_return": 8.447271143255406e-06,
+          "avg_side_adjusted_return": 8.447271143255406e-06
+        },
+        "60s": {
+          "favorable_count": 118,
+          "unfavorable_count": 90,
+          "flat_count": 8,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00020727748978939398,
+          "avg_side_adjusted_return": -0.00020727748978939398
+        },
+        "180s": {
+          "favorable_count": 107,
+          "unfavorable_count": 109,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0009759770575479975,
+          "avg_side_adjusted_return": -0.0009759770575479975
+        },
+        "300s": {
+          "favorable_count": 122,
+          "unfavorable_count": 94,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00104925600621156,
+          "avg_side_adjusted_return": -0.00104925600621156
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "5S",
+      "event_type": "momentum_candidate",
+      "side": "neutral",
+      "sample_count": 206,
+      "horizons": {
+        "30s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 206,
+          "avg_raw_return": -1.7272397555258594e-05,
+          "avg_side_adjusted_return": null
+        },
+        "60s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 206,
+          "avg_raw_return": -0.00019360094993013338,
+          "avg_side_adjusted_return": null
+        },
+        "180s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 206,
+          "avg_raw_return": -9.971440464601757e-05,
+          "avg_side_adjusted_return": null
+        },
+        "300s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 206,
+          "avg_raw_return": -0.0012124160999643294,
+          "avg_side_adjusted_return": null
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "5S",
+      "event_type": "momentum_candidate",
+      "side": "sell",
+      "sample_count": 188,
+      "horizons": {
+        "30s": {
+          "favorable_count": 113,
+          "unfavorable_count": 55,
+          "flat_count": 20,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00028019537869962045,
+          "avg_side_adjusted_return": 0.00028019537869962045
+        },
+        "60s": {
+          "favorable_count": 95,
+          "unfavorable_count": 89,
+          "flat_count": 4,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00022967764883588844,
+          "avg_side_adjusted_return": 0.00022967764883588844
+        },
+        "180s": {
+          "favorable_count": 91,
+          "unfavorable_count": 97,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0010809040406067909,
+          "avg_side_adjusted_return": 0.0010809040406067909
+        },
+        "300s": {
+          "favorable_count": 103,
+          "unfavorable_count": 85,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0017057666331635878,
+          "avg_side_adjusted_return": 0.0017057666331635878
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "5S",
+      "event_type": "price_down_observation",
+      "side": "neutral",
+      "sample_count": 187,
+      "horizons": {
+        "30s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 187,
+          "avg_raw_return": -0.00026038199576942515,
+          "avg_side_adjusted_return": null
+        },
+        "60s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 187,
+          "avg_raw_return": -0.0002095941176176518,
+          "avg_side_adjusted_return": null
+        },
+        "180s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 187,
+          "avg_raw_return": -0.001065372522178773,
+          "avg_side_adjusted_return": null
+        },
+        "300s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 187,
+          "avg_raw_return": -0.0016935766259257132,
+          "avg_side_adjusted_return": null
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "5S",
+      "event_type": "price_up_observation",
+      "side": "neutral",
+      "sample_count": 216,
+      "horizons": {
+        "30s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 216,
+          "avg_raw_return": 8.447271143255406e-06,
+          "avg_side_adjusted_return": null
+        },
+        "60s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 216,
+          "avg_raw_return": -0.00020727748978939398,
+          "avg_side_adjusted_return": null
+        },
+        "180s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 216,
+          "avg_raw_return": -0.0009759770575479975,
+          "avg_side_adjusted_return": null
+        },
+        "300s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 216,
+          "avg_raw_return": -0.00104925600621156,
+          "avg_side_adjusted_return": null
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "5S",
+      "event_type": "responsive_buyer_candidate",
+      "side": "buy",
+      "sample_count": 156,
+      "horizons": {
+        "30s": {
+          "favorable_count": 56,
+          "unfavorable_count": 68,
+          "flat_count": 32,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00022608852874207662,
+          "avg_side_adjusted_return": -0.00022608852874207662
+        },
+        "60s": {
+          "favorable_count": 72,
+          "unfavorable_count": 72,
+          "flat_count": 12,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0005166959706158102,
+          "avg_side_adjusted_return": -0.0005166959706158102
+        },
+        "180s": {
+          "favorable_count": 94,
+          "unfavorable_count": 62,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0005160221065612156,
+          "avg_side_adjusted_return": -0.0005160221065612156
+        },
+        "300s": {
+          "favorable_count": 70,
+          "unfavorable_count": 86,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0015685335244568501,
+          "avg_side_adjusted_return": -0.0015685335244568501
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "5S",
+      "event_type": "responsive_seller_candidate",
+      "side": "sell",
+      "sample_count": 161,
+      "horizons": {
+        "30s": {
+          "favorable_count": 66,
+          "unfavorable_count": 65,
+          "flat_count": 30,
+          "unknown_count": 0,
+          "avg_raw_return": 3.975690512243571e-05,
+          "avg_side_adjusted_return": -3.975690512243571e-05
+        },
+        "60s": {
+          "favorable_count": 70,
+          "unfavorable_count": 83,
+          "flat_count": 8,
+          "unknown_count": 0,
+          "avg_raw_return": -8.394222941470616e-06,
+          "avg_side_adjusted_return": 8.394222941470616e-06
+        },
+        "180s": {
+          "favorable_count": 42,
+          "unfavorable_count": 119,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 6.957368559549503e-06,
+          "avg_side_adjusted_return": -6.957368559549503e-06
+        },
+        "300s": {
+          "favorable_count": 60,
+          "unfavorable_count": 101,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0007435777806558901,
+          "avg_side_adjusted_return": 0.0007435777806558901
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "5S",
+      "event_type": "sweep_candidate",
+      "side": "sell",
+      "sample_count": 1,
+      "horizons": {
+        "30s": {
+          "favorable_count": 1,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0039852979866461385,
+          "avg_side_adjusted_return": 0.0039852979866461385
+        },
+        "60s": {
+          "favorable_count": 1,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0039852979866461385,
+          "avg_side_adjusted_return": 0.0039852979866461385
+        },
+        "180s": {
+          "favorable_count": 1,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0039852979866461385,
+          "avg_side_adjusted_return": 0.0039852979866461385
+        },
+        "300s": {
+          "favorable_count": 1,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0039852979866461385,
+          "avg_side_adjusted_return": 0.0039852979866461385
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "5S",
+      "event_type": "sweep_candidate",
+      "side": "unknown",
+      "sample_count": 603,
+      "horizons": {
+        "30s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 603,
+          "avg_raw_return": -8.74629882323588e-05,
+          "avg_side_adjusted_return": null
+        },
+        "60s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 603,
+          "avg_raw_return": -0.00021147104190827367,
+          "avg_side_adjusted_return": null
+        },
+        "180s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 603,
+          "avg_raw_return": -0.0007166527324166693,
+          "avg_side_adjusted_return": null
+        },
+        "300s": {
+          "favorable_count": 0,
+          "unfavorable_count": 0,
+          "flat_count": 0,
+          "unknown_count": 603,
+          "avg_raw_return": -0.001321541597666079,
+          "avg_side_adjusted_return": null
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "5S",
+      "event_type": "trapped_buyer_candidate",
+      "side": "buy",
+      "sample_count": 48,
+      "horizons": {
+        "30s": {
+          "favorable_count": 19,
+          "unfavorable_count": 22,
+          "flat_count": 7,
+          "unknown_count": 0,
+          "avg_raw_return": -6.202440125881659e-06,
+          "avg_side_adjusted_return": -6.202440125881659e-06
+        },
+        "60s": {
+          "favorable_count": 27,
+          "unfavorable_count": 20,
+          "flat_count": 1,
+          "unknown_count": 0,
+          "avg_raw_return": 0.00014866154167416114,
+          "avg_side_adjusted_return": 0.00014866154167416114
+        },
+        "180s": {
+          "favorable_count": 33,
+          "unfavorable_count": 15,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": 1.4114928936461664e-05,
+          "avg_side_adjusted_return": 1.4114928936461664e-05
+        },
+        "300s": {
+          "favorable_count": 36,
+          "unfavorable_count": 12,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00021648395293237676,
+          "avg_side_adjusted_return": -0.00021648395293237676
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    },
+    {
+      "symbol": "BTCUSDT",
+      "timeframe": "5S",
+      "event_type": "trapped_seller_candidate",
+      "side": "sell",
+      "sample_count": 63,
+      "horizons": {
+        "30s": {
+          "favorable_count": 30,
+          "unfavorable_count": 23,
+          "flat_count": 10,
+          "unknown_count": 0,
+          "avg_raw_return": -0.00039703361486708274,
+          "avg_side_adjusted_return": 0.00039703361486708274
+        },
+        "60s": {
+          "favorable_count": 30,
+          "unfavorable_count": 26,
+          "flat_count": 7,
+          "unknown_count": 0,
+          "avg_raw_return": -0.0007811111051491338,
+          "avg_side_adjusted_return": 0.0007811111051491338
+        },
+        "180s": {
+          "favorable_count": 32,
+          "unfavorable_count": 31,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.000944693039957662,
+          "avg_side_adjusted_return": 0.000944693039957662
+        },
+        "300s": {
+          "favorable_count": 35,
+          "unfavorable_count": 28,
+          "flat_count": 0,
+          "unknown_count": 0,
+          "avg_raw_return": -0.001654893748689857,
+          "avg_side_adjusted_return": 0.001654893748689857
+        }
+      },
+      "scores": {
+        "confidence": null,
+        "strength_score": null,
+        "edge_score": null,
+        "threshold": null
+      }
+    }
+  ],
+  "scores": {
+    "confidence": null,
+    "strength_score": null,
+    "edge_score": null,
+    "threshold": null
+  }
+}

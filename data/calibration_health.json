@@ -1,0 +1,15 @@
+{
+  "status": "alive",
+  "input_events_processed": 45186,
+  "prices_indexed": 609,
+  "open_observations": 1714,
+  "completed_observations": 20842,
+  "profiles_written": 12,
+  "last_event_ts": 1781456818000,
+  "last_price_ts": 1781456818000,
+  "missing_inputs": [],
+  "warnings": [
+    "invalid_price_row",
+    "missing_reference_price"
+  ]
+}

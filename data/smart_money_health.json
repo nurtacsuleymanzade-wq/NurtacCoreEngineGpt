@@ -1,0 +1,16 @@
+{
+  "status": "alive",
+  "processed_rows": {
+    "1S": 685,
+    "3S": 1293,
+    "5S": 1287,
+    "15S": 1257,
+    "1M": 20
+  },
+  "snapshots_written": 0,
+  "structure_events_written": 0,
+  "last_window_ts": 1781456818000,
+  "missing_inputs": [],
+  "warnings": [],
+  "registry_validation_passed": true
+}

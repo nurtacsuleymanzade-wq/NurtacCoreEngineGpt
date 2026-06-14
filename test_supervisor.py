@@ -1,4 +1,4 @@
-"""Production-capable supervisor for the Layer-0 through Layer-6A pipeline."""
+"""Production-capable supervisor for the Layer-0 through Layer-7 pipeline."""
 
 import argparse
 import json
@@ -10,6 +10,7 @@ from pathlib import Path
 from typing import Any
 
 from detector_contracts import validate_detector_contracts
+from observer_contracts import validate_observer_contracts
 from verify_evidence_contracts import verify_registry as verify_evidence_registry
 
 
@@ -83,6 +84,25 @@ ENGINE_SPECS = (
         ),
         ("structure_events.jsonl",),
     ),
+    EngineSpec(
+        "layer_7",
+        "observer_engine.py",
+        ("observer_states.jsonl", "observer_events.jsonl", "observer_health.json"),
+        "window_start_ts",
+        "observer_health.json",
+        "last_window_ts",
+        (
+            "status",
+            "input_rows_processed",
+            "observer_states_written",
+            "observer_events_written",
+            "open_watch_states",
+            "last_window_ts",
+            "missing_inputs",
+            "warnings",
+            "registry_validation_passed",
+        ),
+    ),
 )
 
 REQUIRED_OUTPUTS = (
@@ -93,6 +113,9 @@ REQUIRED_OUTPUTS = (
     "smart_money_dna.jsonl",
     "structure_events.jsonl",
     "smart_money_health.json",
+    "observer_states.jsonl",
+    "observer_events.jsonl",
+    "observer_health.json",
 )
 
 NONCRITICAL_REQUIRED_OUTPUTS = {"structure_events.jsonl"}
@@ -100,7 +123,7 @@ SMART_MONEY_STRUCTURE_WARNING_SECONDS = 300
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Layer-0 through Layer-6A pipeline supervisor")
+    parser = argparse.ArgumentParser(description="Layer-0 through Layer-7 pipeline supervisor")
     parser.add_argument(
         "--duration",
         type=int,
@@ -129,11 +152,14 @@ def validate_contract_registries() -> dict[str, Any]:
     detector_errors = validate_detector_contracts()
     evidence_report = verify_evidence_registry()
     evidence_errors = list(evidence_report["errors"])
+    observer_errors = validate_observer_contracts()
     errors = [f"detector: {error}" for error in detector_errors]
     errors.extend(f"evidence: {error}" for error in evidence_errors)
+    errors.extend(f"observer: {error}" for error in observer_errors)
     return {
         "detector_registry_valid": not detector_errors,
         "evidence_registry_valid": bool(evidence_report["test_passed"]),
+        "observer_registry_valid": not observer_errors,
         "errors": errors,
         "passed": not errors,
     }

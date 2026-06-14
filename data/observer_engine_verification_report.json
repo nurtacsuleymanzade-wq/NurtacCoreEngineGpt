@@ -1,0 +1,11 @@
+{
+  "checked_states": 100,
+  "checked_events": 100,
+  "observer_states_exists": true,
+  "observer_events_exists": true,
+  "observer_health_exists": true,
+  "registry_validation_passed": true,
+  "failed": 0,
+  "errors": [],
+  "test_passed": true
+}

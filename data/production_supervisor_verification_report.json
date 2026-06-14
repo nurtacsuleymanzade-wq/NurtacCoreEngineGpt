@@ -1,10 +1,14 @@
 {
   "checked": true,
-  "engine_count_expected": 8,
+  "engine_count_expected": 9,
   "smart_money_engine_registered": true,
   "smart_money_health_path_ok": true,
   "smart_money_outputs_registered": true,
   "production_health_contains_smart_money": true,
+  "observer_engine_registered": true,
+  "observer_health_path_ok": true,
+  "observer_outputs_registered": true,
+  "production_health_contains_observer": true,
   "errors": [],
   "test_passed": true
 }

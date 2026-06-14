@@ -1,4 +1,4 @@
-"""Continuous production entry point for the Layer-0 through Layer-6A pipeline."""
+"""Continuous production entry point for the Layer-0 through Layer-7 pipeline."""
 
 from test_supervisor import (
     ENGINE_SPECS,
@@ -12,6 +12,9 @@ from test_supervisor import (
 
 SMART_MONEY_ENGINE = next(
     spec for spec in ENGINE_SPECS if spec.script == "smart_money_engine.py"
+)
+OBSERVER_ENGINE = next(
+    spec for spec in ENGINE_SPECS if spec.script == "observer_engine.py"
 )
 
 

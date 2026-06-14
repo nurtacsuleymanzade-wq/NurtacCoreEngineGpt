@@ -1,0 +1,19 @@
+{
+  "status": "alive",
+  "input_rows_processed": {
+    "observer_events": 3007,
+    "observer_states": 3007,
+    "evidence_packets": 5091,
+    "structure_events": 1423,
+    "smart_money_dna": 2710,
+    "context_dna": 2711,
+    "historical_outcome_observations": 29641,
+    "calibration_profiles": 6,
+    "detector_events": 22593
+  },
+  "setup_candidates_written": 0,
+  "last_window_ts": 1781456818000,
+  "missing_inputs": [],
+  "warnings": [],
+  "registry_validation_passed": true
+}

@@ -1,4 +1,4 @@
-"""Verify Smart Money, Observer, and Layer-6B supervisor registration."""
+"""Verify Smart Money, optional layers, and Setup supervisor registration."""
 
 import importlib
 import json
@@ -26,6 +26,7 @@ HISTORICAL_OUTPUTS = {
     "calibration_profiles.json",
     "historical_outcome_health.json",
 }
+SETUP_OUTPUTS = {"setup_candidates.jsonl", "setup_health.json"}
 
 
 def verify() -> dict[str, Any]:
@@ -50,6 +51,10 @@ def verify() -> dict[str, Any]:
     historical_health_path_ok = False
     historical_outputs_registered = False
     health_contains_historical = False
+    setup_registered = False
+    setup_health_path_ok = False
+    setup_outputs_registered = False
+    health_contains_setup = False
 
     if supervisor is not None:
         specs = getattr(supervisor, "ENGINE_SPECS", ())
@@ -88,10 +93,20 @@ def verify() -> dict[str, Any]:
                 set(getattr(historical_spec, "output_files", ()))
             )
         if not HISTORICAL_OUTPUTS.issubset(required_outputs):
-            errors.append("Historical outcome outputs are missing from REQUIRED_OUTPUTS")
+            if (ROOT_DIR / "historical_outcome_engine.py").exists():
+                errors.append("Historical outcome outputs are missing from REQUIRED_OUTPUTS")
+        setup_specs = [spec for spec in specs if getattr(spec, "script", None) == "setup_engine.py"]
+        setup_registered = len(setup_specs) == 1
+        if setup_registered:
+            setup_spec = setup_specs[0]
+            setup_health_path_ok = getattr(setup_spec, "health_file", None) == "setup_health.json"
+            setup_outputs_registered = SETUP_OUTPUTS.issubset(set(getattr(setup_spec, "output_files", ())))
+        if not SETUP_OUTPUTS.issubset(required_outputs):
+            errors.append("Setup outputs are missing from REQUIRED_OUTPUTS")
 
     observer_file_exists = (ROOT_DIR / "observer_engine.py").exists()
-    expected_engine_count = 10 if observer_file_exists else 9
+    historical_file_exists = (ROOT_DIR / "historical_outcome_engine.py").exists()
+    expected_engine_count = 8 + int(observer_file_exists) + int(historical_file_exists) + 1
     if engine_count != expected_engine_count:
         errors.append(f"expected {expected_engine_count} engines, found {engine_count}")
     if not registered:
@@ -108,12 +123,18 @@ def verify() -> dict[str, Any]:
         errors.append("Observer health path is incorrect")
     if observer_file_exists and not observer_outputs_registered:
         errors.append("Observer expected outputs are incomplete")
-    if not historical_registered:
+    if historical_file_exists and not historical_registered:
         errors.append("historical_outcome_engine.py is not registered exactly once")
-    if not historical_health_path_ok:
+    if historical_file_exists and not historical_health_path_ok:
         errors.append("Historical outcome health path is incorrect")
-    if not historical_outputs_registered:
+    if historical_file_exists and not historical_outputs_registered:
         errors.append("Historical outcome expected outputs are incomplete")
+    if not setup_registered:
+        errors.append("setup_engine.py is not registered exactly once")
+    if not setup_health_path_ok:
+        errors.append("Setup health path is incorrect")
+    if not setup_outputs_registered:
+        errors.append("Setup expected outputs are incomplete")
 
     if PRODUCTION_HEALTH_FILE.exists():
         try:
@@ -124,13 +145,16 @@ def verify() -> dict[str, Any]:
             health_contains_smart_money = "smart_money_engine.py" in health.get("engines", {})
             health_contains_observer = "observer_engine.py" in health.get("engines", {})
             health_contains_historical = "historical_outcome_engine.py" in health.get("engines", {})
+            health_contains_setup = "setup_engine.py" in health.get("engines", {})
             required_health_outputs = set(health.get("required_outputs", {}))
             if not SMART_OUTPUTS.issubset(required_health_outputs):
                 errors.append("production health required_outputs lacks Smart Money outputs")
             if observer_file_exists and not OBSERVER_OUTPUTS.issubset(required_health_outputs):
                 errors.append("production health required_outputs lacks Observer outputs")
-            if not HISTORICAL_OUTPUTS.issubset(required_health_outputs):
+            if historical_file_exists and not HISTORICAL_OUTPUTS.issubset(required_health_outputs):
                 errors.append("production health required_outputs lacks historical outcome outputs")
+            if not SETUP_OUTPUTS.issubset(required_health_outputs):
+                errors.append("production health required_outputs lacks Setup outputs")
 
     report = {
         "checked": True,
@@ -147,6 +171,10 @@ def verify() -> dict[str, Any]:
         "historical_outcome_health_path_ok": historical_health_path_ok,
         "historical_outcome_outputs_registered": historical_outputs_registered,
         "production_health_contains_historical_outcome": health_contains_historical,
+        "setup_engine_registered": setup_registered,
+        "setup_health_path_ok": setup_health_path_ok,
+        "setup_outputs_registered": setup_outputs_registered,
+        "production_health_contains_setup": health_contains_setup,
         "errors": errors,
         "test_passed": not errors,
     }
@@ -162,6 +190,7 @@ def main() -> int:
     print(f"smart_money_engine_registered={str(report['smart_money_engine_registered']).lower()}")
     print(f"observer_engine_registered={str(report['observer_engine_registered']).lower()}")
     print(f"historical_outcome_engine_registered={str(report['historical_outcome_engine_registered']).lower()}")
+    print(f"setup_engine_registered={str(report['setup_engine_registered']).lower()}")
     print(f"test_passed={str(report['test_passed']).lower()}")
     print("report=data/production_supervisor_verification_report.json")
     return 0 if report["test_passed"] else 1

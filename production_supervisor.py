@@ -1,4 +1,4 @@
-"""Continuous production entry point through Layer-7 with Layer-6B learning."""
+"""Continuous production entry point through the Layer-8 candidate pipeline."""
 
 from test_supervisor import (
     ENGINE_SPECS,
@@ -18,7 +18,11 @@ OBSERVER_ENGINE = next(
     None,
 )
 HISTORICAL_OUTCOME_ENGINE = next(
-    spec for spec in ENGINE_SPECS if spec.script == "historical_outcome_engine.py"
+    (spec for spec in ENGINE_SPECS if spec.script == "historical_outcome_engine.py"),
+    None,
+)
+SETUP_ENGINE = next(
+    spec for spec in ENGINE_SPECS if spec.script == "setup_engine.py"
 )
 
 

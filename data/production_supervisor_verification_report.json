@@ -1,6 +1,6 @@
 {
   "checked": true,
-  "engine_count_expected": 10,
+  "engine_count_expected": 11,
   "smart_money_engine_registered": true,
   "smart_money_health_path_ok": true,
   "smart_money_outputs_registered": true,
@@ -13,6 +13,10 @@
   "historical_outcome_health_path_ok": true,
   "historical_outcome_outputs_registered": true,
   "production_health_contains_historical_outcome": true,
+  "setup_engine_registered": true,
+  "setup_health_path_ok": true,
+  "setup_outputs_registered": true,
+  "production_health_contains_setup": true,
   "errors": [],
   "test_passed": true
 }

@@ -1,16 +1,16 @@
 {
   "layer_0": {
     "status": "alive",
-    "last_window_ts": 1781379734000,
-    "lag_seconds": 1.1384970703125
+    "last_window_ts": 1781456818000,
+    "lag_seconds": 1.1854140625
   },
   "layer_1": {
     "status": "alive",
-    "last_window_ts": 1781379719000
+    "last_window_ts": 1781456804000
   },
   "layer_2": {
     "status": "alive",
     "last_window_ts": 1781379660000
   },
-  "gap_count": 0
+  "gap_count": 1
 }

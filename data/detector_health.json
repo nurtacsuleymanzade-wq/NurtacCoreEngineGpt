@@ -1,25 +1,31 @@
 {
   "status": "alive",
   "processed_rows": {
-    "1S": 615,
-    "3S": 612,
-    "5S": 610,
-    "15S": 600,
-    "1M": 10
+    "1S": 679,
+    "3S": 1287,
+    "5S": 1281,
+    "15S": 1251,
+    "1M": 20
   },
-  "measurements_written": 0,
-  "detector_events_written": 8894,
-  "evidence_events_written": 8894,
+  "measurements_written": 239,
+  "detector_events_written": 1573,
+  "evidence_events_written": 1573,
   "detectors_run": [
     "absorption_candidate",
     "aggression_burst_candidate",
     "delta_imbalance_candidate",
     "exhaustion_candidate",
-    "momentum_candidate"
+    "iceberg_candidate",
+    "initiative_flow_candidate",
+    "momentum_candidate",
+    "responsive_buyer_candidate",
+    "responsive_seller_candidate",
+    "sweep_candidate",
+    "trapped_trader_candidate"
   ],
   "runtime_validation_errors": 0,
   "registry_contract_version": "1.0.0",
   "registry_validation_passed": true,
-  "last_event_ts": 1781379660000,
+  "last_event_ts": 1781456798000,
   "missing_inputs": []
 }

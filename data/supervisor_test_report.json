@@ -1,42 +1,200 @@
 {
-  "duration_seconds": 600,
-  "processes": {
-    "main.py": {
-      "started": true,
-      "exit_code": 1,
-      "log_file": "logs/main.log"
-    },
-    "rolling_window_engine.py": {
-      "started": true,
-      "exit_code": 1,
-      "log_file": "logs/rolling_window_engine.log"
-    },
-    "aligned_candle_engine.py": {
-      "started": true,
-      "exit_code": 1,
-      "log_file": "logs/aligned_candle_engine.log"
-    },
-    "sync_integrity_engine.py": {
-      "started": true,
-      "exit_code": 1,
-      "log_file": "logs/sync_integrity_engine.log"
-    }
+  "duration_seconds": 65,
+  "contract_validation": {
+    "detector_registry_valid": true,
+    "evidence_registry_valid": true,
+    "errors": [],
+    "passed": true
   },
-  "output_files": {
-    "one_second_combined_dna_rows": 615,
-    "rolling_3s_rows": 612,
-    "rolling_5s_rows": 610,
-    "rolling_15s_rows": 600,
-    "aligned_1m_rows": 10,
-    "system_health_exists": true,
-    "gap_events_rows": 0,
-    "data_quality_rows": 10
+  "supervisor_health": {
+    "status": "alive",
+    "checked_at": 1781456819.538302,
+    "engines": {
+      "main.py": {
+        "script": "main.py",
+        "pid": 12992,
+        "process_alive": true,
+        "heartbeat": 1781456818.5671327,
+        "health": {
+          "status": "running"
+        },
+        "last_window_ts": 1781456818000,
+        "lag_seconds": 1.405798828125,
+        "missing_outputs": [],
+        "warnings": [],
+        "restart_count": 0,
+        "last_exit_code": null,
+        "log_file": "logs/main.log"
+      },
+      "rolling_window_engine.py": {
+        "script": "rolling_window_engine.py",
+        "pid": 28428,
+        "process_alive": true,
+        "heartbeat": 1781456818.7735038,
+        "health": {
+          "status": "running"
+        },
+        "last_window_ts": 1781456816000,
+        "lag_seconds": 3.415875732421875,
+        "missing_outputs": [],
+        "warnings": [],
+        "restart_count": 0,
+        "last_exit_code": null,
+        "log_file": "logs/rolling_window_engine.log"
+      },
+      "aligned_candle_engine.py": {
+        "script": "aligned_candle_engine.py",
+        "pid": 19828,
+        "process_alive": true,
+        "heartbeat": 1781456749.465967,
+        "health": {
+          "status": "running"
+        },
+        "last_window_ts": 1781379660000,
+        "lag_seconds": 77159.53063623047,
+        "missing_outputs": [],
+        "warnings": [],
+        "restart_count": 0,
+        "last_exit_code": null,
+        "log_file": "logs/aligned_candle_engine.log"
+      },
+      "sync_integrity_engine.py": {
+        "script": "sync_integrity_engine.py",
+        "pid": 12240,
+        "process_alive": true,
+        "heartbeat": 1781456819.1853526,
+        "health": {
+          "layer_0": {
+            "status": "alive",
+            "last_window_ts": 1781456818000,
+            "lag_seconds": 1.1854140625
+          },
+          "layer_1": {
+            "status": "alive",
+            "last_window_ts": 1781456804000
+          },
+          "layer_2": {
+            "status": "alive",
+            "last_window_ts": 1781379660000
+          },
+          "gap_count": 1
+        },
+        "last_window_ts": 1781456818000,
+        "lag_seconds": 1.53119873046875,
+        "missing_outputs": [],
+        "warnings": [],
+        "restart_count": 0,
+        "last_exit_code": null,
+        "log_file": "logs/sync_integrity_engine.log"
+      },
+      "context_engine.py": {
+        "script": "context_engine.py",
+        "pid": 9228,
+        "process_alive": true,
+        "heartbeat": 1781456819.2620869,
+        "health": {
+          "status": "running"
+        },
+        "last_window_ts": 1781456814000,
+        "lag_seconds": 5.535486328125,
+        "missing_outputs": [],
+        "warnings": [],
+        "restart_count": 0,
+        "last_exit_code": null,
+        "log_file": "logs/context_engine.log"
+      },
+      "detector_engine.py": {
+        "script": "detector_engine.py",
+        "pid": 20572,
+        "process_alive": true,
+        "heartbeat": 1781456819.154166,
+        "health": {
+          "status": "alive",
+          "processed_rows": {
+            "1S": 679,
+            "3S": 1287,
+            "5S": 1281,
+            "15S": 1251,
+            "1M": 20
+          },
+          "measurements_written": 239,
+          "detector_events_written": 1573,
+          "evidence_events_written": 1573,
+          "detectors_run": [
+            "absorption_candidate",
+            "aggression_burst_candidate",
+            "delta_imbalance_candidate",
+            "exhaustion_candidate",
+            "iceberg_candidate",
+            "initiative_flow_candidate",
+            "momentum_candidate",
+            "responsive_buyer_candidate",
+            "responsive_seller_candidate",
+            "sweep_candidate",
+            "trapped_trader_candidate"
+          ],
+          "runtime_validation_errors": 0,
+          "registry_contract_version": "1.0.0",
+          "registry_validation_passed": true,
+          "last_event_ts": 1781456798000,
+          "missing_inputs": []
+        },
+        "last_window_ts": 1781456798000,
+        "lag_seconds": 21.536875,
+        "missing_outputs": [],
+        "warnings": [],
+        "restart_count": 0,
+        "last_exit_code": null,
+        "log_file": "logs/detector_engine.log"
+      },
+      "evidence_engine.py": {
+        "script": "evidence_engine.py",
+        "pid": 20016,
+        "process_alive": true,
+        "heartbeat": 1781456819.1230614,
+        "health": {
+          "status": "alive",
+          "input_rows_processed": 22430,
+          "evidence_packets_written": 250,
+          "open_packets": 0,
+          "last_window_ts": 1781456813000,
+          "missing_inputs": [],
+          "warnings": []
+        },
+        "last_window_ts": 1781456813000,
+        "lag_seconds": 6.53764697265625,
+        "missing_outputs": [],
+        "warnings": [],
+        "restart_count": 0,
+        "last_exit_code": null,
+        "log_file": "logs/evidence_engine.log"
+      }
+    },
+    "required_outputs": {
+      "context_dna.jsonl": {
+        "exists": true,
+        "size_bytes": 3375377
+      },
+      "detector_measurements.jsonl": {
+        "exists": true,
+        "size_bytes": 3597465
+      },
+      "detector_events.jsonl": {
+        "exists": true,
+        "size_bytes": 41023895
+      },
+      "evidence_packets.jsonl": {
+        "exists": true,
+        "size_bytes": 20533904
+      }
+    },
+    "warnings": []
   },
   "validation": {
-    "layer0_rows_gt_0": true,
-    "rolling_rows_gt_0": true,
-    "aligned_1m_rows_gt_0": true,
-    "sync_health_exists": true,
+    "contract_registries_valid": true,
+    "all_engines_alive": true,
+    "required_outputs_exist": true,
     "test_passed": true
-  }
+  },
+  "interrupted": false
 }

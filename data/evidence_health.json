@@ -1,9 +1,9 @@
 {
   "status": "alive",
-  "input_rows_processed": 20856,
-  "evidence_packets_written": 4816,
+  "input_rows_processed": 22430,
+  "evidence_packets_written": 250,
   "open_packets": 0,
-  "last_window_ts": 1781379734000,
+  "last_window_ts": 1781456813000,
   "missing_inputs": [],
   "warnings": []
 }

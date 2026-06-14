@@ -1,4 +1,4 @@
-"""Production-capable supervisor for the Layer-0 through Layer-7 pipeline."""
+"""Production-capable supervisor for the Layer-0 through Layer-7 and Layer-6B pipeline."""
 
 import argparse
 import json
@@ -10,7 +10,11 @@ from pathlib import Path
 from typing import Any
 
 from detector_contracts import validate_detector_contracts
-from observer_contracts import validate_observer_contracts
+from calibration_contracts import validate_calibration_contracts
+try:
+    from observer_contracts import validate_observer_contracts
+except ImportError:
+    validate_observer_contracts = None
 from verify_evidence_contracts import verify_registry as verify_evidence_registry
 
 
@@ -84,23 +88,55 @@ ENGINE_SPECS = (
         ),
         ("structure_events.jsonl",),
     ),
+    *(
+        (
+            EngineSpec(
+                "layer_7",
+                "observer_engine.py",
+                ("observer_states.jsonl", "observer_events.jsonl", "observer_health.json"),
+                "window_start_ts",
+                "observer_health.json",
+                "last_window_ts",
+                (
+                    "status",
+                    "input_rows_processed",
+                    "observer_states_written",
+                    "observer_events_written",
+                    "open_watch_states",
+                    "last_window_ts",
+                    "missing_inputs",
+                    "warnings",
+                    "registry_validation_passed",
+                ),
+            ),
+        )
+        if (ROOT_DIR / "observer_engine.py").exists()
+        else ()
+    ),
     EngineSpec(
-        "layer_7",
-        "observer_engine.py",
-        ("observer_states.jsonl", "observer_events.jsonl", "observer_health.json"),
-        "window_start_ts",
-        "observer_health.json",
-        "last_window_ts",
+        "layer_6b",
+        "historical_outcome_engine.py",
+        (
+            "historical_outcome_observations.jsonl",
+            "historical_outcome_open_positions.json",
+            "calibration_profiles.json",
+            "historical_outcome_health.json",
+        ),
+        "event_window_start_ts",
+        "historical_outcome_health.json",
+        "last_event_ts",
         (
             "status",
-            "input_rows_processed",
-            "observer_states_written",
-            "observer_events_written",
-            "open_watch_states",
-            "last_window_ts",
+            "prices_indexed",
+            "input_events_processed",
+            "open_observations",
+            "completed_observations",
+            "profiles_written",
+            "last_price_ts",
+            "last_event_ts",
             "missing_inputs",
             "warnings",
-            "registry_validation_passed",
+            "errors",
         ),
     ),
 )
@@ -113,9 +149,11 @@ REQUIRED_OUTPUTS = (
     "smart_money_dna.jsonl",
     "structure_events.jsonl",
     "smart_money_health.json",
-    "observer_states.jsonl",
-    "observer_events.jsonl",
-    "observer_health.json",
+    *(("observer_states.jsonl", "observer_events.jsonl", "observer_health.json") if (ROOT_DIR / "observer_engine.py").exists() else ()),
+    "historical_outcome_observations.jsonl",
+    "historical_outcome_open_positions.json",
+    "calibration_profiles.json",
+    "historical_outcome_health.json",
 )
 
 NONCRITICAL_REQUIRED_OUTPUTS = {"structure_events.jsonl"}
@@ -123,7 +161,7 @@ SMART_MONEY_STRUCTURE_WARNING_SECONDS = 300
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Layer-0 through Layer-7 pipeline supervisor")
+    parser = argparse.ArgumentParser(description="Layer-0 through Layer-7 and Layer-6B pipeline supervisor")
     parser.add_argument(
         "--duration",
         type=int,
@@ -152,14 +190,18 @@ def validate_contract_registries() -> dict[str, Any]:
     detector_errors = validate_detector_contracts()
     evidence_report = verify_evidence_registry()
     evidence_errors = list(evidence_report["errors"])
-    observer_errors = validate_observer_contracts()
+    observer_enabled = (ROOT_DIR / "observer_engine.py").exists()
+    observer_errors = validate_observer_contracts() if observer_enabled and validate_observer_contracts else []
+    calibration_errors = validate_calibration_contracts()
     errors = [f"detector: {error}" for error in detector_errors]
     errors.extend(f"evidence: {error}" for error in evidence_errors)
     errors.extend(f"observer: {error}" for error in observer_errors)
+    errors.extend(f"calibration: {error}" for error in calibration_errors)
     return {
         "detector_registry_valid": not detector_errors,
         "evidence_registry_valid": bool(evidence_report["test_passed"]),
-        "observer_registry_valid": not observer_errors,
+        "observer_registry_valid": not observer_errors if observer_enabled else None,
+        "calibration_registry_valid": not calibration_errors,
         "errors": errors,
         "passed": not errors,
     }

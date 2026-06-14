@@ -2,10 +2,10 @@
   "status": "alive",
   "processed_rows": {
     "1S": 685,
-    "3S": 3336,
-    "5S": 3318,
-    "15S": 3228,
-    "1M": 50
+    "3S": 4017,
+    "5S": 3995,
+    "15S": 3885,
+    "1M": 60
   },
   "measurements_written": 0,
   "detector_events_written": 0,

@@ -1,0 +1,23 @@
+{
+  "status": "alive",
+  "prices_indexed": 684,
+  "input_events_processed": {
+    "detector_events": 22593,
+    "evidence_packets": 5091,
+    "structure_events": 1423,
+    "observer_events": 3007,
+    "context_dna": 2711,
+    "smart_money_dna": 2710
+  },
+  "open_observations": 2738,
+  "completed_observations": 0,
+  "profiles_written": 3,
+  "last_price_ts": 1781456818000,
+  "last_event_ts": 1781456818000,
+  "missing_inputs": [],
+  "warnings": [
+    "invalid_price_row",
+    "missing_reference_price"
+  ],
+  "errors": []
+}

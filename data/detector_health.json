@@ -7,9 +7,19 @@
     "15S": 600,
     "1M": 10
   },
-  "measurements_written": 2447,
-  "detector_events_written": 11962,
-  "evidence_events_written": 11962,
+  "measurements_written": 0,
+  "detector_events_written": 8894,
+  "evidence_events_written": 8894,
+  "detectors_run": [
+    "absorption_candidate",
+    "aggression_burst_candidate",
+    "delta_imbalance_candidate",
+    "exhaustion_candidate",
+    "momentum_candidate"
+  ],
+  "runtime_validation_errors": 0,
+  "registry_contract_version": "1.0.0",
+  "registry_validation_passed": true,
   "last_event_ts": 1781379660000,
   "missing_inputs": []
 }

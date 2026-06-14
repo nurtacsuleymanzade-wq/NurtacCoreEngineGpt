@@ -5,6 +5,13 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
+from detector_contracts import (
+    CONTRACT_VERSION,
+    DETECTOR_CONTRACTS,
+    get_detector_contract,
+    validate_detector_contracts,
+)
+
 
 ROOT_DIR = Path(__file__).resolve().parent
 DATA_DIR = ROOT_DIR / "data"
@@ -53,9 +60,22 @@ class NormalizedRow:
     errors: list[str] = field(default_factory=list)
 
 
+@dataclass(frozen=True)
+class RuntimeEvent:
+    contract_name: str
+    event_type: str
+    side: str
+    direction: str
+    condition: str
+
+
 class DetectorEngine:
     def __init__(self) -> None:
+        registry_errors = validate_detector_contracts()
+        if registry_errors:
+            raise RuntimeError("Detector contract registry validation failed: " + "; ".join(registry_errors))
         DATA_DIR.mkdir(parents=True, exist_ok=True)
+        self.contracts = {contract["detector_name"]: contract for contract in DETECTOR_CONTRACTS}
         self.measurement_handle = MEASUREMENTS_FILE.open("a", encoding="utf-8")
         self.detector_handle = DETECTOR_EVENTS_FILE.open("a", encoding="utf-8")
         self.evidence_handle = EVIDENCE_INBOX_FILE.open("a", encoding="utf-8")
@@ -66,6 +86,8 @@ class DetectorEngine:
         self.measurements_written = 0
         self.detector_events_written = 0
         self.evidence_events_written = 0
+        self.runtime_validation_errors = 0
+        self.detectors_run: set[str] = set()
         self.last_event_ts = 0
         self.missing_inputs: set[str] = set()
         self.write_health()
@@ -106,12 +128,17 @@ class DetectorEngine:
             self.measurement_keys.add(measurement_key)
             self.measurements_written += 1
 
-        for event_type, side, direction, condition in observed_events(normalized, metrics):
-            event_key = (event_type, timeframe, normalized.window_start_ts)
+        for event in observed_events(normalized, metrics):
+            validation_errors = validate_runtime_event(event, normalized)
+            if validation_errors:
+                self.runtime_validation_errors += 1
+                continue
+            contract = self.contracts[event.contract_name]
+            event_key = (event.event_type, timeframe, normalized.window_start_ts)
             if event_key in self.event_keys:
                 continue
 
-            event_id = make_record_id(event_type, timeframe, normalized.window_start_ts)
+            event_id = make_record_id(event.event_type, timeframe, normalized.window_start_ts)
             source_refs = {
                 "source_file": normalized.source_file,
                 "source_window_ts": normalized.window_start_ts,
@@ -126,16 +153,19 @@ class DetectorEngine:
                 "timeframe": timeframe,
                 "window_start_ts": normalized.window_start_ts,
                 "window_end_ts": normalized.window_end_ts,
-                "event_type": event_type,
+                "event_type": event.event_type,
+                "contract_name": event.contract_name,
+                "contract_version": contract["contract_version"],
                 "status": "candidate",
-                "calibration_status": "uncalibrated",
-                "side": side,
-                "direction": direction,
+                "calibration_status": contract["calibration_status"],
+                "validation_passed": True,
+                "side": event.side,
+                "direction": event.direction,
                 "confidence": None,
                 "strength_score": None,
                 "thresholds": None,
                 "reason": {
-                    "structural_condition": condition,
+                    "structural_condition": event.condition,
                     "numeric_threshold_used": False,
                 },
                 "measurement_ref": measurement_id,
@@ -148,12 +178,15 @@ class DetectorEngine:
                 "source_layer": "Layer-4",
                 "source_engine": "MeasurementDetectorEngine",
                 "evidence_type": "detector_candidate",
-                "event_type": event_type,
+                "event_type": event.event_type,
+                "contract_name": event.contract_name,
+                "contract_version": contract["contract_version"],
                 "symbol": normalized.symbol,
                 "timeframe": timeframe,
                 "window_start_ts": normalized.window_start_ts,
                 "window_end_ts": normalized.window_end_ts,
-                "calibration_status": "uncalibrated",
+                "calibration_status": contract["calibration_status"],
+                "validation_passed": True,
                 "confidence": None,
                 "strength_score": None,
                 "detector_event_id": event_id,
@@ -163,6 +196,7 @@ class DetectorEngine:
             self.event_keys.add(event_key)
             self.detector_events_written += 1
             self.evidence_events_written += 1
+            self.detectors_run.add(event.contract_name)
             self.last_event_ts = normalized.window_start_ts
 
     def write_health(self) -> None:
@@ -172,6 +206,10 @@ class DetectorEngine:
             "measurements_written": self.measurements_written,
             "detector_events_written": self.detector_events_written,
             "evidence_events_written": self.evidence_events_written,
+            "detectors_run": sorted(self.detectors_run),
+            "runtime_validation_errors": self.runtime_validation_errors,
+            "registry_contract_version": CONTRACT_VERSION,
+            "registry_validation_passed": True,
             "last_event_ts": self.last_event_ts,
             "missing_inputs": sorted(self.missing_inputs),
         }
@@ -185,6 +223,8 @@ class DetectorEngine:
         print(f"measurements_written={self.measurements_written}", flush=True)
         print(f"detector_events_written={self.detector_events_written}", flush=True)
         print(f"evidence_events_written={self.evidence_events_written}", flush=True)
+        print(f"detectors_run={len(self.detectors_run)}", flush=True)
+        print(f"runtime_validation_errors={self.runtime_validation_errors}", flush=True)
 
 
 def load_measurement_keys() -> set[tuple[str, int]]:
@@ -387,49 +427,79 @@ def calculate_metrics(row: NormalizedRow) -> dict[str, Any]:
 
 def observed_events(
     row: NormalizedRow, metrics: dict[str, Any]
-) -> list[tuple[str, str, str, str]]:
-    events: list[tuple[str, str, str, str]] = []
+) -> list[RuntimeEvent]:
+    events: list[RuntimeEvent] = []
     delta = row.delta
     open_price = row.open
     close_price = row.close
 
-    if delta > 0:
-        events.append(("delta_positive_observation", "buy", "unknown", "delta > 0"))
-    if delta < 0:
-        events.append(("delta_negative_observation", "sell", "unknown", "delta < 0"))
+    events.append(RuntimeEvent("delta_imbalance_candidate", "delta_imbalance_candidate", delta_side(delta), "unknown", "delta sign and volume ratios are measurable"))
+    if row.trade_count > 0 or row.total_volume > 0:
+        events.append(RuntimeEvent("aggression_burst_candidate", "aggression_burst_candidate", delta_side(delta), "unknown", "trade_count or total_volume records measurable activity"))
 
     if open_price is not None and close_price is not None:
-        if close_price > open_price:
-            events.append(("price_up_observation", "neutral", "up", "close > open"))
-        if close_price < open_price:
-            events.append(("price_down_observation", "neutral", "down", "close < open"))
+        direction = price_direction(open_price, close_price)
+        events.append(RuntimeEvent("momentum_candidate", "momentum_candidate", direction_side(direction), direction, "open and close relation is measurable"))
         if delta > 0 and close_price > open_price:
-            events.append(("initiative_buyer_candidate", "buy", "up", "delta > 0 and close > open"))
+            events.append(RuntimeEvent("initiative_flow_candidate", "initiative_buyer_candidate", "buy", "up", "delta > 0 and close > open"))
         if delta < 0 and close_price < open_price:
-            events.append(("initiative_seller_candidate", "sell", "down", "delta < 0 and close < open"))
+            events.append(RuntimeEvent("initiative_flow_candidate", "initiative_seller_candidate", "sell", "down", "delta < 0 and close < open"))
         if delta > 0 and close_price < open_price:
-            events.append(("trapped_buyer_candidate", "buy", "down", "delta > 0 and close < open"))
+            events.append(RuntimeEvent("trapped_trader_candidate", "trapped_buyer_candidate", "sell", "down", "delta > 0 and close < open"))
         if delta < 0 and close_price > open_price:
-            events.append(("trapped_seller_candidate", "sell", "up", "delta < 0 and close > open"))
-        if delta != 0 and close_price == open_price:
-            events.append(("absorption_candidate", delta_side(delta), "flat", "delta != 0 and close == open"))
-        if delta < 0 and close_price >= open_price:
-            events.append(("responsive_buyer_candidate", "buy", price_direction(open_price, close_price), "delta < 0 and close >= open"))
+            events.append(RuntimeEvent("trapped_trader_candidate", "trapped_seller_candidate", "buy", "up", "delta < 0 and close > open"))
         if delta > 0 and close_price <= open_price:
-            events.append(("responsive_seller_candidate", "sell", price_direction(open_price, close_price), "delta > 0 and close <= open"))
+            events.append(RuntimeEvent("absorption_candidate", "absorption_candidate", "sell", direction, "delta > 0 and price response is not upward"))
+        if delta < 0 and close_price >= open_price:
+            events.append(RuntimeEvent("absorption_candidate", "absorption_candidate", "buy", direction, "delta < 0 and price response is not downward"))
+        if delta < 0 and close_price >= open_price:
+            events.append(RuntimeEvent("responsive_buyer_candidate", "responsive_buyer_candidate", "buy", direction, "delta < 0 and close >= open"))
+        if delta > 0 and close_price <= open_price:
+            events.append(RuntimeEvent("responsive_seller_candidate", "responsive_seller_candidate", "sell", direction, "delta > 0 and close <= open"))
+        if (delta == 0 and row.total_volume > 0) or (delta > 0 and close_price <= open_price) or (delta < 0 and close_price >= open_price):
+            events.append(RuntimeEvent("exhaustion_candidate", "exhaustion_candidate", exhaustion_side(delta), direction, "flow exists with neutral or contradictory directional result"))
 
     footprint = metrics["footprint"]
     if footprint["price_level_count"] > 1 and row.high is not None and row.low is not None and row.high != row.low:
-        events.append(("sweep_candidate", "unknown", price_direction(open_price, close_price), "footprint price_level_count > 1 and high != low"))
+        direction = price_direction(open_price, close_price)
+        events.append(RuntimeEvent("sweep_candidate", "sweep_candidate", direction_side(direction), direction, "footprint price_level_count > 1 and high != low"))
     if (
         footprint["max_level_trade_count"] is not None
         and footprint["max_level_price"] is not None
         and footprint["footprint_volume_concentration"] is not None
     ):
-        events.append(("iceberg_candidate", "unknown", "unknown", "max_level_trade_count and max_level_price exist and footprint_volume_concentration is calculable"))
-    if delta == 0 and row.total_volume > 0:
-        events.append(("exhaustion_candidate", "neutral", price_direction(open_price, close_price), "delta == 0 and total_volume > 0"))
+        max_level_delta = footprint["max_level_delta"]
+        iceberg_side = "neutral" if max_level_delta is None else opposite_delta_side(max_level_delta)
+        events.append(RuntimeEvent("iceberg_candidate", "iceberg_candidate", iceberg_side, "unknown", "footprint concentration is measurable; public stream cannot confirm iceberg"))
     return events
+
+
+def validate_runtime_event(event: RuntimeEvent, row: NormalizedRow) -> list[str]:
+    errors: list[str] = []
+    contract = get_detector_contract(event.contract_name)
+    if contract is None:
+        return [f"undefined detector contract: {event.contract_name}"]
+    allowed = contract["output_schema"]["event_type"]
+    allowed_events = set(allowed if isinstance(allowed, list) else [allowed])
+    if event.event_type not in allowed_events:
+        errors.append(f"undefined event_type for {event.contract_name}: {event.event_type}")
+    for field_name in contract["required_fields"]:
+        value = runtime_field_value(row, field_name)
+        if value is None:
+            errors.append(f"required field missing: {field_name}")
+    if row.total_volume < 0 or row.trade_count < 0:
+        errors.append("negative volume or trade_count")
+    if row.high is not None and row.low is not None and row.high < row.low:
+        errors.append("high is below low")
+    if abs(row.delta - (row.buy_volume - row.sell_volume)) > 1e-9:
+        errors.append("delta does not equal buy_volume - sell_volume")
+    return errors
+
+
+def runtime_field_value(row: NormalizedRow, field_name: str) -> Any:
+    if field_name == "price_level_count":
+        return len(row.footprint_levels)
+    return getattr(row, field_name, None)
 
 
 def build_context_refs(
@@ -504,6 +574,26 @@ def delta_side(delta: float) -> str:
     if delta > 0:
         return "buy"
     if delta < 0:
+        return "sell"
+    return "neutral"
+
+
+def opposite_delta_side(delta: float) -> str:
+    if delta > 0:
+        return "sell"
+    if delta < 0:
+        return "buy"
+    return "neutral"
+
+
+def exhaustion_side(delta: float) -> str:
+    return opposite_delta_side(delta) if delta != 0 else "neutral"
+
+
+def direction_side(direction: str) -> str:
+    if direction == "up":
+        return "buy"
+    if direction == "down":
         return "sell"
     return "neutral"
 

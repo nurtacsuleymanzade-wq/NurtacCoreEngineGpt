@@ -1,42 +1,89 @@
+"""Production-capable supervisor for the Layer-0 through Layer-5 pipeline."""
+
 import argparse
 import json
 import subprocess
 import sys
 import time
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
+
+from detector_contracts import validate_detector_contracts
+from verify_evidence_contracts import verify_registry as verify_evidence_registry
 
 
 ROOT_DIR = Path(__file__).resolve().parent
 DATA_DIR = ROOT_DIR / "data"
 LOGS_DIR = ROOT_DIR / "logs"
 REPORT_FILE = DATA_DIR / "supervisor_test_report.json"
+SUPERVISOR_HEALTH_FILE = DATA_DIR / "production_supervisor_health.json"
 
-ENGINES = [
-    ("main.py", LOGS_DIR / "main.log"),
-    ("rolling_window_engine.py", LOGS_DIR / "rolling_window_engine.log"),
-    ("aligned_candle_engine.py", LOGS_DIR / "aligned_candle_engine.log"),
-    ("sync_integrity_engine.py", LOGS_DIR / "sync_integrity_engine.log"),
-]
+STATUS_INTERVAL_SECONDS = 10
+RESTART_DELAY_SECONDS = 2
 
-OUTPUT_FILES = {
-    "one_second_combined_dna_rows": DATA_DIR / "one_second_combined_dna.jsonl",
-    "rolling_3s_rows": DATA_DIR / "rolling_3s_dna.jsonl",
-    "rolling_5s_rows": DATA_DIR / "rolling_5s_dna.jsonl",
-    "rolling_15s_rows": DATA_DIR / "rolling_15s_dna.jsonl",
-    "aligned_1m_rows": DATA_DIR / "aligned_1m_candle_dna.jsonl",
-    "gap_events_rows": DATA_DIR / "gap_events.jsonl",
-    "data_quality_rows": DATA_DIR / "data_quality.jsonl",
-}
+
+@dataclass(frozen=True)
+class EngineSpec:
+    name: str
+    script: str
+    output_files: tuple[str, ...]
+    timestamp_field: str
+    health_file: str | None = None
+    health_timestamp_field: str | None = None
+
+
+ENGINE_SPECS = (
+    EngineSpec("layer_0", "main.py", ("one_second_combined_dna.jsonl",), "window_start_ts"),
+    EngineSpec("layer_1", "rolling_window_engine.py", ("rolling_3s_dna.jsonl",), "window_start_ts"),
+    EngineSpec("layer_2", "aligned_candle_engine.py", ("aligned_1m_candle_dna.jsonl",), "window_start_ts"),
+    EngineSpec(
+        "sync_integrity",
+        "sync_integrity_engine.py",
+        ("system_health.json", "data_quality.jsonl"),
+        "window_start_ts",
+        "system_health.json",
+        "layer_0.last_window_ts",
+    ),
+    EngineSpec("layer_3", "context_engine.py", ("context_dna.jsonl",), "source_window_ts"),
+    EngineSpec(
+        "layer_4",
+        "detector_engine.py",
+        ("detector_measurements.jsonl", "detector_events.jsonl"),
+        "window_start_ts",
+        "detector_health.json",
+        "last_event_ts",
+    ),
+    EngineSpec(
+        "layer_5",
+        "evidence_engine.py",
+        ("evidence_packets.jsonl",),
+        "window_start_ts",
+        "evidence_health.json",
+        "last_window_ts",
+    ),
+)
+
+REQUIRED_OUTPUTS = (
+    "context_dna.jsonl",
+    "detector_measurements.jsonl",
+    "detector_events.jsonl",
+    "evidence_packets.jsonl",
+)
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="NurtacCoreEngineGpt integration test supervisor")
+    parser = argparse.ArgumentParser(description="Layer-0 through Layer-5 pipeline supervisor")
     parser.add_argument(
         "--duration",
         type=int,
         default=600,
-        help="Seconds to run after all engines have started. Default: 600",
+        help="Run duration in seconds. Use 0 for continuous production mode.",
+    )
+    parser.add_argument(
+        "--clean",
+        action="store_true",
+        help="Delete generated JSONL data before startup. Disabled by default.",
     )
     return parser.parse_args()
 
@@ -51,145 +98,291 @@ def clean_jsonl_data() -> None:
         path.unlink()
 
 
-def count_rows(path: Path) -> int:
-    if not path.exists():
-        return 0
-    count = 0
-    with path.open("r", encoding="utf-8", errors="replace") as handle:
-        for line in handle:
-            if line.strip():
-                count += 1
-    return count
-
-
-def collect_counts() -> dict[str, int | bool]:
+def validate_contract_registries() -> dict[str, Any]:
+    detector_errors = validate_detector_contracts()
+    evidence_report = verify_evidence_registry()
+    evidence_errors = list(evidence_report["errors"])
+    errors = [f"detector: {error}" for error in detector_errors]
+    errors.extend(f"evidence: {error}" for error in evidence_errors)
     return {
-        "one_second_combined_dna_rows": count_rows(OUTPUT_FILES["one_second_combined_dna_rows"]),
-        "rolling_3s_rows": count_rows(OUTPUT_FILES["rolling_3s_rows"]),
-        "rolling_5s_rows": count_rows(OUTPUT_FILES["rolling_5s_rows"]),
-        "rolling_15s_rows": count_rows(OUTPUT_FILES["rolling_15s_rows"]),
-        "aligned_1m_rows": count_rows(OUTPUT_FILES["aligned_1m_rows"]),
-        "system_health_exists": (DATA_DIR / "system_health.json").exists(),
-        "gap_events_rows": count_rows(OUTPUT_FILES["gap_events_rows"]),
-        "data_quality_rows": count_rows(OUTPUT_FILES["data_quality_rows"]),
+        "detector_registry_valid": not detector_errors,
+        "evidence_registry_valid": bool(evidence_report["test_passed"]),
+        "errors": errors,
+        "passed": not errors,
     }
 
 
-def print_status(elapsed: int) -> None:
-    counts = collect_counts()
-    print(
-        "[SUPERVISOR] "
-        f"elapsed={elapsed}s "
-        f"layer0_rows={counts['one_second_combined_dna_rows']} "
-        f"rolling3={counts['rolling_3s_rows']} "
-        f"rolling5={counts['rolling_5s_rows']} "
-        f"rolling15={counts['rolling_15s_rows']} "
-        f"aligned1m={counts['aligned_1m_rows']} "
-        f"gaps={counts['gap_events_rows']}",
-        flush=True,
-    )
-
-
-def start_engine(engine_file: str, log_file: Path) -> tuple[subprocess.Popen, Any]:
-    log_handle = log_file.open("w", encoding="utf-8")
+def start_engine(spec: EngineSpec) -> dict[str, Any]:
+    log_path = LOGS_DIR / f"{Path(spec.script).stem}.log"
+    log_handle = log_path.open("a", encoding="utf-8")
     process = subprocess.Popen(
-        [sys.executable, engine_file],
+        [sys.executable, spec.script],
         cwd=ROOT_DIR,
         stdout=log_handle,
         stderr=subprocess.STDOUT,
         text=True,
     )
-    return process, log_handle
+    return {
+        "spec": spec,
+        "process": process,
+        "log_handle": log_handle,
+        "log_path": log_path,
+        "started_at": time.time(),
+        "restart_count": 0,
+        "last_exit_code": None,
+    }
 
 
-def stop_process(process: subprocess.Popen) -> None:
-    if process.poll() is not None:
-        return
-    process.terminate()
+def restart_engine(runtime: dict[str, Any]) -> None:
+    runtime["log_handle"].close()
+    time.sleep(RESTART_DELAY_SECONDS)
+    spec = runtime["spec"]
+    replacement = start_engine(spec)
+    replacement["restart_count"] = runtime["restart_count"] + 1
+    replacement["last_exit_code"] = runtime["process"].returncode
+    runtime.clear()
+    runtime.update(replacement)
+
+
+def stop_process(runtime: dict[str, Any]) -> None:
+    process: subprocess.Popen = runtime["process"]
+    if process.poll() is None:
+        process.terminate()
+        try:
+            process.wait(timeout=10)
+        except subprocess.TimeoutExpired:
+            process.kill()
+            process.wait(timeout=10)
+    runtime["last_exit_code"] = process.returncode
+    runtime["log_handle"].close()
+
+
+def read_json(path: Path) -> dict[str, Any] | None:
+    if not path.exists():
+        return None
     try:
-        process.wait(timeout=10)
-    except subprocess.TimeoutExpired:
-        process.kill()
-        process.wait(timeout=10)
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError):
+        return None
+    return payload if isinstance(payload, dict) else None
+
+
+def read_last_jsonl(path: Path) -> dict[str, Any] | None:
+    if not path.exists() or path.stat().st_size == 0:
+        return None
+    try:
+        with path.open("rb") as handle:
+            position = handle.seek(0, 2)
+            buffer = bytearray()
+            while position > 0:
+                position -= 1
+                handle.seek(position)
+                char = handle.read(1)
+                if char == b"\n" and buffer:
+                    break
+                if char != b"\n":
+                    buffer.extend(char)
+            line = bytes(reversed(buffer)).decode("utf-8")
+            payload = json.loads(line)
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError):
+        return None
+    return payload if isinstance(payload, dict) else None
+
+
+def nested_value(payload: dict[str, Any], dotted_field: str) -> Any:
+    value: Any = payload
+    for part in dotted_field.split("."):
+        if not isinstance(value, dict):
+            return None
+        value = value.get(part)
+    return value
+
+
+def safe_int(value: Any) -> int | None:
+    try:
+        return int(value) if value is not None else None
+    except (TypeError, ValueError, OverflowError):
+        return None
+
+
+def latest_file_mtime(paths: list[Path]) -> float | None:
+    mtimes = [path.stat().st_mtime for path in paths if path.exists()]
+    return max(mtimes) if mtimes else None
+
+
+def engine_last_window(spec: EngineSpec) -> int | None:
+    if spec.health_file and spec.health_timestamp_field:
+        health = read_json(DATA_DIR / spec.health_file)
+        if health is not None:
+            timestamp = safe_int(nested_value(health, spec.health_timestamp_field))
+            if timestamp is not None:
+                return timestamp
+    timestamps: list[int] = []
+    for filename in spec.output_files:
+        path = DATA_DIR / filename
+        if path.suffix != ".jsonl":
+            continue
+        row = read_last_jsonl(path)
+        if row is not None:
+            timestamp = safe_int(row.get(spec.timestamp_field))
+            if timestamp is not None:
+                timestamps.append(timestamp)
+    return max(timestamps) if timestamps else None
+
+
+def engine_snapshot(runtime: dict[str, Any]) -> dict[str, Any]:
+    spec: EngineSpec = runtime["spec"]
+    process: subprocess.Popen = runtime["process"]
+    process_alive = process.poll() is None
+    output_paths = [DATA_DIR / filename for filename in spec.output_files]
+    missing_outputs = [relative_path(path) for path in output_paths if not path.exists()]
+    observed_paths = output_paths + [runtime["log_path"]]
+    if spec.health_file:
+        observed_paths.append(DATA_DIR / spec.health_file)
+    heartbeat = latest_file_mtime(observed_paths)
+    last_window_ts = engine_last_window(spec)
+    lag_seconds = None
+    if last_window_ts is not None:
+        lag_seconds = max(0.0, (time.time() * 1000 - last_window_ts) / 1000)
+    warnings = [f"missing_output:{path}" for path in missing_outputs]
+    if not process_alive:
+        warnings.append(f"process_exited:{process.returncode}")
+    health_payload = read_json(DATA_DIR / spec.health_file) if spec.health_file else None
+    return {
+        "script": spec.script,
+        "pid": process.pid,
+        "process_alive": process_alive,
+        "heartbeat": heartbeat,
+        "health": health_payload if health_payload is not None else {"status": "running" if process_alive else "stopped"},
+        "last_window_ts": last_window_ts,
+        "lag_seconds": lag_seconds,
+        "missing_outputs": missing_outputs,
+        "warnings": warnings,
+        "restart_count": runtime["restart_count"],
+        "last_exit_code": runtime["last_exit_code"],
+        "log_file": relative_path(runtime["log_path"]),
+    }
+
+
+def collect_supervisor_health(runtimes: list[dict[str, Any]]) -> dict[str, Any]:
+    engines = {runtime["spec"].script: engine_snapshot(runtime) for runtime in runtimes}
+    required_outputs = {
+        filename: {
+            "exists": (DATA_DIR / filename).exists(),
+            "size_bytes": (DATA_DIR / filename).stat().st_size if (DATA_DIR / filename).exists() else 0,
+        }
+        for filename in REQUIRED_OUTPUTS
+    }
+    warnings = []
+    for script, snapshot in engines.items():
+        warnings.extend(f"{script}:{warning}" for warning in snapshot["warnings"])
+    for filename, state in required_outputs.items():
+        if not state["exists"]:
+            warnings.append(f"required_output_missing:data/{filename}")
+    return {
+        "status": "alive" if all(item["process_alive"] for item in engines.values()) else "degraded",
+        "checked_at": time.time(),
+        "engines": engines,
+        "required_outputs": required_outputs,
+        "warnings": warnings,
+    }
+
+
+def write_supervisor_health(payload: dict[str, Any]) -> None:
+    SUPERVISOR_HEALTH_FILE.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
+
+
+def relative_path(path: Path) -> str:
+    return str(path.relative_to(ROOT_DIR)).replace("\\", "/")
+
+
+def print_status(elapsed: int, health: dict[str, Any]) -> None:
+    alive = sum(snapshot["process_alive"] for snapshot in health["engines"].values())
+    print(
+        f"[SUPERVISOR] elapsed={elapsed}s engines_alive={alive}/{len(ENGINE_SPECS)} "
+        f"warnings={len(health['warnings'])}",
+        flush=True,
+    )
+    for script, snapshot in health["engines"].items():
+        print(
+            f"[ENGINE] {script} heartbeat={snapshot['heartbeat']} "
+            f"last_window_ts={snapshot['last_window_ts']} lag_seconds={snapshot['lag_seconds']} "
+            f"warnings={len(snapshot['warnings'])}",
+            flush=True,
+        )
 
 
 def build_report(
     duration: int,
-    process_info: dict[str, dict[str, Any]],
+    contract_validation: dict[str, Any],
+    health: dict[str, Any],
 ) -> dict[str, Any]:
-    counts = collect_counts()
+    all_processes_alive = all(item["process_alive"] for item in health["engines"].values())
+    all_outputs_exist = all(item["exists"] for item in health["required_outputs"].values())
     validation = {
-        "layer0_rows_gt_0": counts["one_second_combined_dna_rows"] > 0,
-        "rolling_rows_gt_0": (
-            counts["rolling_3s_rows"] > 0
-            and counts["rolling_5s_rows"] > 0
-            and counts["rolling_15s_rows"] > 0
-        ),
-        "aligned_1m_rows_gt_0": counts["aligned_1m_rows"] > 0,
-        "sync_health_exists": bool(counts["system_health_exists"]),
+        "contract_registries_valid": contract_validation["passed"],
+        "all_engines_alive": all_processes_alive,
+        "required_outputs_exist": all_outputs_exist,
+        "test_passed": contract_validation["passed"] and all_processes_alive and all_outputs_exist,
     }
-    validation["test_passed"] = all(validation.values())
-
     return {
         "duration_seconds": duration,
-        "processes": process_info,
-        "output_files": counts,
+        "contract_validation": contract_validation,
+        "supervisor_health": health,
         "validation": validation,
     }
 
 
-def write_report(report: dict[str, Any]) -> None:
-    REPORT_FILE.write_text(
-        json.dumps(report, indent=2, ensure_ascii=False),
-        encoding="utf-8",
-    )
+def run_supervisor(duration: int, clean: bool = False) -> dict[str, Any]:
+    prepare_directories()
+    if clean:
+        clean_jsonl_data()
+    contract_validation = validate_contract_registries()
+    if not contract_validation["passed"]:
+        raise RuntimeError("Contract registry validation failed: " + "; ".join(contract_validation["errors"]))
+
+    runtimes: list[dict[str, Any]] = []
+    start_time = time.monotonic()
+    next_status_at = 0
+    interrupted = False
+    try:
+        for spec in ENGINE_SPECS:
+            runtimes.append(start_engine(spec))
+            time.sleep(1)
+
+        start_time = time.monotonic()
+        while duration == 0 or time.monotonic() - start_time < duration:
+            for runtime in runtimes:
+                if runtime["process"].poll() is not None:
+                    restart_engine(runtime)
+            elapsed = int(time.monotonic() - start_time)
+            health = collect_supervisor_health(runtimes)
+            write_supervisor_health(health)
+            if elapsed >= next_status_at:
+                print_status(elapsed, health)
+                next_status_at = elapsed + STATUS_INTERVAL_SECONDS
+            time.sleep(1)
+    except KeyboardInterrupt:
+        interrupted = True
+    finally:
+        final_health = collect_supervisor_health(runtimes)
+        write_supervisor_health(final_health)
+        for runtime in reversed(runtimes):
+            stop_process(runtime)
+
+    report = build_report(int(time.monotonic() - start_time), contract_validation, final_health)
+    report["interrupted"] = interrupted
+    REPORT_FILE.write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8")
+    return report
 
 
 def main() -> None:
     args = parse_args()
-    prepare_directories()
-    clean_jsonl_data()
-
-    processes: list[tuple[str, subprocess.Popen, Any]] = []
-    process_info: dict[str, dict[str, Any]] = {}
-
-    try:
-        for index, (engine_file, log_file) in enumerate(ENGINES):
-            process, log_handle = start_engine(engine_file, log_file)
-            processes.append((engine_file, process, log_handle))
-            process_info[engine_file] = {
-                "started": True,
-                "exit_code": None,
-                "log_file": str(log_file.relative_to(ROOT_DIR)).replace("\\", "/"),
-            }
-            if index < len(ENGINES) - 1:
-                time.sleep(5)
-
-        start_time = time.monotonic()
-        next_status_at = 30
-        while True:
-            elapsed = int(time.monotonic() - start_time)
-            if elapsed >= args.duration:
-                break
-            if elapsed >= next_status_at:
-                print_status(elapsed)
-                next_status_at += 30
-            time.sleep(1)
-
-    finally:
-        for engine_file, process, _log_handle in reversed(processes):
-            stop_process(process)
-            process_info[engine_file]["exit_code"] = process.returncode
-
-        for _engine_file, _process, log_handle in processes:
-            log_handle.close()
-
-    report = build_report(args.duration, process_info)
-    write_report(report)
-
+    report = run_supervisor(args.duration, args.clean)
     print("SUPERVISOR TEST COMPLETE", flush=True)
     print(f"test_passed={str(report['validation']['test_passed']).lower()}", flush=True)
-    print(r"report=data\supervisor_test_report.json", flush=True)
+    print("report=data/supervisor_test_report.json", flush=True)
+    print("health=data/production_supervisor_health.json", flush=True)
 
 
 if __name__ == "__main__":

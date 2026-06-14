@@ -1,4 +1,4 @@
-"""Production-capable supervisor for the Layer-0 through Layer-5 pipeline."""
+"""Production-capable supervisor for the Layer-0 through Layer-6A pipeline."""
 
 import argparse
 import json
@@ -31,6 +31,8 @@ class EngineSpec:
     timestamp_field: str
     health_file: str | None = None
     health_timestamp_field: str | None = None
+    required_health_fields: tuple[str, ...] = ()
+    noncritical_outputs: tuple[str, ...] = ()
 
 
 ENGINE_SPECS = (
@@ -62,6 +64,25 @@ ENGINE_SPECS = (
         "evidence_health.json",
         "last_window_ts",
     ),
+    EngineSpec(
+        "layer_6a",
+        "smart_money_engine.py",
+        ("smart_money_dna.jsonl", "structure_events.jsonl", "smart_money_health.json"),
+        "window_start_ts",
+        "smart_money_health.json",
+        "last_window_ts",
+        (
+            "status",
+            "processed_rows",
+            "snapshots_written",
+            "structure_events_written",
+            "last_window_ts",
+            "missing_inputs",
+            "warnings",
+            "registry_validation_passed",
+        ),
+        ("structure_events.jsonl",),
+    ),
 )
 
 REQUIRED_OUTPUTS = (
@@ -69,11 +90,17 @@ REQUIRED_OUTPUTS = (
     "detector_measurements.jsonl",
     "detector_events.jsonl",
     "evidence_packets.jsonl",
+    "smart_money_dna.jsonl",
+    "structure_events.jsonl",
+    "smart_money_health.json",
 )
+
+NONCRITICAL_REQUIRED_OUTPUTS = {"structure_events.jsonl"}
+SMART_MONEY_STRUCTURE_WARNING_SECONDS = 300
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Layer-0 through Layer-5 pipeline supervisor")
+    parser = argparse.ArgumentParser(description="Layer-0 through Layer-6A pipeline supervisor")
     parser.add_argument(
         "--duration",
         type=int,
@@ -242,12 +269,26 @@ def engine_snapshot(runtime: dict[str, Any]) -> dict[str, Any]:
     heartbeat = latest_file_mtime(observed_paths)
     last_window_ts = engine_last_window(spec)
     lag_seconds = None
-    if last_window_ts is not None:
+    if last_window_ts is not None and last_window_ts > 0:
         lag_seconds = max(0.0, (time.time() * 1000 - last_window_ts) / 1000)
-    warnings = [f"missing_output:{path}" for path in missing_outputs]
+    elapsed = max(0.0, time.time() - runtime["started_at"])
+    warnings = []
+    for path in missing_outputs:
+        filename = Path(path).name
+        if filename in spec.noncritical_outputs:
+            if elapsed >= SMART_MONEY_STRUCTURE_WARNING_SECONDS:
+                warnings.append("smart_money_structure_events_missing")
+            continue
+        warnings.append(f"missing_output:{path}")
     if not process_alive:
         warnings.append(f"process_exited:{process.returncode}")
     health_payload = read_json(DATA_DIR / spec.health_file) if spec.health_file else None
+    if spec.health_file and health_payload is None:
+        warnings.append(f"missing_or_invalid_health:data/{spec.health_file}")
+    if health_payload is not None:
+        for field_name in spec.required_health_fields:
+            if field_name not in health_payload:
+                warnings.append(f"health_field_missing:{field_name}")
     return {
         "script": spec.script,
         "pid": process.pid,
@@ -277,8 +318,15 @@ def collect_supervisor_health(runtimes: list[dict[str, Any]]) -> dict[str, Any]:
     for script, snapshot in engines.items():
         warnings.extend(f"{script}:{warning}" for warning in snapshot["warnings"])
     for filename, state in required_outputs.items():
-        if not state["exists"]:
+        if not state["exists"] and filename not in NONCRITICAL_REQUIRED_OUTPUTS:
             warnings.append(f"required_output_missing:data/{filename}")
+        elif not state["exists"] and filename == "structure_events.jsonl":
+            smart_runtime = next(
+                (runtime for runtime in runtimes if runtime["spec"].script == "smart_money_engine.py"),
+                None,
+            )
+            if smart_runtime and time.time() - smart_runtime["started_at"] >= SMART_MONEY_STRUCTURE_WARNING_SECONDS:
+                warnings.append("smart_money_structure_events_missing")
     return {
         "status": "alive" if all(item["process_alive"] for item in engines.values()) else "degraded",
         "checked_at": time.time(),
@@ -318,7 +366,10 @@ def build_report(
     health: dict[str, Any],
 ) -> dict[str, Any]:
     all_processes_alive = all(item["process_alive"] for item in health["engines"].values())
-    all_outputs_exist = all(item["exists"] for item in health["required_outputs"].values())
+    all_outputs_exist = all(
+        state["exists"] or filename in NONCRITICAL_REQUIRED_OUTPUTS
+        for filename, state in health["required_outputs"].items()
+    )
     validation = {
         "contract_registries_valid": contract_validation["passed"],
         "all_engines_alive": all_processes_alive,
@@ -345,6 +396,7 @@ def run_supervisor(duration: int, clean: bool = False) -> dict[str, Any]:
     start_time = time.monotonic()
     next_status_at = 0
     interrupted = False
+    last_health: dict[str, Any] | None = None
     try:
         for spec in ENGINE_SPECS:
             runtimes.append(start_engine(spec))
@@ -357,6 +409,7 @@ def run_supervisor(duration: int, clean: bool = False) -> dict[str, Any]:
                     restart_engine(runtime)
             elapsed = int(time.monotonic() - start_time)
             health = collect_supervisor_health(runtimes)
+            last_health = health
             write_supervisor_health(health)
             if elapsed >= next_status_at:
                 print_status(elapsed, health)
@@ -365,7 +418,7 @@ def run_supervisor(duration: int, clean: bool = False) -> dict[str, Any]:
     except KeyboardInterrupt:
         interrupted = True
     finally:
-        final_health = collect_supervisor_health(runtimes)
+        final_health = last_health if last_health is not None else collect_supervisor_health(runtimes)
         write_supervisor_health(final_health)
         for runtime in reversed(runtimes):
             stop_process(runtime)

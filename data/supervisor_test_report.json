@@ -1,5 +1,5 @@
 {
-  "duration_seconds": 65,
+  "duration_seconds": 182,
   "contract_validation": {
     "detector_registry_valid": true,
     "evidence_registry_valid": true,
@@ -8,34 +8,34 @@
   },
   "supervisor_health": {
     "status": "alive",
-    "checked_at": 1781456819.538302,
+    "checked_at": 1781468486.570309,
     "engines": {
       "main.py": {
         "script": "main.py",
-        "pid": 12992,
+        "pid": 27712,
         "process_alive": true,
-        "heartbeat": 1781456818.5671327,
+        "heartbeat": 1781468483.3314621,
         "health": {
           "status": "running"
         },
         "last_window_ts": 1781456818000,
-        "lag_seconds": 1.405798828125,
+        "lag_seconds": 11668.448221191406,
         "missing_outputs": [],
         "warnings": [],
-        "restart_count": 0,
-        "last_exit_code": null,
+        "restart_count": 57,
+        "last_exit_code": 1,
         "log_file": "logs/main.log"
       },
       "rolling_window_engine.py": {
         "script": "rolling_window_engine.py",
-        "pid": 28428,
+        "pid": 19208,
         "process_alive": true,
-        "heartbeat": 1781456818.7735038,
+        "heartbeat": 1781468298.3473945,
         "health": {
           "status": "running"
         },
         "last_window_ts": 1781456816000,
-        "lag_seconds": 3.415875732421875,
+        "lag_seconds": 11670.457138671874,
         "missing_outputs": [],
         "warnings": [],
         "restart_count": 0,
@@ -44,14 +44,14 @@
       },
       "aligned_candle_engine.py": {
         "script": "aligned_candle_engine.py",
-        "pid": 19828,
+        "pid": 3956,
         "process_alive": true,
-        "heartbeat": 1781456749.465967,
+        "heartbeat": 1781468298.9419644,
         "health": {
           "status": "running"
         },
         "last_window_ts": 1781379660000,
-        "lag_seconds": 77159.53063623047,
+        "lag_seconds": 88826.56404638672,
         "missing_outputs": [],
         "warnings": [],
         "restart_count": 0,
@@ -60,14 +60,14 @@
       },
       "sync_integrity_engine.py": {
         "script": "sync_integrity_engine.py",
-        "pid": 12240,
+        "pid": 31084,
         "process_alive": true,
-        "heartbeat": 1781456819.1853526,
+        "heartbeat": 1781468480.577583,
         "health": {
           "layer_0": {
             "status": "alive",
             "last_window_ts": 1781456818000,
-            "lag_seconds": 1.1854140625
+            "lag_seconds": 11662.57693383789
           },
           "layer_1": {
             "status": "alive",
@@ -80,7 +80,7 @@
           "gap_count": 1
         },
         "last_window_ts": 1781456818000,
-        "lag_seconds": 1.53119873046875,
+        "lag_seconds": 11668.564742919922,
         "missing_outputs": [],
         "warnings": [],
         "restart_count": 0,
@@ -89,14 +89,14 @@
       },
       "context_engine.py": {
         "script": "context_engine.py",
-        "pid": 9228,
+        "pid": 9384,
         "process_alive": true,
-        "heartbeat": 1781456819.2620869,
+        "heartbeat": 1781468481.8910637,
         "health": {
           "status": "running"
         },
         "last_window_ts": 1781456814000,
-        "lag_seconds": 5.535486328125,
+        "lag_seconds": 11672.567442626952,
         "missing_outputs": [],
         "warnings": [],
         "restart_count": 0,
@@ -105,42 +105,30 @@
       },
       "detector_engine.py": {
         "script": "detector_engine.py",
-        "pid": 20572,
+        "pid": 19688,
         "process_alive": true,
-        "heartbeat": 1781456819.154166,
+        "heartbeat": 1781468483.6742754,
         "health": {
           "status": "alive",
           "processed_rows": {
-            "1S": 679,
-            "3S": 1287,
-            "5S": 1281,
-            "15S": 1251,
-            "1M": 20
+            "1S": 685,
+            "3S": 2655,
+            "5S": 2641,
+            "15S": 2571,
+            "1M": 40
           },
-          "measurements_written": 239,
-          "detector_events_written": 1573,
-          "evidence_events_written": 1573,
-          "detectors_run": [
-            "absorption_candidate",
-            "aggression_burst_candidate",
-            "delta_imbalance_candidate",
-            "exhaustion_candidate",
-            "iceberg_candidate",
-            "initiative_flow_candidate",
-            "momentum_candidate",
-            "responsive_buyer_candidate",
-            "responsive_seller_candidate",
-            "sweep_candidate",
-            "trapped_trader_candidate"
-          ],
+          "measurements_written": 0,
+          "detector_events_written": 0,
+          "evidence_events_written": 0,
+          "detectors_run": [],
           "runtime_validation_errors": 0,
           "registry_contract_version": "1.0.0",
           "registry_validation_passed": true,
-          "last_event_ts": 1781456798000,
+          "last_event_ts": 0,
           "missing_inputs": []
         },
-        "last_window_ts": 1781456798000,
-        "lag_seconds": 21.536875,
+        "last_window_ts": 0,
+        "lag_seconds": null,
         "missing_outputs": [],
         "warnings": [],
         "restart_count": 0,
@@ -149,25 +137,54 @@
       },
       "evidence_engine.py": {
         "script": "evidence_engine.py",
-        "pid": 20016,
+        "pid": 12128,
         "process_alive": true,
-        "heartbeat": 1781456819.1230614,
+        "heartbeat": 1781468483.7568896,
         "health": {
           "status": "alive",
-          "input_rows_processed": 22430,
-          "evidence_packets_written": 250,
+          "input_rows_processed": 22593,
+          "evidence_packets_written": 0,
           "open_packets": 0,
-          "last_window_ts": 1781456813000,
+          "last_window_ts": 0,
           "missing_inputs": [],
           "warnings": []
         },
-        "last_window_ts": 1781456813000,
-        "lag_seconds": 6.53764697265625,
+        "last_window_ts": 0,
+        "lag_seconds": null,
         "missing_outputs": [],
         "warnings": [],
         "restart_count": 0,
         "last_exit_code": null,
         "log_file": "logs/evidence_engine.log"
+      },
+      "smart_money_engine.py": {
+        "script": "smart_money_engine.py",
+        "pid": 4448,
+        "process_alive": true,
+        "heartbeat": 1781468484.5385647,
+        "health": {
+          "status": "alive",
+          "processed_rows": {
+            "1S": 685,
+            "3S": 2655,
+            "5S": 2641,
+            "15S": 2571,
+            "1M": 40
+          },
+          "snapshots_written": 0,
+          "structure_events_written": 0,
+          "last_window_ts": 1781456818000,
+          "missing_inputs": [],
+          "warnings": [],
+          "registry_validation_passed": true
+        },
+        "last_window_ts": 1781456818000,
+        "lag_seconds": 11668.569688964844,
+        "missing_outputs": [],
+        "warnings": [],
+        "restart_count": 0,
+        "last_exit_code": null,
+        "log_file": "logs/smart_money_engine.log"
       }
     },
     "required_outputs": {
@@ -185,7 +202,19 @@
       },
       "evidence_packets.jsonl": {
         "exists": true,
-        "size_bytes": 20533904
+        "size_bytes": 20557119
+      },
+      "smart_money_dna.jsonl": {
+        "exists": true,
+        "size_bytes": 50131854
+      },
+      "structure_events.jsonl": {
+        "exists": true,
+        "size_bytes": 1220872
+      },
+      "smart_money_health.json": {
+        "exists": true,
+        "size_bytes": 316
       }
     },
     "warnings": []

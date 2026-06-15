@@ -1,0 +1,17 @@
+{
+  "status": "alive",
+  "input_rows_processed": {
+    "1S": 685,
+    "3S": 5379,
+    "5S": 5349,
+    "15S": 5199,
+    "1M": 80
+  },
+  "snapshots_written": 0,
+  "events_written": 0,
+  "memory_zones": 8817,
+  "last_window_ts": 1781456818000,
+  "missing_inputs": [],
+  "warnings": [],
+  "registry_validation_passed": true
+}

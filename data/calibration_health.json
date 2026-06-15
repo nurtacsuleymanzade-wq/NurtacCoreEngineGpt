@@ -1,15 +1,18 @@
 {
   "status": "alive",
-  "input_events_processed": 45186,
-  "prices_indexed": 609,
-  "open_observations": 1714,
-  "completed_observations": 20842,
-  "profiles_written": 12,
-  "last_event_ts": 1781456818000,
-  "last_price_ts": 1781456818000,
+  "input_rows_processed": {
+    "historical_outcome_observations": 519423,
+    "setup_candidates": 193,
+    "evidence_packets": 5091,
+    "detector_events": 22593,
+    "structure_events": 1423,
+    "volume_profile_events": 83084,
+    "context_dna": 2711
+  },
+  "profiles_written": 1125,
+  "calibration_events_written": 1125,
+  "last_observation_ts": 1781456788000,
   "missing_inputs": [],
-  "warnings": [
-    "invalid_price_row",
-    "missing_reference_price"
-  ]
+  "warnings": [],
+  "registry_validation_passed": true
 }

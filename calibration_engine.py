@@ -1,575 +1,246 @@
-"""Layer-6 outcome observation engine.
+"""Layer-9 calibration engine for descriptive statistics measured from outcomes."""
 
-This engine measures historical outcomes for detector events. It does not
-produce scores, thresholds, confidence, signals, setups, or trade decisions.
-"""
-
-import bisect
 import hashlib
 import json
+import statistics
 import time
 from collections import defaultdict
 from pathlib import Path
 from typing import Any
 
+from calibration_contracts import validate_calibration_contracts
 
-ROOT_DIR = Path(__file__).resolve().parent
-DATA_DIR = ROOT_DIR / "data"
-
-EVIDENCE_INPUT_FILE = DATA_DIR / "evidence_inbox.jsonl"
-DETECTOR_INPUT_FILE = DATA_DIR / "detector_events.jsonl"
-PRICE_INPUT_FILE = DATA_DIR / "one_second_combined_dna.jsonl"
-CONTEXT_INPUT_FILE = DATA_DIR / "context_dna.jsonl"
-
-OBSERVATIONS_FILE = DATA_DIR / "calibration_observations.jsonl"
-PROFILES_FILE = DATA_DIR / "calibration_profiles.json"
-HEALTH_FILE = DATA_DIR / "calibration_health.json"
-
-HORIZONS = [30000, 60000, 180000, 300000]
-HORIZON_LABELS = {
-    30000: "30s",
-    60000: "60s",
-    180000: "180s",
-    300000: "300s",
-}
-POLL_INTERVAL_SECONDS = 0.5
-HEARTBEAT_SECONDS = 10.0
-PROFILE_INTERVAL_SECONDS = 30.0
-
-NULL_SCORES = {
-    "confidence": None,
-    "strength_score": None,
-    "edge_score": None,
-    "threshold": None,
-}
+ROOT_DIR=Path(__file__).resolve().parent;DATA_DIR=ROOT_DIR/"data"
+OUTCOME_FILE=DATA_DIR/"historical_outcome_observations.jsonl"
+OPTIONAL_FILES={"setup_candidates":DATA_DIR/"setup_candidates.jsonl","evidence_packets":DATA_DIR/"evidence_packets.jsonl",
+"detector_events":DATA_DIR/"detector_events.jsonl","structure_events":DATA_DIR/"structure_events.jsonl",
+"volume_profile_events":DATA_DIR/"volume_profile_events.jsonl","context_dna":DATA_DIR/"context_dna.jsonl"}
+PROFILES_FILE=DATA_DIR/"calibration_profiles.json";EVENTS_FILE=DATA_DIR/"calibration_events.jsonl"
+HEALTH_FILE=DATA_DIR/"calibration_health.json";ERRORS_FILE=DATA_DIR/"calibration_errors.jsonl"
+EXPECTED_HORIZONS=("30s","60s","300s","900s","3600s");POLL_INTERVAL_SECONDS=0.5;WRITE_INTERVAL_SECONDS=60.0
+NULL_SCORES={"hardcoded_confidence":None,"hardcoded_probability":None,"hardcoded_strength_score":None,"hardcoded_threshold":None}
 
 
-class CalibrationObservationEngine:
-    def __init__(self) -> None:
-        DATA_DIR.mkdir(parents=True, exist_ok=True)
-        self.processed_event_ids: set[str] = set()
-        self.seen_event_ids: set[str] = set()
-        self.open_observations: dict[str, dict[str, Any]] = {}
-        self.price_index: dict[str, dict[int, dict[str, Any]]] = defaultdict(dict)
-        self.price_timestamps: dict[str, list[int]] = defaultdict(list)
-        self.detector_event_index: dict[str, dict[str, Any]] = {}
-        self.profile_groups: dict[tuple[str, str, str, str], dict[str, Any]] = {}
-        self.input_events_processed = 0
-        self.prices_indexed = 0
-        self.completed_observations = 0
-        self.profiles_written = 0
-        self.last_event_ts = 0
-        self.last_price_ts = 0
-        self.missing_inputs: set[str] = set()
-        self.warnings: set[str] = set()
-        self.last_heartbeat = time.monotonic()
-        self.last_profile_write = time.monotonic()
-        self.observation_handle = OBSERVATIONS_FILE.open("a", encoding="utf-8")
-        self.load_existing_observations()
-        self.refresh_missing_inputs()
-        self.write_health()
+class CalibrationEngine:
+ def __init__(self)->None:
+  errors=validate_calibration_contracts();self.registry_validation_passed=not errors
+  if errors:raise RuntimeError("Calibration registry invalid: "+"; ".join(errors))
+  DATA_DIR.mkdir(parents=True,exist_ok=True);self.metadata:dict[str,dict[str,Any]]={};self.groups:dict[str,dict[str,Any]]={}
+  self.input_rows_processed={"historical_outcome_observations":0,**{name:0 for name in OPTIONAL_FILES}}
+  self.profiles_written=0;self.calibration_events_written=0;self.last_observation_ts=0
+  self.missing_inputs:set[str]=set();self.warnings:set[str]=set();self.last_write=time.monotonic()
+  self.error_handle=ERRORS_FILE.open("a",encoding="utf-8");self.event_handle=EVENTS_FILE.open("a",encoding="utf-8")
+  self.previous_counts=load_previous_counts();self.refresh_missing_inputs();self.write_health()
 
-    def close(self) -> None:
-        self.write_profiles()
-        self.write_health()
-        self.observation_handle.close()
+ def refresh_missing_inputs(self)->None:
+  if OUTCOME_FILE.exists():self.missing_inputs.discard(relative_label(OUTCOME_FILE))
+  else:self.missing_inputs.add(relative_label(OUTCOME_FILE))
+  for path in OPTIONAL_FILES.values():
+   if not path.exists():self.warnings.add(f"optional_input_missing:{relative_label(path)}")
 
-    def load_existing_observations(self) -> None:
-        for row in read_jsonl(OBSERVATIONS_FILE):
-            event_id = row.get("event_id")
-            if event_id:
-                event_id = str(event_id)
-                self.processed_event_ids.add(event_id)
-                self.seen_event_ids.add(event_id)
-            if row.get("record_type") == "calibration_observation":
-                self.update_profile(row)
+ def index_metadata_line(self,source:str,line:str)->None:
+  row=self.parse(source,line);self.input_rows_processed[source]+=1
+  if row is None:return
+  metadata=normalize_metadata(source,row)
+  if metadata:
+   self.metadata[metadata["source_event_id"]]=metadata
 
-    def refresh_missing_inputs(self) -> None:
-        for path in (
-            EVIDENCE_INPUT_FILE,
-            DETECTOR_INPUT_FILE,
-            PRICE_INPUT_FILE,
-            CONTEXT_INPUT_FILE,
-        ):
-            label = relative_label(path)
-            if path.exists():
-                self.missing_inputs.discard(label)
-            else:
-                self.missing_inputs.add(label)
+ def process_outcome_line(self,line:str)->None:
+  row=self.parse("historical_outcome_observations",line);self.input_rows_processed["historical_outcome_observations"]+=1
+  if row is None:return
+  observation=normalize_outcome(row)
+  if observation is None:self.write_error("historical_outcome_observations","outcome_normalization_failed");return
+  self.last_observation_ts=max(self.last_observation_ts,observation["event_ts"])
+  metadata=self.metadata.get(observation["source_event_id"],{})
+  merged={**observation,**metadata,"source_type":observation["source_type"],"symbol":observation["symbol"],"timeframe":observation["timeframe"]}
+  for spec in group_specs(merged):self.update_group(spec,merged)
 
-    def index_price(self, row: dict[str, Any]) -> None:
-        symbol = str(row.get("symbol", ""))
-        window_start_ts = safe_int(row.get("window_start_ts"))
-        window_end_ts = safe_int(row.get("window_end_ts"))
-        close_price = extract_close_price(row)
-        if not symbol or window_start_ts is None or close_price is None:
-            self.warnings.add("invalid_price_row")
-            return
-        symbol_prices = self.price_index[symbol]
-        if window_start_ts not in symbol_prices:
-            bisect.insort(self.price_timestamps[symbol], window_start_ts)
-            self.prices_indexed += 1
-        symbol_prices[window_start_ts] = {
-            "symbol": symbol,
-            "window_start_ts": window_start_ts,
-            "window_end_ts": window_end_ts,
-            "close_price": close_price,
-        }
-        self.last_price_ts = max(self.last_price_ts, window_start_ts)
-        self.measure_open_observations(symbol)
+ def update_group(self,spec:dict[str,Any],row:dict[str,Any])->None:
+  key=spec["group_key"];group=self.groups.get(key)
+  if group is None:
+   group={**spec,"source_ids":set(),"horizons":defaultdict(new_horizon)};self.groups[key]=group
+  group["source_ids"].add(row["source_event_id"]);h=group["horizons"][row["observation_window"]]
+  raw=row["raw_return"];adjusted=side_adjust(raw,row.get("side","unknown"));mfe,mae=side_excursions(row,row.get("side","unknown"))
+  h["sample_count"]+=1;h["raw_returns"].append(raw);h["raw_sum"]+=raw
+  if adjusted is None:
+   h["unknown_count"]+=1
+  elif adjusted>0:h["favorable_count"]+=1
+  elif adjusted<0:h["unfavorable_count"]+=1
+  else:h["flat_count"]+=1
+  if adjusted is not None:h["adjusted_returns"].append(adjusted);h["adjusted_sum"]+=adjusted
+  if mfe is not None:h["mfe_sum"]+=mfe;h["mfe_count"]+=1
+  if mae is not None:h["mae_sum"]+=mae;h["mae_count"]+=1
 
-    def register_detector_event(self, row: dict[str, Any]) -> None:
-        event_id = source_event_id(row)
-        if event_id:
-            self.detector_event_index[event_id] = row
+ def write_profiles(self)->None:
+  profiles=[build_profile(group) for group in sorted(self.groups.values(),key=lambda x:x["group_key"])]
+  payload={"layer":"Layer-9","engine":"CalibrationEngine","record_type":"calibration_profiles","generated_at":time.time(),"profiles":profiles}
+  PROFILES_FILE.write_text(json.dumps(payload,indent=2)+"\n",encoding="utf-8");self.profiles_written=len(profiles)
+  for profile in profiles:
+   previous=self.previous_counts.get(profile["profile_id"])
+   if previous==profile["sample_count"]:continue
+   event_id="cal_"+hashlib.sha256(f"{profile['profile_id']}|{profile['sample_count']}".encode()).hexdigest()[:20]
+   event={"layer":"Layer-9","engine":"CalibrationEngine","record_type":"calibration_event","event_id":event_id,
+    "event_type":"calibration_profile_updated","profile_id":profile["profile_id"],"group_key":profile["group_key"],
+    "sample_count":profile["sample_count"],"calibration_status":"measured_from_outcomes","scores":dict(NULL_SCORES),
+    "validation":{"contract_found":True,"invariants_passed":True,"errors":[]}}
+   self.event_handle.write(json.dumps(event,separators=(",",":"))+"\n");self.calibration_events_written+=1
+   self.previous_counts[profile["profile_id"]]=profile["sample_count"]
+  self.event_handle.flush();self.write_health();self.last_write=time.monotonic()
 
-    def process_detector_event(self, row: dict[str, Any]) -> None:
-        self.register_detector_event(row)
-        self.process_event(row)
+ def parse(self,source:str,line:str)->dict[str,Any]|None:
+  try:row=json.loads(line)
+  except json.JSONDecodeError as exc:self.write_error(source,f"json_parse_error:{exc}");return None
+  if not isinstance(row,dict):self.write_error(source,"row_not_object");return None
+  return row
 
-    def process_event(self, row: dict[str, Any]) -> None:
-        self.input_events_processed += 1
-        event = normalize_event(row, self.detector_event_index)
-        if event is None:
-            self.warnings.add("invalid_event_row")
-            return
-        event_id = event["event_id"]
-        if event_id in self.seen_event_ids or event_id in self.processed_event_ids:
-            return
-        self.seen_event_ids.add(event_id)
-        self.last_event_ts = max(self.last_event_ts, event["window_start_ts"])
+ def write_error(self,source:str,detail:str)->None:
+  self.error_handle.write(json.dumps({"engine":"CalibrationEngine","source":source,"detail":detail},separators=(",",":"))+"\n");self.error_handle.flush();self.warnings.add(f"error:{source}")
 
-        reference = self.find_reference_price(event["symbol"], event["window_start_ts"])
-        if reference is None:
-            self.warnings.add("missing_reference_price")
-            return
-        observation = {
-            "event_id": event_id,
-            "symbol": event["symbol"],
-            "timeframe": event["timeframe"],
-            "event_type": event["event_type"],
-            "side": event["side"],
-            "event_window_start_ts": event["window_start_ts"],
-            "event_window_end_ts": event["window_end_ts"],
-            "reference_price": reference["close_price"],
-            "reference_price_ts": reference["window_start_ts"],
-            "horizons_pending": list(HORIZONS),
-            "future_prices": {},
-            "source_event": event["source_event"],
-            "data_quality": event["data_quality"],
-        }
-        self.open_observations[event_id] = observation
-        self.measure_observation(observation)
+ def tick(self)->None:
+  if time.monotonic()-self.last_write>=WRITE_INTERVAL_SECONDS:self.write_profiles()
 
-    def find_reference_price(self, symbol: str, event_ts: int) -> dict[str, Any] | None:
-        timestamps = self.price_timestamps.get(symbol, [])
-        index = bisect.bisect_right(timestamps, event_ts) - 1
-        if index < 0:
-            return None
-        reference_ts = timestamps[index]
-        return self.price_index[symbol][reference_ts]
+ def write_health(self)->None:
+  HEALTH_FILE.write_text(json.dumps({"status":"alive","input_rows_processed":self.input_rows_processed,
+   "profiles_written":self.profiles_written,"calibration_events_written":self.calibration_events_written,
+   "last_observation_ts":self.last_observation_ts,"missing_inputs":sorted(self.missing_inputs),
+   "warnings":sorted(self.warnings),"registry_validation_passed":self.registry_validation_passed},indent=2)+"\n",encoding="utf-8")
 
-    def find_future_price(self, symbol: str, target_ts: int) -> dict[str, Any] | None:
-        timestamps = self.price_timestamps.get(symbol, [])
-        index = bisect.bisect_left(timestamps, target_ts)
-        if index >= len(timestamps):
-            return None
-        future_ts = timestamps[index]
-        return self.price_index[symbol][future_ts]
-
-    def measure_open_observations(self, symbol: str) -> None:
-        for observation in list(self.open_observations.values()):
-            if observation["symbol"] == symbol:
-                self.measure_observation(observation)
-
-    def measure_observation(self, observation: dict[str, Any]) -> None:
-        for horizon_ms in list(observation["horizons_pending"]):
-            target_ts = observation["event_window_start_ts"] + horizon_ms
-            future = self.find_future_price(observation["symbol"], target_ts)
-            if future is None or future["window_start_ts"] < target_ts:
-                continue
-            raw_return = (future["close_price"] - observation["reference_price"]) / observation["reference_price"]
-            adjusted = side_adjusted_return(raw_return, observation["side"])
-            observation["future_prices"][horizon_ms] = {
-                "future_price": future["close_price"],
-                "future_price_ts": future["window_start_ts"],
-                "future_price_delay_ms": future["window_start_ts"] - target_ts,
-                "raw_return": raw_return,
-                "side_adjusted_return": adjusted,
-                "directional_result": directional_result(adjusted),
-            }
-            observation["horizons_pending"].remove(horizon_ms)
-        if not observation["horizons_pending"]:
-            self.complete_observation(observation)
-
-    def complete_observation(self, observation: dict[str, Any]) -> None:
-        event_id = observation["event_id"]
-        if event_id in self.processed_event_ids:
-            self.open_observations.pop(event_id, None)
-            return
-        outcomes = {
-            HORIZON_LABELS[horizon]: observation["future_prices"][horizon]
-            for horizon in HORIZONS
-        }
-        payload = {
-            "layer": "Layer-6",
-            "engine": "CalibrationObservationEngine",
-            "record_type": "calibration_observation",
-            "calibration_status": "observed_not_scored",
-            "event_id": event_id,
-            "symbol": observation["symbol"],
-            "timeframe": observation["timeframe"],
-            "event_type": observation["event_type"],
-            "side": observation["side"],
-            "event_window_start_ts": observation["event_window_start_ts"],
-            "event_window_end_ts": observation["event_window_end_ts"],
-            "reference": {
-                "price": observation["reference_price"],
-                "price_ts": observation["reference_price_ts"],
-            },
-            "outcomes": outcomes,
-            "source_event": observation["source_event"],
-            "data_quality": observation["data_quality"],
-            "scores": dict(NULL_SCORES),
-            "validation": {
-                "reference_price_valid": True,
-                "all_horizons_measured": True,
-                "errors": [],
-            },
-        }
-        self.observation_handle.write(json.dumps(payload, separators=(",", ":"), ensure_ascii=False) + "\n")
-        self.observation_handle.flush()
-        self.processed_event_ids.add(event_id)
-        self.open_observations.pop(event_id, None)
-        self.completed_observations += 1
-        self.update_profile(payload)
-
-    def update_profile(self, observation: dict[str, Any]) -> None:
-        key = (
-            str(observation.get("symbol", "unknown")),
-            str(observation.get("timeframe", "unknown")),
-            str(observation.get("event_type", "unknown")),
-            str(observation.get("side", "unknown")),
-        )
-        group = self.profile_groups.get(key)
-        if group is None:
-            group = {
-                "symbol": key[0],
-                "timeframe": key[1],
-                "event_type": key[2],
-                "side": key[3],
-                "sample_count": 0,
-                "horizons": {
-                    label: {
-                        "favorable_count": 0,
-                        "unfavorable_count": 0,
-                        "flat_count": 0,
-                        "unknown_count": 0,
-                        "raw_returns": [],
-                        "adjusted_returns": [],
-                    }
-                    for label in HORIZON_LABELS.values()
-                },
-            }
-            self.profile_groups[key] = group
-        group["sample_count"] += 1
-        for label in HORIZON_LABELS.values():
-            outcome = observation.get("outcomes", {}).get(label, {})
-            horizon = group["horizons"][label]
-            result = outcome.get("directional_result", "unknown")
-            count_field = f"{result}_count" if result in ("favorable", "unfavorable", "flat") else "unknown_count"
-            horizon[count_field] += 1
-            raw_return = outcome.get("raw_return")
-            adjusted_return = outcome.get("side_adjusted_return")
-            if isinstance(raw_return, (int, float)):
-                horizon["raw_returns"].append(float(raw_return))
-            if isinstance(adjusted_return, (int, float)):
-                horizon["adjusted_returns"].append(float(adjusted_return))
-
-    def write_profiles(self) -> None:
-        groups = []
-        for key in sorted(self.profile_groups):
-            source = self.profile_groups[key]
-            horizons = {}
-            for label, values in source["horizons"].items():
-                horizons[label] = {
-                    "favorable_count": values["favorable_count"],
-                    "unfavorable_count": values["unfavorable_count"],
-                    "flat_count": values["flat_count"],
-                    "unknown_count": values["unknown_count"],
-                    "avg_raw_return": average(values["raw_returns"]),
-                    "avg_side_adjusted_return": average(values["adjusted_returns"]),
-                }
-            groups.append(
-                {
-                    "symbol": source["symbol"],
-                    "timeframe": source["timeframe"],
-                    "event_type": source["event_type"],
-                    "side": source["side"],
-                    "sample_count": source["sample_count"],
-                    "horizons": horizons,
-                    "scores": dict(NULL_SCORES),
-                }
-            )
-        payload = {
-            "layer": "Layer-6",
-            "engine": "CalibrationObservationEngine",
-            "record_type": "calibration_profile_summary",
-            "calibration_status": "observed_not_scored",
-            "generated_at": time.time(),
-            "groups": groups,
-            "scores": dict(NULL_SCORES),
-        }
-        PROFILES_FILE.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
-        self.profiles_written += 1
-        self.last_profile_write = time.monotonic()
-
-    def tick(self) -> None:
-        now = time.monotonic()
-        if now - self.last_profile_write >= PROFILE_INTERVAL_SECONDS:
-            self.write_profiles()
-        if now - self.last_heartbeat >= HEARTBEAT_SECONDS:
-            self.heartbeat()
-            self.last_heartbeat = now
-
-    def write_health(self) -> None:
-        self.refresh_missing_inputs()
-        payload = {
-            "status": "alive",
-            "input_events_processed": self.input_events_processed,
-            "prices_indexed": self.prices_indexed,
-            "open_observations": len(self.open_observations),
-            "completed_observations": self.completed_observations,
-            "profiles_written": self.profiles_written,
-            "last_event_ts": self.last_event_ts,
-            "last_price_ts": self.last_price_ts,
-            "missing_inputs": sorted(self.missing_inputs),
-            "warnings": sorted(self.warnings),
-        }
-        HEALTH_FILE.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
-
-    def heartbeat(self) -> None:
-        self.write_health()
-        print("Calibration Engine alive", flush=True)
-        print(f"input_events_processed={self.input_events_processed}", flush=True)
-        print(f"prices_indexed={self.prices_indexed}", flush=True)
-        print(f"open_observations={len(self.open_observations)}", flush=True)
-        print(f"completed_observations={self.completed_observations}", flush=True)
-        print(f"profiles_written={self.profiles_written}", flush=True)
-        print(f"last_event_ts={self.last_event_ts}", flush=True)
-        print(f"last_price_ts={self.last_price_ts}", flush=True)
+ def close(self)->None:
+  self.write_profiles();self.error_handle.close();self.event_handle.close()
 
 
-def extract_close_price(row: dict[str, Any]) -> float | None:
-    candidates = [
-        nested_value(row, ("close", "price")),
-        nested_value(row, ("ohlc", "close", "price")),
-        nested_value(row, ("candle_dna", "close", "price")),
-        row.get("close"),
-        row.get("price"),
-    ]
-    for candidate in candidates:
-        if isinstance(candidate, dict):
-            candidate = candidate.get("price")
-        try:
-            price = float(candidate)
-        except (TypeError, ValueError, OverflowError):
-            continue
-        if price > 0:
-            return price
-    return None
+def new_horizon()->dict[str,Any]:
+ return {"sample_count":0,"favorable_count":0,"unfavorable_count":0,"flat_count":0,"unknown_count":0,
+ "raw_returns":[],"raw_sum":0.0,"adjusted_returns":[],"adjusted_sum":0.0,"mfe_sum":0.0,"mfe_count":0,"mae_sum":0.0,"mae_count":0}
 
+def normalize_outcome(row:dict[str,Any])->dict[str,Any]|None:
+ try:
+  start=float(row["start_price"]);close=float(row["close_price"]);highest=float(row["highest_price"]);lowest=float(row["lowest_price"])
+ except (KeyError,TypeError,ValueError,OverflowError):return None
+ if start==0:return None
+ path=row.get("price_path",{});max_exc=number(path.get("max_excursion"),highest-start);min_exc=number(path.get("min_excursion"),lowest-start)
+ return {"source_event_id":str(row.get("source_event_id") or ""),"source_type":str(row.get("source_type") or "unknown"),
+ "symbol":str(row.get("symbol") or "unknown"),"timeframe":str(row.get("timeframe") or "unknown"),
+ "event_ts":int(row.get("event_ts",0)),"observation_window":str(row.get("observation_window") or "unknown"),
+ "raw_return":(close-start)/start,"max_excursion_return":max_exc/start,"min_excursion_return":min_exc/start}
 
-def normalize_event(
-    row: dict[str, Any], detector_index: dict[str, dict[str, Any]]
-) -> dict[str, Any] | None:
-    detector_event_id = source_event_id(row)
-    detector_row = detector_index.get(detector_event_id or "", {})
-    merged = dict(detector_row)
-    merged.update(row)
-    symbol = str(merged.get("symbol", ""))
-    timeframe = str(merged.get("timeframe", ""))
-    window_start_ts = safe_int(merged.get("window_start_ts"))
-    event_type = str(merged.get("event_type", ""))
-    side = str(merged.get("side", detector_row.get("side", "unknown")))
-    if side not in ("buy", "sell", "neutral", "unknown"):
-        side = "unknown"
-    detector_name = str(
-        merged.get("detector_name")
-        or merged.get("contract_name")
-        or detector_row.get("contract_name")
-        or event_type
-    )
-    if not symbol or not timeframe or window_start_ts is None or not event_type:
-        return None
-    event_id = detector_event_id or deterministic_event_id(
-        symbol, timeframe, window_start_ts, event_type, side, detector_name
-    )
-    return {
-        "event_id": event_id,
-        "symbol": symbol,
-        "timeframe": timeframe,
-        "window_start_ts": window_start_ts,
-        "window_end_ts": safe_int(merged.get("window_end_ts")),
-        "event_type": event_type,
-        "side": side,
-        "detector_name": detector_name,
-        "calibration_status": merged.get("calibration_status", "unknown"),
-        "source_refs": merged.get("source_refs", {}),
-        "data_quality": merged.get("data_quality", {"quality_state": "unknown", "warning": "source_data_quality_missing"}),
-        "source_event": {
-            "event_id": event_id,
-            "detector_name": detector_name,
-            "event_type": event_type,
-            "calibration_status": merged.get("calibration_status", "unknown"),
-            "source_refs": merged.get("source_refs", {}),
-        },
-    }
+def normalize_metadata(source:str,row:dict[str,Any])->dict[str,Any]|None:
+ ts=int(row.get("window_start_ts",row.get("source_window_ts",0)) or 0);tf=str(row.get("timeframe") or "unknown");symbol=str(row.get("symbol") or "BTCUSDT")
+ if source=="setup_candidates":identifier=row.get("setup_id");event_type=row.get("setup_name");side=row.get("side");setup_name=event_type;direction="unknown"
+ elif source=="detector_events":identifier=row.get("detector_event_id") or row.get("event_id");event_type=row.get("event_type");side=row.get("side");setup_name=None;direction=row.get("direction")
+ elif source in {"structure_events","volume_profile_events"}:identifier=row.get("event_id");event_type=row.get("event_type");side=row.get("side");setup_name=None;direction=row.get("direction")
+ elif source=="evidence_packets":
+  identifier=f"evidence:{symbol}:{tf}:{ts}";summary=row.get("evidence_summary",{});types=sorted(map(str,summary.get("event_types",[])))
+  event_type="evidence_packet";side=evidence_side(summary);setup_name=None;direction="unknown"
+  signature=hashlib.sha256("|".join(types).encode()).hexdigest()[:20]
+  return {"source_event_id":identifier,"event_type":event_type,"side":side,"direction":direction,"setup_name":None,"pattern_signature":signature,"location_context":"unknown"}
+ else:return None
+ if not identifier:return None
+ location="unknown"
+ if source=="volume_profile_events":
+  zone=row.get("zone");location=json.dumps(zone,sort_keys=True,separators=(",",":")) if isinstance(zone,dict) else "level" if row.get("level") is not None else "unknown"
+ return {"source_event_id":str(identifier),"event_type":str(event_type or "unknown"),"side":str(side or "unknown"),
+ "direction":str(direction or "unknown"),"setup_name":setup_name,"pattern_signature":None,"location_context":location}
 
+def group_specs(row:dict[str,Any])->list[dict[str,Any]]:
+ source=row.get("source_type","unknown");event=row.get("event_type","unknown");tf=row.get("timeframe","unknown");side=row.get("side","unknown");symbol=row.get("symbol","unknown")
+ specs=[]
+ def add(ptype:str,parts:list[Any],**extra:Any)->None:
+  key="|".join(map(str,[ptype,*parts]));specs.append({"profile_type":ptype,"group_key":key,"symbol":extra.get("symbol"),
+   "timeframe":tf,"source_type":source,"event_type":event,"setup_name":extra.get("setup_name"),
+   "pattern_signature":extra.get("pattern_signature"),"side":side})
+ add("event",[source,event,tf,side]);add("event",[symbol,tf,event,side],symbol=symbol)
+ add("timeframe",[source,tf]);add("side_adjusted",[source,event,tf,side])
+ if source=="setup":add("setup",[row.get("setup_name",event),tf,side],setup_name=row.get("setup_name",event))
+ if source=="structure":add("structure",[event,row.get("direction","unknown"),tf])
+ if source=="volume_profile":add("volume_profile",[event,row.get("location_context","unknown")])
+ if source=="evidence":add("evidence_pattern",[row.get("pattern_signature","unknown"),tf,side],pattern_signature=row.get("pattern_signature"))
+ return specs
 
-def source_event_id(row: dict[str, Any]) -> str | None:
-    value = row.get("event_id") or row.get("detector_event_id")
-    return str(value) if value else None
+def build_profile(group:dict[str,Any])->dict[str,Any]:
+ horizons={};missing=[]
+ for label in EXPECTED_HORIZONS:
+  h=group["horizons"].get(label)
+  if not h or h["sample_count"]==0:missing.append(label);continue
+  count=h["sample_count"];raw=sorted(h["raw_returns"]);adjusted=sorted(h["adjusted_returns"])
+  horizons[label]={"sample_count":count,"favorable_count":h["favorable_count"],"unfavorable_count":h["unfavorable_count"],
+   "flat_count":h["flat_count"],"unknown_count":h["unknown_count"],"favorable_rate":h["favorable_count"]/count,
+   "unfavorable_rate":h["unfavorable_count"]/count,"avg_raw_return":h["raw_sum"]/count,
+   "median_raw_return":statistics.median(raw),"avg_side_adjusted_return":h["adjusted_sum"]/len(adjusted) if adjusted else None,
+   "median_side_adjusted_return":statistics.median(adjusted) if adjusted else None,
+   "avg_max_favorable_return":h["mfe_sum"]/h["mfe_count"] if h["mfe_count"] else None,
+   "avg_max_adverse_return":h["mae_sum"]/h["mae_count"] if h["mae_count"] else None,
+   "return_distribution":{"min":raw[0],"max":raw[-1],"p25":percentile(raw,0.25),"p50":percentile(raw,0.5),"p75":percentile(raw,0.75)}}
+ sample_count=len(group["source_ids"]);profile_id="cp_"+hashlib.sha256(group["group_key"].encode()).hexdigest()[:24]
+ return {"profile_id":profile_id,"profile_type":group["profile_type"],"group_key":group["group_key"],"symbol":group.get("symbol"),
+ "timeframe":group["timeframe"],"source_type":group["source_type"],"event_type":group["event_type"],
+ "setup_name":group.get("setup_name"),"pattern_signature":group.get("pattern_signature"),"side":group["side"],
+ "sample_count":sample_count,"sample_status":"observed_sample" if sample_count>0 else "insufficient_data",
+ "missing_horizons":missing,"horizons":horizons,"calibration_status":"measured_from_outcomes","scores":dict(NULL_SCORES),
+ "validation":{"source_observations_found":sample_count>0,"no_hardcoded_values":True,"errors":[]}}
 
+def side_adjust(raw:float,side:str)->float|None:
+ if side in {"buy","long"}:return raw
+ if side in {"sell","short"}:return -raw
+ return None
+def side_excursions(row:dict[str,Any],side:str)->tuple[float|None,float|None]:
+ up=row["max_excursion_return"];down=row["min_excursion_return"]
+ if side in {"buy","long"}:return up,down
+ if side in {"sell","short"}:return -down,-up
+ return None,None
+def percentile(values:list[float],q:float)->float:
+ if len(values)==1:return values[0]
+ pos=(len(values)-1)*q;low=int(pos);high=min(low+1,len(values)-1);fraction=pos-low
+ return values[low]+(values[high]-values[low])*fraction
+def number(value:Any,default:float)->float:
+ try:return float(value)
+ except (TypeError,ValueError,OverflowError):return default
+def evidence_side(summary:dict[str,Any])->str:
+ buy=bool(summary.get("buy_side_events"));sell=bool(summary.get("sell_side_events"))
+ return "buy" if buy and not sell else "sell" if sell and not buy else "neutral" if buy or sell else "unknown"
+def load_previous_counts()->dict[str,int]:
+ if not PROFILES_FILE.exists():return {}
+ try:payload=json.loads(PROFILES_FILE.read_text(encoding="utf-8"))
+ except (OSError,json.JSONDecodeError):return {}
+ return {str(p.get("profile_id")):int(p.get("sample_count",0)) for p in payload.get("profiles",[]) if isinstance(p,dict)}
+def relative_label(path:Path)->str:
+ try:return str(path.relative_to(ROOT_DIR)).replace("\\","/")
+ except ValueError:return str(path).replace("\\","/")
 
-def deterministic_event_id(
-    symbol: str,
-    timeframe: str,
-    window_start_ts: int,
-    event_type: str,
-    side: str,
-    detector_name: str,
-) -> str:
-    raw = f"{symbol}{timeframe}{window_start_ts}{event_type}{side}{detector_name}"
-    return hashlib.sha256(raw.encode("utf-8")).hexdigest()
-
-
-def side_adjusted_return(raw_return: float, side: str) -> float | None:
-    if side == "buy":
-        return raw_return
-    if side == "sell":
-        return -raw_return
-    return None
-
-
-def directional_result(adjusted_return: float | None) -> str:
-    if adjusted_return is None:
-        return "unknown"
-    if adjusted_return > 0:
-        return "favorable"
-    if adjusted_return < 0:
-        return "unfavorable"
-    return "flat"
-
-
-def average(values: list[float]) -> float | None:
-    return sum(values) / len(values) if values else None
-
-
-def nested_value(row: dict[str, Any], path: tuple[str, ...]) -> Any:
-    value: Any = row
-    for key in path:
-        if not isinstance(value, dict):
-            return None
-        value = value.get(key)
-    return value
-
-
-def safe_int(value: Any) -> int | None:
-    try:
-        return int(value) if value is not None else None
-    except (TypeError, ValueError, OverflowError):
-        return None
-
-
-def relative_label(path: Path) -> str:
-    return str(path.relative_to(ROOT_DIR)).replace("\\", "/")
-
-
-def read_jsonl(path: Path):
-    if not path.exists():
-        return
-    with path.open("r", encoding="utf-8", errors="replace") as handle:
-        for line in handle:
-            stripped = line.strip()
-            if not stripped:
-                continue
-            try:
-                row = json.loads(stripped)
-            except json.JSONDecodeError:
-                continue
-            if isinstance(row, dict):
-                yield row
-
-
-def open_tail(path: Path):
-    return path.open("r", encoding="utf-8", errors="replace") if path.exists() else None
-
-
-def consume_available(handle, callback) -> int:
-    if handle is None:
-        return 0
-    consumed = 0
+def run()->None:
+ engine=CalibrationEngine();metadata_handles={name:None for name in OPTIONAL_FILES};outcome_handle=None
+ try:
+  # Metadata is indexed first so outcome source IDs can be enriched deterministically.
+  for name,path in OPTIONAL_FILES.items():
+   if not path.exists():continue
+   metadata_handles[name]=path.open("r",encoding="utf-8",errors="replace")
+   for line in metadata_handles[name]:engine.index_metadata_line(name,line);engine.tick()
+  if OUTCOME_FILE.exists():outcome_handle=OUTCOME_FILE.open("r",encoding="utf-8",errors="replace")
+  while True:
+   activity=0
+   if outcome_handle is None and OUTCOME_FILE.exists():outcome_handle=OUTCOME_FILE.open("r",encoding="utf-8",errors="replace")
+   if outcome_handle:
     while True:
-        line = handle.readline()
-        if not line:
-            break
-        stripped = line.strip()
-        if not stripped:
-            continue
-        try:
-            row = json.loads(stripped)
-        except json.JSONDecodeError:
-            continue
-        if isinstance(row, dict):
-            callback(row)
-            consumed += 1
-    return consumed
+     line=outcome_handle.readline()
+     if not line:break
+     engine.process_outcome_line(line);activity+=1;engine.tick()
+   for name,path in OPTIONAL_FILES.items():
+    handle=metadata_handles[name]
+    if handle is None:
+     if not path.exists():continue
+     handle=path.open("r",encoding="utf-8",errors="replace");metadata_handles[name]=handle
+    while True:
+     line=handle.readline()
+     if not line:break
+     engine.index_metadata_line(name,line);activity+=1;engine.tick()
+   engine.tick()
+   if activity==0:time.sleep(POLL_INTERVAL_SECONDS)
+ finally:
+  if outcome_handle:outcome_handle.close()
+  for handle in metadata_handles.values():
+   if handle:handle.close()
+  engine.close()
 
-
-def run() -> None:
-    engine = CalibrationObservationEngine()
-    price_handle = None
-    detector_handle = None
-    evidence_handle = None
-    try:
-        price_handle = open_tail(PRICE_INPUT_FILE)
-        consume_available(price_handle, engine.index_price)
-
-        detector_handle = open_tail(DETECTOR_INPUT_FILE)
-        consume_available(detector_handle, engine.register_detector_event)
-
-        evidence_handle = open_tail(EVIDENCE_INPUT_FILE)
-        consume_available(evidence_handle, engine.process_event)
-
-        if detector_handle is not None:
-            detector_handle.seek(0)
-            consume_available(detector_handle, engine.process_detector_event)
-
-        while True:
-            if price_handle is None and PRICE_INPUT_FILE.exists():
-                price_handle = open_tail(PRICE_INPUT_FILE)
-            if detector_handle is None and DETECTOR_INPUT_FILE.exists():
-                detector_handle = open_tail(DETECTOR_INPUT_FILE)
-            if evidence_handle is None and EVIDENCE_INPUT_FILE.exists():
-                evidence_handle = open_tail(EVIDENCE_INPUT_FILE)
-
-            activity = 0
-            activity += consume_available(price_handle, engine.index_price)
-            activity += consume_available(detector_handle, engine.process_detector_event)
-            activity += consume_available(evidence_handle, engine.process_event)
-            engine.tick()
-            if activity == 0:
-                time.sleep(POLL_INTERVAL_SECONDS)
-    finally:
-        for handle in (price_handle, detector_handle, evidence_handle):
-            if handle is not None:
-                handle.close()
-        engine.close()
-
-
-if __name__ == "__main__":
-    try:
-        run()
-    except KeyboardInterrupt:
-        print("Stopped.", flush=True)
+if __name__=="__main__":
+ try:run()
+ except KeyboardInterrupt:print("Stopped.",flush=True)

@@ -1,0 +1,18 @@
+{
+  "status": "alive",
+  "input_rows_processed": {
+    "calibration_profiles": 1,
+    "setup_candidates": 193,
+    "evidence_packets": 5091,
+    "detector_events": 22593,
+    "structure_events": 1423,
+    "volume_profile_events": 83084,
+    "context_dna": 2711,
+    "historical_outcome_observations": 519423
+  },
+  "probability_candidates_written": 34081,
+  "last_window_ts": 1781456818000,
+  "missing_inputs": [],
+  "warnings": [],
+  "registry_validation_passed": true
+}

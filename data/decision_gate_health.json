@@ -1,0 +1,22 @@
+{
+  "status": "alive",
+  "input_rows_processed": {
+    "probability_candidates": 34081,
+    "setup_candidates": 193,
+    "execution_plan_candidates": 0,
+    "evidence_packets": 5091,
+    "volume_profile_dna": 2710,
+    "volume_profile_events": 83084,
+    "structure_events": 1423,
+    "context_dna": 2711,
+    "historical_outcome_observations": 519423,
+    "calibration_profiles": 1
+  },
+  "decision_events_written": 0,
+  "last_window_ts": 1781456818000,
+  "missing_inputs": [
+    "data/execution_plan_candidates.jsonl"
+  ],
+  "warnings": [],
+  "registry_validation_passed": true
+}
